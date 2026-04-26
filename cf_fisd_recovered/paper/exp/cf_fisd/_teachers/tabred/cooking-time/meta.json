@@ -1,0 +1,24 @@
+{
+  "dataset": "cooking-time",
+  "task_type": "regression",
+  "n_num": 186,
+  "n_cat": 3,
+  "n_bin": 3,
+  "n_features": 192,
+  "cat_indices_in_combined": [
+    186,
+    187,
+    188,
+    189,
+    190,
+    191
+  ],
+  "feature_order": "num,cat,bin",
+  "seed": 0,
+  "tabred_repo_root": "/home/users/ntu/simerjit/scratch/tabm_proj/tabred_fork",
+  "teachers": [
+    "xgb",
+    "lgbm",
+    "cat"
+  ]
+}

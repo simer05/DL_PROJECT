@@ -1,0 +1,127 @@
+{
+  "nscc_run_one": {
+    "has_personal_simerjit": true,
+    "has_normal_queue": true,
+    "uses_43001002": false,
+    "uses_gdev_q": false,
+    "uses_ai_q": false
+  },
+  "nscc_train_teacher_seed": {
+    "has_personal_simerjit": true,
+    "has_normal_queue": true,
+    "uses_43001002": false
+  },
+  "fp32_tomls": [
+    {
+      "seed": 0,
+      "parsed_seed": 0,
+      "amp": false,
+      "ok": true
+    },
+    {
+      "seed": 1,
+      "parsed_seed": 1,
+      "amp": false,
+      "ok": true
+    },
+    {
+      "seed": 2,
+      "parsed_seed": 2,
+      "amp": false,
+      "ok": true
+    },
+    {
+      "seed": 3,
+      "parsed_seed": 3,
+      "amp": false,
+      "ok": true
+    },
+    {
+      "seed": 4,
+      "parsed_seed": 4,
+      "amp": false,
+      "ok": true
+    }
+  ],
+  "report_samples": [
+    {
+      "ds": "homesite-insurance",
+      "v": "hetero_raw_lam0.05",
+      "s": 0,
+      "test": 0.9623906256387912,
+      "val": 0.9587769750914453,
+      "best_step": 1980,
+      "amp_dtype": "bfloat16"
+    },
+    {
+      "ds": "homesite-insurance",
+      "v": "hetero_raw_lam0.2",
+      "s": 7,
+      "test": 0.9629190555548737,
+      "val": 0.9590210879964028,
+      "best_step": 1760,
+      "amp_dtype": "bfloat16"
+    },
+    {
+      "ds": "cooking-time",
+      "v": "baseline_plr",
+      "s": 5,
+      "test": -0.48226132211599426,
+      "val": -0.46351240544347894,
+      "best_step": 21631,
+      "amp_dtype": "bfloat16"
+    }
+  ],
+  "amp_lines_count": 12,
+  "amp_lines_sample": [
+    {
+      "line": 326,
+      "text": "amp: NotRequired[bool]  # torch.autocast"
+    },
+    {
+      "line": 515,
+      "text": "# Only bfloat16 was tested as amp_dtype."
+    },
+    {
+      "line": 516,
+      "text": "# However, float16 is supported as a fallback."
+    },
+    {
+      "line": 517,
+      "text": "# To enable float16, uncomment the two lines below."
+    },
+    {
+      "line": 519,
+      "text": "torch.bfloat16"
+    },
+    {
+      "line": 520,
+      "text": "if config.get('amp', False)"
+    },
+    {
+      "line": 523,
+      "text": "# else torch.float16"
+    },
+    {
+      "line": 524,
+      "text": "# if config.get('amp', False) and and torch.cuda.is_available()"
+    },
+    {
+      "line": 530,
+      "text": "'bfloat16' if amp_dtype is torch.bfloat16"
+    },
+    {
+      "line": 531,
+      "text": "else 'float16' if amp_dtype is torch.float16"
+    },
+    {
+      "line": 536,
+      "text": "grad_scaler = torch.cuda.amp.GradScaler() if amp_dtype is torch.float16 else None  # type: ignore[code]"
+    },
+    {
+      "line": 548,
+      "text": "@torch.autocast(device.type, enabled=amp_enabled, dtype=amp_dtype)  # type: ignore[code]"
+    }
+  ],
+  "qstat_now": "\npbs101: \n                                                                 Req'd  Req'd   Elap\nJob ID               Username Queue    Jobname    SessID NDS TSK Memory Time  S Time\n-------------------- -------- -------- ---------- ------ --- --- ------ ----- - -----\n13910555.pbs101      simerjit gdev     cf_fisd_t* 28457*   1  16  110gb 02:00 R 01:05\n13910557.pbs101      simerjit gdev     cf_fisd_t* 18240*   1  16  110gb 02:00 R 01:03\n13910558.pbs101      simerjit gdev     cf_fisd_t* 18257*   1  16  110gb 02:00 R 00:58\n13910559.pbs101      simerjit gdev     cf_fisd_t* 20685*   1  16  110gb 02:00 R 00:59\n13910568.pbs101      simerjit gdev     cf_fisd_t* 20786*   1  16  110gb 02:00 R 00:29\n13910569.pbs101      simerjit gdev     cf_fisd_t* 37317*   1  16  110gb 02:00 R 00:26\n13911135.pbs101      simerjit gdev     cf_fisd_r*    --    1  16  110gb 01:00 Q   -- \n13911136.pbs101      simerjit gdev     cf_fisd_r*    --    1  16  110gb 01:00 Q   -- \n13911137.pbs101      simerjit gdev     cf_fisd_r*    --    1  16  110gb 01:00 Q   -- \n13911138.pbs101      simerjit gdev     cf_fisd_r*    --    1  16  110gb 01:00 Q   -- \n13911139.pbs101      simerjit gdev     cf_fisd_r*    --    1  16  110gb 01:00 Q   -- \n"
+}

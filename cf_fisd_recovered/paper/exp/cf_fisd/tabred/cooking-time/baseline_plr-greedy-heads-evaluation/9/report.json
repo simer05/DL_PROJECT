@@ -1,0 +1,105 @@
+{
+    "function": "bin.model.main",
+    "gpus": [
+        "NVIDIA A100-SXM4-40GB"
+    ],
+    "config": {
+        "seed": 9,
+        "batch_size": 1024,
+        "patience": 16,
+        "n_epochs": -1,
+        "gradient_clipping_norm": 1.0,
+        "amp": true,
+        "data": {
+            "cache": true,
+            "path": "data/cooking-time",
+            "cat_policy": "ordinal"
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 0.00012065020494450812,
+            "weight_decay": 0.07000081679295954
+        },
+        "model": {
+            "arch_type": "tabm",
+            "k": 32,
+            "share_training_batches": false,
+            "backbone": {
+                "type": "MLP",
+                "n_blocks": 1,
+                "d_block": 416,
+                "dropout": 0.0
+            },
+            "num_embeddings": {
+                "type": "PiecewiseLinearEmbeddings",
+                "d_embedding": 16
+            }
+        },
+        "bins": {
+            "n_bins": 8
+        }
+    },
+    "cf_fisd_state": {
+        "module": "cf_fisd",
+        "upstream_commit": "24adbfcc4ad4dc5d5ea239f42d4ea5a89cc9c4ca",
+        "branch": "cf-fisd-distill",
+        "dirty": true,
+        "timestamp_utc": "2026-04-25T18:31:38.414283Z",
+        "module_file_shas": {
+            "paper/lib/cf_fisd.py": "d739f6017a2bca2049607e5f3a3c9c75bb18406d1ec5841b00ad11c3d65f6128",
+            "paper/bin/cf_fisd_teachers.py": "01e3bf46901b8e26926aa69aacfd5a57939cc3bc78e8d179a614bec124ca8e4f",
+            "paper/bin/model.py": "602bbfcd8824f0780ba835f682d9e773d71e12980055177264126f4395581326",
+            "paper/test_cf_fisd.py": "b6b92bb996a62792122491764f06452d78ec296fb730bcc6445c104593aa7c7f",
+            "paper/tools/generate_cf_fisd_configs.py": "640489c38637de011d5791fbc8733787e696cd066e3267058cbd0c190008190f"
+        }
+    },
+    "n_parameters": 1411040,
+    "prediction_type": "labels",
+    "epoch_size": 223,
+    "amp_enabled": true,
+    "amp_dtype": "bfloat16",
+    "gpu_names": [
+        "NVIDIA A100-SXM4-40GB"
+    ],
+    "best_step": 20739,
+    "metrics": {
+        "train": {
+            "rmse": 0.44577195073271597,
+            "mae": 0.34668707847595215,
+            "r2": 0.5419982418542071,
+            "score": -0.44577195073271597
+        },
+        "val": {
+            "rmse": 0.4631190159059709,
+            "mae": 0.3606584072113037,
+            "r2": 0.5098384769268637,
+            "score": -0.4631190159059709
+        },
+        "test": {
+            "rmse": 0.48200501257715733,
+            "mae": 0.374440461397171,
+            "r2": 0.484187011240257,
+            "score": -0.48200501257715733
+        }
+    },
+    "time": "0:06:29.232675",
+    "chunk_size": null,
+    "eval_batch_size": 32768,
+    "heads": [
+        23,
+        14,
+        5,
+        13,
+        16,
+        6,
+        15,
+        20,
+        7,
+        26,
+        12,
+        28,
+        11,
+        25
+    ],
+    "head_selection_time": "0:00:00.951705"
+}

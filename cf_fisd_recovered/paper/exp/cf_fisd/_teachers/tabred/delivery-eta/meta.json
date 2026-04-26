@@ -1,0 +1,20 @@
+{
+  "dataset": "delivery-eta",
+  "task_type": "regression",
+  "n_num": 218,
+  "n_cat": 1,
+  "n_bin": 1,
+  "n_features": 220,
+  "cat_indices_in_combined": [
+    218,
+    219
+  ],
+  "feature_order": "num,cat,bin",
+  "seed": 0,
+  "tabred_repo_root": "/home/users/ntu/simerjit/scratch/tabm_proj/tabred_fork",
+  "teachers": [
+    "xgb",
+    "lgbm",
+    "cat"
+  ]
+}

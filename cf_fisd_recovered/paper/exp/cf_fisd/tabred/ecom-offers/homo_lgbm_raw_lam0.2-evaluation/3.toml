@@ -1,0 +1,43 @@
+seed = 3
+batch_size = 1024
+patience = 16
+n_epochs = -1
+gradient_clipping_norm = 1.0
+amp = true
+
+[data]
+cache = true
+path = "data/ecom-offers"
+num_policy = "noisy-quantile"
+
+[optimizer]
+type = "AdamW"
+lr = 0.00024262819114537424
+weight_decay = 0.0001501852317298042
+
+[model]
+arch_type = "tabm"
+k = 32
+share_training_batches = false
+
+[model.backbone]
+type = "MLP"
+n_blocks = 1
+d_block = 960
+dropout = 0.0
+
+[model.num_embeddings]
+type = "PiecewiseLinearEmbeddings"
+d_embedding = 16
+
+[bins]
+n_bins = 47
+
+[cf_fisd]
+lambda = 0.2
+variant = "raw"
+teacher_dir = "exp/cf_fisd/_teachers/tabred/ecom-offers"
+dataset_name = "ecom-offers"
+teacher_names = ["xgb", "lgbm", "cat"]
+[cf_fisd.member_groups]
+lgbm = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]

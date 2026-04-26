@@ -1,0 +1,44 @@
+{
+  "kept": [
+    {
+      "jobid": "13910555",
+      "name": "cf_fisd_t*"
+    },
+    {
+      "jobid": "13910557",
+      "name": "cf_fisd_t*"
+    },
+    {
+      "jobid": "13910558",
+      "name": "cf_fisd_t*"
+    },
+    {
+      "jobid": "13910559",
+      "name": "cf_fisd_t*"
+    },
+    {
+      "jobid": "13910563",
+      "name": "cf_fisd_t*"
+    },
+    {
+      "jobid": "13910566",
+      "name": "cf_fisd_t*"
+    },
+    {
+      "jobid": "13910567",
+      "name": "cf_fisd_t*"
+    },
+    {
+      "jobid": "13910568",
+      "name": "cf_fisd_t*"
+    },
+    {
+      "jobid": "13910569",
+      "name": "cf_fisd_t*"
+    }
+  ],
+  "killed": [],
+  "consensus_decision": "no-consensus-in-queue",
+  "consensus_cells": {},
+  "qstat_after": "\npbs101: \n                                                                 Req'd  Req'd   Elap\nJob ID               Username Queue    Jobname    SessID NDS TSK Memory Time  S Time\n-------------------- -------- -------- ---------- ------ --- --- ------ ----- - -----\n13910555.pbs101      simerjit gdev     cf_fisd_t* 28457*   1  16  110gb 02:00 R 00:36\n13910557.pbs101      simerjit gdev     cf_fisd_t* 18240*   1  16  110gb 02:00 R 00:37\n13910558.pbs101      simerjit gdev     cf_fisd_t* 18257*   1  16  110gb 02:00 R 00:32\n13910559.pbs101      simerjit gdev     cf_fisd_t* 20685*   1  16  110gb 02:00 R 00:32\n13910563.pbs101      simerjit gdev     cf_fisd_t* 199950   1  16  110gb 02:00 R 00:25\n13910566.pbs101      simerjit gdev     cf_fisd_t* 28512*   1  16  110gb 02:00 R 00:24\n13910567.pbs101      simerjit gdev     cf_fisd_t* 31663*   1  16  110gb 02:00 R 00:23\n13910568.pbs101      simerjit gdev     cf_fisd_t* 20786*   1  16  110gb 02:00 R 00:02\n13910569.pbs101      simerjit gdev     cf_fisd_t* 37317*   1  16  110gb 02:00 R 00:00\n"
+}

@@ -1,0 +1,13 @@
+{
+    "function": "bin.model.main",
+    "gpus": [
+        "NVIDIA A100-SXM4-40GB"
+    ],
+    "n_parameters": 1411040,
+    "scores": {
+        "train": -0.45112176922417907,
+        "val": -0.4639313663455951,
+        "test": -0.48238133248539145
+    },
+    "time": "0:05:08.930241"
+}

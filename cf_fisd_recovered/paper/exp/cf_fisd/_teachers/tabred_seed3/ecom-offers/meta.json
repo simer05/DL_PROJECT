@@ -1,0 +1,24 @@
+{
+  "dataset": "ecom-offers",
+  "task_type": "binclass",
+  "n_num": 104,
+  "n_cat": 0,
+  "n_bin": 6,
+  "n_features": 110,
+  "cat_indices_in_combined": [
+    104,
+    105,
+    106,
+    107,
+    108,
+    109
+  ],
+  "feature_order": "num,cat,bin",
+  "seed": 3,
+  "tabred_repo_root": "/home/users/ntu/simerjit/scratch/tabm_proj/tabred_fork",
+  "teachers": [
+    "xgb",
+    "lgbm",
+    "cat"
+  ]
+}

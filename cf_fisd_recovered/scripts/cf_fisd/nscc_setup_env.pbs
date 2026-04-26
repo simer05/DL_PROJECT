@@ -1,0 +1,62 @@
+#!/bin/bash
+#PBS -N cf_fisd_env
+#PBS -P personal-simerjit
+#PBS -q normal
+#PBS -l select=1:ncpus=4:mem=16gb
+#PBS -l walltime=00:45:00
+#PBS -j oe
+#PBS -o /home/users/ntu/simerjit/scratch/tabm_proj/logs/cf_fisd/
+
+set -euo pipefail
+SCRATCH=/home/users/ntu/simerjit/scratch/tabm_proj
+VENV="$SCRATCH/cf_fisd_venv"
+
+mkdir -p "$SCRATCH/logs/cf_fisd"
+
+module purge
+module load python/3.10.9
+
+if [ ! -d "$VENV" ]; then
+    python -m venv "$VENV"
+fi
+source "$VENV/bin/activate"
+
+export PIP_CACHE_DIR="$SCRATCH/.pip-cache"
+mkdir -p "$PIP_CACHE_DIR"
+
+pip install --upgrade pip wheel setuptools
+
+pip install \
+    "numpy<2" \
+    "torch==2.0.1" \
+    "delu==0.0.26" \
+    "rtdl-num-embeddings==0.0.12" \
+    "rtdl-revisiting-models" \
+    "scikit-learn==1.3.1" \
+    "scipy==1.11.3" \
+    "pandas==2.1.1" \
+    "polars==1.5.0" \
+    "loguru==0.7.2" \
+    "tomli==2.0.1" \
+    "tomli-w==1.0.0" \
+    "tqdm==4.66.1" \
+    "typing-extensions==4.8.0" \
+    "tensorboard==2.15.2" \
+    "xgboost" \
+    "lightgbm" \
+    "catboost"
+
+python - <<'PY'
+import torch, delu, numpy, scipy, pandas, sklearn, lightgbm, xgboost, catboost
+import rtdl_num_embeddings, loguru, tomli, tensorboard
+print("torch", torch.__version__, "cuda?", torch.cuda.is_available(), "bf16?", torch.cuda.is_bf16_supported() if torch.cuda.is_available() else False)
+print("delu", delu.__version__)
+print("numpy", numpy.__version__)
+print("rtdl_num_embeddings", rtdl_num_embeddings.__version__)
+print("xgboost", xgboost.__version__, "lightgbm", lightgbm.__version__, "catboost", catboost.__version__)
+try:
+    import rtdl_revisiting_models
+    print("rtdl_revisiting_models", getattr(rtdl_revisiting_models, "__version__", "?"))
+except Exception as ex:
+    print("rtdl_revisiting_models import:", ex)
+PY

@@ -37,14 +37,18 @@
                 "enabled": true,
                 "mask_mode": "member_fixed",
                 "mask_granularity": "feature_group",
-                "keep_rate": 0.7,
+                "keep_rate": 0.975,
                 "training_only": false,
                 "inverted_scaling": true,
                 "use_soft_mask": false,
                 "mask_strength": 1.0,
                 "anchor_fraction": 0.0,
                 "warmup_epochs": 0,
-                "mask_seed": 1
+                "mask_seed": 1,
+                "start_epoch": 16,
+                "start_fraction": 0.5,
+                "group_mode": "numerical_only",
+                "categorical_handling": "no_cat_drop"
             }
         },
         "bins": {
@@ -59,28 +63,32 @@
             "enabled": true,
             "mask_mode": "member_fixed",
             "mask_granularity": "feature_group",
-            "keep_rate": 0.7,
+            "keep_rate": 0.975,
             "training_only": false,
             "inverted_scaling": true,
             "use_soft_mask": false,
             "mask_strength": 1.0,
             "anchor_fraction": 0.0,
             "warmup_epochs": 0,
-            "mask_seed": 1
+            "mask_seed": 1,
+            "start_epoch": 16,
+            "start_fraction": 0.5,
+            "group_mode": "numerical_only",
+            "categorical_handling": "no_cat_drop"
         },
         "mask_stats": {
-            "keep_rate_actual": 0.7045454382896423,
-            "min_features_per_member": 142.0,
-            "mean_features_per_member": 155.0,
-            "max_features_per_member": 171.0,
-            "min_members_per_feature": 16.0,
-            "mean_members_per_feature": 22.545454025268555,
-            "max_members_per_feature": 29.0,
-            "mean_pairwise_jaccard": 0.5438212996120257,
+            "keep_rate_actual": 0.9758522510528564,
+            "min_features_per_member": 208.0,
+            "mean_features_per_member": 214.6875,
+            "max_features_per_member": 219.0,
+            "min_members_per_feature": 27.0,
+            "mean_members_per_feature": 31.227272033691406,
+            "max_members_per_feature": 32.0,
+            "mean_pairwise_jaccard": 0.9528503117194804,
             "anchor_fraction_configured": 0.0,
             "n_anchor_members": 0.0,
-            "core_fraction_configured": 0.0,
-            "n_core_features": 0.0
+            "core_fraction_configured": 0.00909090909090909,
+            "n_core_features": 2.0
         }
     },
     "cf_fisd": {
@@ -159,46 +167,46 @@
     "best_step": 1638,
     "metrics": {
         "train": {
-            "rmse": 0.5206705379376763,
-            "mae": 0.4162462055683136,
-            "r2": 0.49187296628952026,
-            "score": -0.5206705379376763
+            "rmse": 0.5160363608272199,
+            "mae": 0.40823259949684143,
+            "r2": 0.5008777976036072,
+            "score": -0.5160363608272199
         },
         "val": {
-            "rmse": 0.5585395946793884,
-            "mae": 0.4492241144180298,
-            "r2": 0.41171765327453613,
-            "score": -0.5585395946793884
+            "rmse": 0.5576769100347859,
+            "mae": 0.4429268538951874,
+            "r2": 0.4135335087776184,
+            "score": -0.5576769100347859
         },
         "test": {
-            "rmse": 0.5622948696369855,
-            "mae": 0.45980095863342285,
-            "r2": 0.4108346104621887,
-            "score": -0.5622948696369855
+            "rmse": 0.5558933529149844,
+            "mae": 0.4492851793766022,
+            "r2": 0.42417311668395996,
+            "score": -0.5558933529149844
         }
     },
-    "time": "0:07:49.809972",
+    "time": "0:07:03.176224",
     "diversity": {
         "train": {
-            "mean_centered_corr": 0.0046985214576125145,
+            "mean_centered_corr": -0.019072668626904488,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.09994115680456161
+            "member_std": 0.07286733388900757
         },
         "val": {
-            "mean_centered_corr": 0.01109667681157589,
+            "mean_centered_corr": -0.019180510193109512,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.11037178337574005
+            "member_std": 0.07150229066610336
         },
         "test": {
-            "mean_centered_corr": 0.013022148050367832,
+            "mean_centered_corr": -0.01909942366182804,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.1104893684387207
+            "member_std": 0.07076001167297363
         }
     },
     "chunk_size": null,
     "eval_batch_size": 8192,
     "heads": [
-        18
+        22
     ],
-    "head_selection_time": "0:00:00.023411"
+    "head_selection_time": "0:00:00.023446"
 }

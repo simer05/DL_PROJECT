@@ -514,19 +514,31 @@ class Model(nn.Module):
         self.mfb_use_soft_mask = bool(self.mfb_cfg.get('use_soft_mask', False))
         self.mfb_mask_strength = float(self.mfb_cfg.get('mask_strength', 1.0))
         self.mfb_warmup_epochs = int(self.mfb_cfg.get('warmup_epochs', 0))
+        self.mfb_start_epoch = int(self.mfb_cfg.get('start_epoch', 0))
+        self.mfb_group_mode = str(self.mfb_cfg.get('group_mode', 'feature_group'))
+        self.mfb_categorical_handling = str(self.mfb_cfg.get('categorical_handling', 'drop_allowed'))
         self.mfb_epoch = 0
         self.mfb_feature_widths = [int(x) for x in first_adapter_sections]
         if self.mfb_enabled:
             assert self.k is not None
             if self.mfb_mask_granularity != 'feature_group':
                 raise ValueError(f'Unsupported MFB mask_granularity={self.mfb_mask_granularity!r}')
+            if self.mfb_group_mode not in {'feature_group', 'numerical_only', 'per_member'}:
+                raise ValueError(f'Unsupported MFB group_mode={self.mfb_group_mode!r}')
+            protected_feature_ids = list(self.mfb_cfg.get('protected_feature_ids') or [])
+            if (
+                self.mfb_group_mode == 'numerical_only'
+                or self.mfb_categorical_handling in {'no_cat_drop', 'num_only'}
+            ):
+                protected_feature_ids.extend(range(n_num_features, n_num_features + len(cat_cardinalities)))
+            protected_feature_ids = sorted(set(int(x) for x in protected_feature_ids))
             feature_mask, dim_mask, mask_stats = _make_mfb_feature_group_mask(
                 k=self.k,
                 feature_widths=self.mfb_feature_widths,
                 keep_rate=self.mfb_keep_rate,
                 seed=int(self.mfb_cfg.get('mask_seed', 0)),
                 anchor_fraction=float(self.mfb_cfg.get('anchor_fraction', 0.0)),
-                protected_feature_ids=self.mfb_cfg.get('protected_feature_ids'),
+                protected_feature_ids=protected_feature_ids,
             )
             self.register_buffer('mfb_fixed_feature_mask', torch.from_numpy(feature_mask), persistent=True)
             self.register_buffer('mfb_fixed_dim_mask', torch.from_numpy(dim_mask), persistent=True)
@@ -544,7 +556,8 @@ class Model(nn.Module):
             return 1.0
         if self.mfb_warmup_epochs <= 0:
             return self.mfb_mask_strength
-        return self.mfb_mask_strength * min(1.0, max(0.0, float(self.mfb_epoch) / float(self.mfb_warmup_epochs)))
+        effective_epoch = max(0, self.mfb_epoch - self.mfb_start_epoch)
+        return self.mfb_mask_strength * min(1.0, max(0.0, float(effective_epoch) / float(self.mfb_warmup_epochs)))
 
     def _sample_mfb_mask(self, device_: torch.device, dtype: torch.dtype) -> Tensor:
         assert self.k is not None
@@ -564,6 +577,8 @@ class Model(nn.Module):
 
     def _apply_mfb_mask(self, x: Tensor) -> Tensor:
         if not self.mfb_enabled or self.mfb_mask_mode == 'none':
+            return x
+        if self.mfb_epoch < self.mfb_start_epoch:
             return x
         if self.mfb_mask_mode == 'member_fixed':
             raw_mask = self.mfb_fixed_dim_mask.to(device=x.device, dtype=x.dtype)
@@ -814,6 +829,7 @@ def main(
         )
         cf_fisd_lambda = float(cf_fisd_cfg.get('lambda', 0.0))
         cf_fisd_variant = str(cf_fisd_cfg.get('variant', 'raw'))
+        cf_fisd_start_epoch = int(cf_fisd_cfg.get('start_epoch', 0))
         cf_fisd_r1_param = _get_first_adapter_for_cf_fisd(root_model.backbone)
         report['cf_fisd'] = {
             'lambda': cf_fisd_lambda,
@@ -823,6 +839,8 @@ def main(
             'd_features': list(cf_fisd_d_features),
             'n_features': cf_fisd_n_features,
             'teacher_dir': str(cf_fisd_cfg['teacher_dir']),
+            'start_epoch': cf_fisd_start_epoch,
+            'mode': cf_fisd_cfg.get('mode', cf_fisd_variant),
         }
     else:
         cf_fisd_lambda = 0.0
@@ -830,11 +848,14 @@ def main(
         cf_fisd_d_features = []
         cf_fisd_teachers = {}
         cf_fisd_member_groups = {}
+        cf_fisd_start_epoch = 0
         cf_fisd_r1_param = None
         report['cf_fisd'] = {'lambda': 0.0}
 
     def compute_cf_fisd_penalty() -> Tensor:
         if cf_fisd_r1_param is None or cf_fisd_lambda <= 0.0:
+            return Y_train.new_zeros((), dtype=torch.float32)
+        if step // epoch_size < cf_fisd_start_epoch:
             return Y_train.new_zeros((), dtype=torch.float32)
         return lib.cf_fisd.cf_fisd_loss(
             cf_fisd_r1_param,

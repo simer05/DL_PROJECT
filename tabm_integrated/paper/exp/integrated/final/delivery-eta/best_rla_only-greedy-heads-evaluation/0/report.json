@@ -11,7 +11,7 @@
         "amp": true,
         "seed": 0,
         "head_selection": true,
-        "rla_adapter_lr_multiplier": 1.0,
+        "rla_adapter_lr_multiplier": 0.5,
         "rla_extra_paths_freeze_fraction": 0.0,
         "data": {
             "cache": true,
@@ -26,11 +26,11 @@
             "arch_type": "tabm",
             "k": 32,
             "share_training_batches": false,
-            "rla_rank": 2,
+            "rla_rank": 4,
             "rla_first_only": false,
             "rla_additive": false,
             "rla_init": "base_preserving",
-            "rla_base_preserve_noise": 0.001,
+            "rla_base_preserve_noise": 0.0001,
             "backbone": {
                 "n_blocks": 2,
                 "d_block": 752,
@@ -45,7 +45,7 @@
             "n_bins": 81
         }
     },
-    "n_parameters": 7056800,
+    "n_parameters": 7647904,
     "prediction_type": "labels",
     "mfb": {
         "enabled": false,
@@ -81,7 +81,7 @@
                 "shape": [
                     32,
                     6980,
-                    2
+                    4
                 ]
             },
             {
@@ -89,7 +89,7 @@
                 "shape": [
                     32,
                     752,
-                    2
+                    4
                 ]
             },
             {
@@ -104,7 +104,7 @@
                 "shape": [
                     32,
                     752,
-                    2
+                    4
                 ]
             },
             {
@@ -112,7 +112,7 @@
                 "shape": [
                     32,
                     752,
-                    2
+                    4
                 ]
             },
             {
@@ -127,68 +127,61 @@
         "n_diagnostics_records": 0
     },
     "rla_training": {
-        "adapter_lr_multiplier": 1.0,
+        "adapter_lr_multiplier": 0.5,
         "extra_paths_freeze_fraction": 0.0,
         "extra_paths_freeze_until_epoch": 0
     },
     "best_step": 1365,
     "metrics": {
         "train": {
-            "rmse": 0.514097726188904,
-            "mae": 0.4052426517009735,
-            "r2": 0.5046209692955017,
-            "score": -0.514097726188904
+            "rmse": 0.5148489632002486,
+            "mae": 0.40648993849754333,
+            "r2": 0.5031721591949463,
+            "score": -0.5148489632002486
         },
         "val": {
-            "rmse": 0.5552720495549479,
-            "mae": 0.441690057516098,
-            "r2": 0.4185805916786194,
-            "score": -0.5552720495549479
+            "rmse": 0.5553930389270275,
+            "mae": 0.4419495463371277,
+            "r2": 0.4183272123336792,
+            "score": -0.5553930389270275
         },
         "test": {
-            "rmse": 0.5524877260752137,
-            "mae": 0.447174072265625,
-            "r2": 0.43120694160461426,
-            "score": -0.5524877260752137
+            "rmse": 0.5519483119271499,
+            "mae": 0.4472074508666992,
+            "r2": 0.4323171377182007,
+            "score": -0.5519483119271499
         }
     },
-    "time": "0:09:33.111358",
+    "time": "0:14:43.732239",
     "diversity": {
         "train": {
-            "mean_centered_corr": -0.020444847643375397,
+            "mean_centered_corr": -0.02016017585992813,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.059093035757541656
+            "member_std": 0.06105273962020874
         },
         "val": {
-            "mean_centered_corr": -0.020575184375047684,
+            "mean_centered_corr": -0.01993357017636299,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.06087604537606239
+            "member_std": 0.06221357360482216
         },
         "test": {
-            "mean_centered_corr": -0.020676201209425926,
+            "mean_centered_corr": -0.020221160724759102,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.060276810079813004
+            "member_std": 0.06099524348974228
         }
     },
     "chunk_size": null,
     "eval_batch_size": 8192,
     "heads": [
-        18,
-        10,
         11,
+        10,
         26,
         21,
-        14,
+        15,
+        16,
         31,
         19,
-        11,
-        16,
-        26,
-        10,
-        11,
-        15,
-        21,
-        29
+        13
     ],
-    "head_selection_time": "0:00:00.514504"
+    "head_selection_time": "0:00:00.265073"
 }

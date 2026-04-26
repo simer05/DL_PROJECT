@@ -1,0 +1,6 @@
+priority,dataset,module,final_variant,current_source_variant,current_inference_mode,metric,direction,matched_baseline_test_mean,current_test_mean,current_absolute_delta,current_percent_delta,current_status,rescue_reason
+0,delivery-eta,RLA,best_rla_only,rla_rank2_noise0.001,greedy-heads,RMSE,lower,0.5511744515458483,0.5514065614560619,-0.00023210991021360705,-0.04211187756664361,loss,matched_baseline_loss
+0,delivery-eta,ESAM,best_esam_only,esam_only,greedy-heads,RMSE,lower,0.5511744515458483,0.5511479242060323,2.652733981600708e-05,0.004812875441088992,weak_win,delivery_eta_priority
+0,delivery-eta,MFB,best_mfb_only,mfb_keep0.7,greedy-heads,RMSE,lower,0.5511744515458483,0.551366165184366,-0.00019171363851766543,-0.03478275126504446,loss,matched_baseline_loss
+0,delivery-eta,CF-FISD,best_cf_fisd_only,cf_fisd_lambda0.05,greedy-heads,RMSE,lower,0.5511744515458483,0.5524340881807381,-0.0012596366348898158,-0.22853683282252707,loss,matched_baseline_loss
+0,delivery-eta,combined,best_combined,rla_esam,greedy-heads,RMSE,lower,0.5511744515458483,0.5523362750771902,-0.0011618235313418657,-0.21079052704336418,loss,matched_baseline_loss

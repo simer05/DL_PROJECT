@@ -37,14 +37,18 @@
                 "enabled": true,
                 "mask_mode": "member_fixed",
                 "mask_granularity": "feature_group",
-                "keep_rate": 0.7,
+                "keep_rate": 0.975,
                 "training_only": false,
                 "inverted_scaling": true,
                 "use_soft_mask": false,
                 "mask_strength": 1.0,
                 "anchor_fraction": 0.0,
                 "warmup_epochs": 0,
-                "mask_seed": 2
+                "mask_seed": 2,
+                "start_epoch": 16,
+                "start_fraction": 0.5,
+                "group_mode": "numerical_only",
+                "categorical_handling": "no_cat_drop"
             }
         },
         "bins": {
@@ -59,28 +63,32 @@
             "enabled": true,
             "mask_mode": "member_fixed",
             "mask_granularity": "feature_group",
-            "keep_rate": 0.7,
+            "keep_rate": 0.975,
             "training_only": false,
             "inverted_scaling": true,
             "use_soft_mask": false,
             "mask_strength": 1.0,
             "anchor_fraction": 0.0,
             "warmup_epochs": 0,
-            "mask_seed": 2
+            "mask_seed": 2,
+            "start_epoch": 16,
+            "start_fraction": 0.5,
+            "group_mode": "numerical_only",
+            "categorical_handling": "no_cat_drop"
         },
         "mask_stats": {
-            "keep_rate_actual": 0.7042613625526428,
-            "min_features_per_member": 142.0,
-            "mean_features_per_member": 154.9375,
-            "max_features_per_member": 172.0,
-            "min_members_per_feature": 16.0,
-            "mean_members_per_feature": 22.53636360168457,
-            "max_members_per_feature": 29.0,
-            "mean_pairwise_jaccard": 0.5428619561922541,
+            "keep_rate_actual": 0.9745738506317139,
+            "min_features_per_member": 207.0,
+            "mean_features_per_member": 214.40625,
+            "max_features_per_member": 219.0,
+            "min_members_per_feature": 28.0,
+            "mean_members_per_feature": 31.186363220214844,
+            "max_members_per_feature": 32.0,
+            "mean_pairwise_jaccard": 0.9505048664860526,
             "anchor_fraction_configured": 0.0,
             "n_anchor_members": 0.0,
-            "core_fraction_configured": 0.0,
-            "n_core_features": 0.0
+            "core_fraction_configured": 0.00909090909090909,
+            "n_core_features": 2.0
         }
     },
     "cf_fisd": {
@@ -156,43 +164,43 @@
         "extra_paths_freeze_fraction": 0.0,
         "extra_paths_freeze_until_epoch": 0
     },
-    "best_step": 3003,
+    "best_step": 1638,
     "metrics": {
         "train": {
-            "rmse": 0.49698357865243403,
-            "mae": 0.39058470726013184,
-            "r2": 0.5370539426803589,
-            "score": -0.49698357865243403
+            "rmse": 0.5118594085498649,
+            "mae": 0.4030582904815674,
+            "r2": 0.508925199508667,
+            "score": -0.5118594085498649
         },
         "val": {
-            "rmse": 0.556207481645197,
-            "mae": 0.4430869519710541,
-            "r2": 0.4166199564933777,
-            "score": -0.556207481645197
+            "rmse": 0.5562502378827562,
+            "mae": 0.4414753019809723,
+            "r2": 0.4165303111076355,
+            "score": -0.5562502378827562
         },
         "test": {
-            "rmse": 0.551272504610975,
-            "mae": 0.4455644190311432,
-            "r2": 0.4337064027786255,
-            "score": -0.551272504610975
+            "rmse": 0.5500394546922427,
+            "mae": 0.44385185837745667,
+            "r2": 0.4362368583679199,
+            "score": -0.5500394546922427
         }
     },
-    "time": "0:09:37.350511",
+    "time": "0:07:03.506041",
     "diversity": {
         "train": {
-            "mean_centered_corr": 0.0061104861088097095,
+            "mean_centered_corr": 0.024787528440356255,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.11999407410621643
+            "member_std": 0.11345301568508148
         },
         "val": {
-            "mean_centered_corr": 0.013669072650372982,
+            "mean_centered_corr": 0.015488767065107822,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.13615167140960693
+            "member_std": 0.11428248137235641
         },
         "test": {
-            "mean_centered_corr": 0.0167130958288908,
+            "mean_centered_corr": 0.020906968042254448,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.1356925070285797
+            "member_std": 0.11407273262739182
         }
     },
     "chunk_size": null,

@@ -11,7 +11,7 @@
         "amp": true,
         "seed": 1,
         "head_selection": true,
-        "rla_adapter_lr_multiplier": 1.0,
+        "rla_adapter_lr_multiplier": 0.5,
         "rla_extra_paths_freeze_fraction": 0.0,
         "data": {
             "cache": true,
@@ -26,11 +26,11 @@
             "arch_type": "tabm",
             "k": 32,
             "share_training_batches": false,
-            "rla_rank": 2,
+            "rla_rank": 4,
             "rla_first_only": false,
             "rla_additive": false,
             "rla_init": "base_preserving",
-            "rla_base_preserve_noise": 0.001,
+            "rla_base_preserve_noise": 0.0001,
             "backbone": {
                 "n_blocks": 2,
                 "d_block": 752,
@@ -45,7 +45,7 @@
             "n_bins": 81
         }
     },
-    "n_parameters": 7056800,
+    "n_parameters": 7647904,
     "prediction_type": "labels",
     "mfb": {
         "enabled": false,
@@ -81,7 +81,7 @@
                 "shape": [
                     32,
                     6980,
-                    2
+                    4
                 ]
             },
             {
@@ -89,7 +89,7 @@
                 "shape": [
                     32,
                     752,
-                    2
+                    4
                 ]
             },
             {
@@ -104,7 +104,7 @@
                 "shape": [
                     32,
                     752,
-                    2
+                    4
                 ]
             },
             {
@@ -112,7 +112,7 @@
                 "shape": [
                     32,
                     752,
-                    2
+                    4
                 ]
             },
             {
@@ -127,47 +127,47 @@
         "n_diagnostics_records": 0
     },
     "rla_training": {
-        "adapter_lr_multiplier": 1.0,
+        "adapter_lr_multiplier": 0.5,
         "extra_paths_freeze_fraction": 0.0,
         "extra_paths_freeze_until_epoch": 0
     },
     "best_step": 1365,
     "metrics": {
         "train": {
-            "rmse": 0.516247633496788,
-            "mae": 0.40711885690689087,
-            "r2": 0.5004690289497375,
-            "score": -0.516247633496788
+            "rmse": 0.5171067304438404,
+            "mae": 0.40677744150161743,
+            "r2": 0.49880504608154297,
+            "score": -0.5171067304438404
         },
         "val": {
-            "rmse": 0.5576988200546102,
-            "mae": 0.4442465603351593,
-            "r2": 0.41348737478256226,
-            "score": -0.5576988200546102
+            "rmse": 0.5577909128836495,
+            "mae": 0.44260263442993164,
+            "r2": 0.41329365968704224,
+            "score": -0.5577909128836495
         },
         "test": {
-            "rmse": 0.551726996987587,
-            "mae": 0.44564470648765564,
-            "r2": 0.43277227878570557,
-            "score": -0.551726996987587
+            "rmse": 0.5532065757037241,
+            "mae": 0.44593191146850586,
+            "r2": 0.4297259449958801,
+            "score": -0.5532065757037241
         }
     },
-    "time": "0:09:34.536942",
+    "time": "0:14:46.412006",
     "diversity": {
         "train": {
-            "mean_centered_corr": -0.020366203039884567,
+            "mean_centered_corr": -0.020146815106272697,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.05432252958416939
+            "member_std": 0.061014287173748016
         },
         "val": {
-            "mean_centered_corr": -0.020544419065117836,
+            "mean_centered_corr": -0.020077988505363464,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.054353535175323486
+            "member_std": 0.06329856067895889
         },
         "test": {
-            "mean_centered_corr": -0.02033921517431736,
+            "mean_centered_corr": -0.01972520351409912,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.05365084111690521
+            "member_std": 0.06241019815206528
         }
     },
     "chunk_size": null,
@@ -175,5 +175,5 @@
     "heads": [
         5
     ],
-    "head_selection_time": "0:00:00.023071"
+    "head_selection_time": "0:00:00.023596"
 }

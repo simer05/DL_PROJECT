@@ -12,12 +12,12 @@
         "seed": 1,
         "head_selection": true,
         "use_esam": true,
-        "esam_rho": 0.005,
+        "esam_rho": 0.001,
         "esam_eps": 1e-12,
-        "esam_adapter_only": true,
+        "esam_adapter_only": false,
         "esam_memberwise": true,
         "esam_warmup_epochs": 0,
-        "esam_start_epoch": 0,
+        "esam_start_epoch": 8,
         "esam_end_epoch": -1,
         "esam_log_diagnostics": false,
         "esam_diagnostics_every": 100,
@@ -69,16 +69,45 @@
     },
     "esam": {
         "use_esam": true,
-        "esam_rho": 0.005,
+        "esam_rho": 0.001,
         "esam_eps": 1e-12,
-        "esam_adapter_only": true,
+        "esam_adapter_only": false,
         "esam_memberwise": true,
         "esam_warmup_epochs": 0,
-        "esam_start_epoch": 0,
+        "esam_start_epoch": 8,
         "esam_end_epoch": -1,
         "esam_log_diagnostics": false,
         "esam_diagnostics_every": 100,
         "adapter_parameter_names": [
+            {
+                "name": "num_module.linear0.weight",
+                "shape": [
+                    218,
+                    32
+                ]
+            },
+            {
+                "name": "num_module.linear0.bias",
+                "shape": [
+                    218,
+                    32
+                ]
+            },
+            {
+                "name": "num_module.linear.weight",
+                "shape": [
+                    218,
+                    81,
+                    32
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.weight",
+                "shape": [
+                    752,
+                    6980
+                ]
+            },
             {
                 "name": "backbone.blocks.0.0.r",
                 "shape": [
@@ -97,6 +126,13 @@
                 "name": "backbone.blocks.0.0.bias",
                 "shape": [
                     32,
+                    752
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.weight",
+                "shape": [
+                    752,
                     752
                 ]
             },
@@ -120,6 +156,21 @@
                     32,
                     752
                 ]
+            },
+            {
+                "name": "output.weight",
+                "shape": [
+                    32,
+                    752,
+                    1
+                ]
+            },
+            {
+                "name": "output.bias",
+                "shape": [
+                    32,
+                    1
+                ]
             }
         ],
         "diagnostics_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/final/delivery-eta/best_esam_only-evaluation/_esam_diagnostics/best_esam_only-evaluation__1.jsonl",
@@ -133,46 +184,46 @@
     "best_step": 1638,
     "metrics": {
         "train": {
-            "rmse": 0.5159431112020112,
-            "mae": 0.4095075726509094,
-            "r2": 0.5010582208633423,
-            "score": -0.5159431112020112
+            "rmse": 0.5157048423679549,
+            "mae": 0.408806711435318,
+            "r2": 0.5015189051628113,
+            "score": -0.5157048423679549
         },
         "val": {
-            "rmse": 0.5579506166150647,
-            "mae": 0.4473210573196411,
-            "r2": 0.41295766830444336,
-            "score": -0.5579506166150647
+            "rmse": 0.5578575885405295,
+            "mae": 0.44588109850883484,
+            "r2": 0.41315340995788574,
+            "score": -0.5578575885405295
         },
         "test": {
-            "rmse": 0.5600144253303337,
-            "mae": 0.4565167725086212,
-            "r2": 0.41560375690460205,
-            "score": -0.5600144253303337
+            "rmse": 0.5568376961917461,
+            "mae": 0.4522704780101776,
+            "r2": 0.4222150444984436,
+            "score": -0.5568376961917461
         }
     },
-    "time": "0:11:50.725269",
+    "time": "0:10:49.864209",
     "diversity": {
         "train": {
-            "mean_centered_corr": -0.020498434081673622,
+            "mean_centered_corr": -0.02029341645538807,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.06282930076122284
+            "member_std": 0.06168676167726517
         },
         "val": {
-            "mean_centered_corr": -0.020406439900398254,
+            "mean_centered_corr": -0.020232515409588814,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.06703978031873703
+            "member_std": 0.0631292313337326
         },
         "test": {
-            "mean_centered_corr": -0.020546942949295044,
+            "mean_centered_corr": -0.020325176417827606,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.06463686376810074
+            "member_std": 0.061680618673563004
         }
     },
     "chunk_size": null,
-    "eval_batch_size": 8192,
+    "eval_batch_size": 16384,
     "heads": [
         22
     ],
-    "head_selection_time": "0:00:00.023511"
+    "head_selection_time": "0:00:00.024983"
 }

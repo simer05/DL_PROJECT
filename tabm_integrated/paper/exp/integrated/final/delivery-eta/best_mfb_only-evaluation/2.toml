@@ -33,7 +33,7 @@ d_embedding = 32
 enabled = true
 mask_mode = "member_fixed"
 mask_granularity = "feature_group"
-keep_rate = 0.7
+keep_rate = 0.975
 training_only = false
 inverted_scaling = true
 use_soft_mask = false
@@ -41,6 +41,10 @@ mask_strength = 1.0
 anchor_fraction = 0.0
 warmup_epochs = 0
 mask_seed = 2
+start_epoch = 16
+start_fraction = 0.5
+group_mode = "numerical_only"
+categorical_handling = "no_cat_drop"
 
 [bins]
 n_bins = 81

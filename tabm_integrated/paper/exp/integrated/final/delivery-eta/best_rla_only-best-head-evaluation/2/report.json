@@ -11,7 +11,7 @@
         "amp": true,
         "seed": 2,
         "head_selection": true,
-        "rla_adapter_lr_multiplier": 1.0,
+        "rla_adapter_lr_multiplier": 0.5,
         "rla_extra_paths_freeze_fraction": 0.0,
         "data": {
             "cache": true,
@@ -26,11 +26,11 @@
             "arch_type": "tabm",
             "k": 32,
             "share_training_batches": false,
-            "rla_rank": 2,
+            "rla_rank": 4,
             "rla_first_only": false,
             "rla_additive": false,
             "rla_init": "base_preserving",
-            "rla_base_preserve_noise": 0.001,
+            "rla_base_preserve_noise": 0.0001,
             "backbone": {
                 "n_blocks": 2,
                 "d_block": 752,
@@ -45,7 +45,7 @@
             "n_bins": 81
         }
     },
-    "n_parameters": 7056800,
+    "n_parameters": 7647904,
     "prediction_type": "labels",
     "mfb": {
         "enabled": false,
@@ -81,7 +81,7 @@
                 "shape": [
                     32,
                     6980,
-                    2
+                    4
                 ]
             },
             {
@@ -89,7 +89,7 @@
                 "shape": [
                     32,
                     752,
-                    2
+                    4
                 ]
             },
             {
@@ -104,7 +104,7 @@
                 "shape": [
                     32,
                     752,
-                    2
+                    4
                 ]
             },
             {
@@ -112,7 +112,7 @@
                 "shape": [
                     32,
                     752,
-                    2
+                    4
                 ]
             },
             {
@@ -127,53 +127,53 @@
         "n_diagnostics_records": 0
     },
     "rla_training": {
-        "adapter_lr_multiplier": 1.0,
+        "adapter_lr_multiplier": 0.5,
         "extra_paths_freeze_fraction": 0.0,
         "extra_paths_freeze_until_epoch": 0
     },
-    "best_step": 1365,
+    "best_step": 1911,
     "metrics": {
         "train": {
-            "rmse": 0.5148993790576664,
-            "mae": 0.40408939123153687,
-            "r2": 0.5030747652053833,
-            "score": -0.5148993790576664
+            "rmse": 0.5137978750972679,
+            "mae": 0.4069885015487671,
+            "r2": 0.50519859790802,
+            "score": -0.5137978750972679
         },
         "val": {
-            "rmse": 0.5580165521873937,
-            "mae": 0.4407314658164978,
-            "r2": 0.41281890869140625,
-            "score": -0.5580165521873937
+            "rmse": 0.5585470113340857,
+            "mae": 0.44582831859588623,
+            "r2": 0.4117019772529602,
+            "score": -0.5585470113340857
         },
         "test": {
-            "rmse": 0.5499792279309027,
-            "mae": 0.44245660305023193,
-            "r2": 0.43636035919189453,
-            "score": -0.5499792279309027
+            "rmse": 0.5573737419749005,
+            "mae": 0.4522700607776642,
+            "r2": 0.4211021065711975,
+            "score": -0.5573737419749005
         }
     },
-    "time": "0:09:31.116943",
+    "time": "0:16:06.202820",
     "diversity": {
         "train": {
-            "mean_centered_corr": -0.020301729440689087,
+            "mean_centered_corr": -0.020242199301719666,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.05993633717298508
+            "member_std": 0.0667627602815628
         },
         "val": {
-            "mean_centered_corr": -0.020580198615789413,
+            "mean_centered_corr": -0.02033313177525997,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.06198854371905327
+            "member_std": 0.06825815886259079
         },
         "test": {
-            "mean_centered_corr": -0.02039889432489872,
+            "mean_centered_corr": -0.020218119025230408,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.05979244410991669
+            "member_std": 0.06682927906513214
         }
     },
     "chunk_size": null,
     "eval_batch_size": 8192,
     "heads": [
-        13
+        5
     ],
-    "head_selection_time": "0:00:00.023734"
+    "head_selection_time": "0:00:00.024826"
 }

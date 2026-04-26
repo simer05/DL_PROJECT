@@ -12,12 +12,12 @@
         "seed": 0,
         "head_selection": true,
         "use_esam": true,
-        "esam_rho": 0.005,
+        "esam_rho": 0.001,
         "esam_eps": 1e-12,
-        "esam_adapter_only": true,
+        "esam_adapter_only": false,
         "esam_memberwise": true,
         "esam_warmup_epochs": 0,
-        "esam_start_epoch": 0,
+        "esam_start_epoch": 8,
         "esam_end_epoch": -1,
         "esam_log_diagnostics": false,
         "esam_diagnostics_every": 100,
@@ -69,16 +69,45 @@
     },
     "esam": {
         "use_esam": true,
-        "esam_rho": 0.005,
+        "esam_rho": 0.001,
         "esam_eps": 1e-12,
-        "esam_adapter_only": true,
+        "esam_adapter_only": false,
         "esam_memberwise": true,
         "esam_warmup_epochs": 0,
-        "esam_start_epoch": 0,
+        "esam_start_epoch": 8,
         "esam_end_epoch": -1,
         "esam_log_diagnostics": false,
         "esam_diagnostics_every": 100,
         "adapter_parameter_names": [
+            {
+                "name": "num_module.linear0.weight",
+                "shape": [
+                    218,
+                    32
+                ]
+            },
+            {
+                "name": "num_module.linear0.bias",
+                "shape": [
+                    218,
+                    32
+                ]
+            },
+            {
+                "name": "num_module.linear.weight",
+                "shape": [
+                    218,
+                    81,
+                    32
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.weight",
+                "shape": [
+                    752,
+                    6980
+                ]
+            },
             {
                 "name": "backbone.blocks.0.0.r",
                 "shape": [
@@ -97,6 +126,13 @@
                 "name": "backbone.blocks.0.0.bias",
                 "shape": [
                     32,
+                    752
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.weight",
+                "shape": [
+                    752,
                     752
                 ]
             },
@@ -120,9 +156,24 @@
                     32,
                     752
                 ]
+            },
+            {
+                "name": "output.weight",
+                "shape": [
+                    32,
+                    752,
+                    1
+                ]
+            },
+            {
+                "name": "output.bias",
+                "shape": [
+                    32,
+                    1
+                ]
             }
         ],
-        "diagnostics_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/smoke/delivery-eta/esam_only-evaluation/_esam_diagnostics/esam_only-evaluation__0.jsonl",
+        "diagnostics_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/final/delivery-eta/best_esam_only-evaluation/_esam_diagnostics/best_esam_only-evaluation__0.jsonl",
         "n_diagnostics_records": 0
     },
     "rla_training": {
@@ -130,45 +181,45 @@
         "extra_paths_freeze_fraction": 0.0,
         "extra_paths_freeze_until_epoch": 0
     },
-    "best_step": 2184,
+    "best_step": 2730,
     "metrics": {
         "train": {
-            "rmse": 0.504551673775848,
-            "mae": 0.39544814825057983,
-            "r2": 0.5228471159934998,
-            "score": -0.504551673775848
+            "rmse": 0.4975037099949126,
+            "mae": 0.39285650849342346,
+            "r2": 0.5360844135284424,
+            "score": -0.4975037099949126
         },
         "val": {
-            "rmse": 0.5556360918188752,
-            "mae": 0.439733624458313,
-            "r2": 0.41781800985336304,
-            "score": -0.5556360918188752
+            "rmse": 0.5558269510040955,
+            "mae": 0.44211816787719727,
+            "r2": 0.4174179434776306,
+            "score": -0.5558269510040955
         },
         "test": {
-            "rmse": 0.5494649592968895,
-            "mae": 0.4416595995426178,
-            "r2": 0.43741387128829956,
-            "score": -0.5494649592968895
+            "rmse": 0.5527269612276788,
+            "mae": 0.44693246483802795,
+            "r2": 0.4307142496109009,
+            "score": -0.5527269612276788
         }
     },
-    "time": "0:12:51.556071",
+    "time": "0:13:12.089007",
     "diversity": {
         "train": {
-            "mean_centered_corr": -0.02027146704494953,
+            "mean_centered_corr": -0.020204994827508926,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.06810352951288223
+            "member_std": 0.07431785017251968
         },
         "val": {
-            "mean_centered_corr": -0.02014581859111786,
+            "mean_centered_corr": -0.020286401733756065,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.07032498717308044
+            "member_std": 0.07910650968551636
         },
         "test": {
-            "mean_centered_corr": -0.02043480984866619,
+            "mean_centered_corr": -0.02015332505106926,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.0694202110171318
+            "member_std": 0.07623301446437836
         }
     },
     "chunk_size": null,
-    "eval_batch_size": 8192
+    "eval_batch_size": 16384
 }

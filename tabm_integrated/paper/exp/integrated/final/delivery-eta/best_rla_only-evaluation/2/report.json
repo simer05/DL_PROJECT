@@ -11,7 +11,7 @@
         "amp": true,
         "seed": 2,
         "head_selection": true,
-        "rla_adapter_lr_multiplier": 1.0,
+        "rla_adapter_lr_multiplier": 0.5,
         "rla_extra_paths_freeze_fraction": 0.0,
         "data": {
             "cache": true,
@@ -26,11 +26,11 @@
             "arch_type": "tabm",
             "k": 32,
             "share_training_batches": false,
-            "rla_rank": 2,
+            "rla_rank": 4,
             "rla_first_only": false,
             "rla_additive": false,
             "rla_init": "base_preserving",
-            "rla_base_preserve_noise": 0.001,
+            "rla_base_preserve_noise": 0.0001,
             "backbone": {
                 "n_blocks": 2,
                 "d_block": 752,
@@ -45,7 +45,7 @@
             "n_bins": 81
         }
     },
-    "n_parameters": 7056800,
+    "n_parameters": 7647904,
     "prediction_type": "labels",
     "mfb": {
         "enabled": false,
@@ -81,7 +81,7 @@
                 "shape": [
                     32,
                     6980,
-                    2
+                    4
                 ]
             },
             {
@@ -89,7 +89,7 @@
                 "shape": [
                     32,
                     752,
-                    2
+                    4
                 ]
             },
             {
@@ -104,7 +104,7 @@
                 "shape": [
                     32,
                     752,
-                    2
+                    4
                 ]
             },
             {
@@ -112,7 +112,7 @@
                 "shape": [
                     32,
                     752,
-                    2
+                    4
                 ]
             },
             {
@@ -127,47 +127,47 @@
         "n_diagnostics_records": 0
     },
     "rla_training": {
-        "adapter_lr_multiplier": 1.0,
+        "adapter_lr_multiplier": 0.5,
         "extra_paths_freeze_fraction": 0.0,
         "extra_paths_freeze_until_epoch": 0
     },
-    "best_step": 1365,
+    "best_step": 1911,
     "metrics": {
         "train": {
-            "rmse": 0.5124919088236671,
-            "mae": 0.40055063366889954,
-            "r2": 0.5077108144760132,
-            "score": -0.5124919088236671
+            "rmse": 0.5080919523858995,
+            "mae": 0.3977190852165222,
+            "r2": 0.5161275267601013,
+            "score": -0.5080919523858995
         },
         "val": {
-            "rmse": 0.5564119371157284,
-            "mae": 0.4400753974914551,
-            "r2": 0.416191041469574,
-            "score": -0.5564119371157284
+            "rmse": 0.5562272527951271,
+            "mae": 0.43906888365745544,
+            "r2": 0.416578471660614,
+            "score": -0.5562272527951271
         },
         "test": {
-            "rmse": 0.5491394300416609,
-            "mae": 0.44087520241737366,
-            "r2": 0.4380803108215332,
-            "score": -0.5491394300416609
+            "rmse": 0.5494697322909359,
+            "mae": 0.44080713391304016,
+            "r2": 0.43740415573120117,
+            "score": -0.5494697322909359
         }
     },
-    "time": "0:09:31.116943",
+    "time": "0:16:06.202820",
     "diversity": {
         "train": {
-            "mean_centered_corr": -0.020301729440689087,
+            "mean_centered_corr": -0.020242199301719666,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.05993633717298508
+            "member_std": 0.0667627602815628
         },
         "val": {
-            "mean_centered_corr": -0.020580198615789413,
+            "mean_centered_corr": -0.02033313177525997,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.06198854371905327
+            "member_std": 0.06825815886259079
         },
         "test": {
-            "mean_centered_corr": -0.02039889432489872,
+            "mean_centered_corr": -0.020218119025230408,
             "mean_pairwise_disagreement": NaN,
-            "member_std": 0.05979244410991669
+            "member_std": 0.06682927906513214
         }
     },
     "chunk_size": null,

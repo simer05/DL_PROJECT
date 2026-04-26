@@ -19,6 +19,7 @@ SUMMARY_PATH = PAPER / 'exp' / 'final_integrated_summary.csv'
 AUDIT_PATH = PAPER / 'exp' / 'final_integrated_audit.csv'
 REPORT_PATH = PAPER.parent / 'FINAL_EXPERIMENT_REPORT.md'
 SELECTED_PATH = PAPER / 'exp' / 'selected_integrated_configs.csv'
+RESCUE_SELECTED_PATH = PAPER / 'exp' / 'rescue_selected_configs.csv'
 FINAL_MANIFEST = EXP_ROOT / 'manifest_final.txt'
 
 DATASET_ORDER = ['sberbank-housing', 'ecom-offers', 'homesite-insurance', 'cooking-time', 'delivery-eta']
@@ -238,6 +239,9 @@ def summarize_final() -> list[dict[str, Any]]:
             baseline_rs = sorted(baseline_grouped.get((dataset, selected_inference), []), key=lambda r: r['seed'])
             baseline_invalid = len(baseline_rs) != 3 or any(r['failure'] for r in baseline_rs)
             val_mean = statistics.mean([r['validation_metric'] for r in rs]) if rs else float('nan')
+            baseline_val_values = [r['validation_metric'] for r in baseline_rs]
+            base_val_mean = statistics.mean(baseline_val_values) if baseline_val_values else float('nan')
+            val_delta, val_pct = signed_delta(val_mean, base_val_mean, direction) if rs and baseline_rs else (float('nan'), float('nan'))
             test_values = [r['test_metric'] for r in rs]
             test_mean = statistics.mean(test_values) if test_values else float('nan')
             test_std = statistics.stdev(test_values) if len(test_values) > 1 else 0.0
@@ -260,6 +264,9 @@ def summarize_final() -> list[dict[str, Any]]:
                 'direction': direction,
                 'metric_direction': direction,
                 'validation_metric': val_mean,
+                'matched_validation_baseline': base_val_mean,
+                'matched_validation_delta': val_delta,
+                'matched_validation_percent_delta': val_pct,
                 'test_metric': test_mean,
                 'mean': test_mean,
                 'std': test_std,
@@ -326,7 +333,7 @@ def write_report(summary_rows: list[dict[str, Any]]) -> None:
         lines += [
             '## Matched-inference correction',
             '',
-            'The earlier mean-baseline comparison changed when every variant was compared with the matching baseline inference mode. Per the rescue protocol stop condition, no new rescue sweep is claimed in this report.',
+            'The earlier mean-baseline comparison changed when every variant was compared with the matching baseline inference mode. Rescue sweeps are selected against matched validation baselines only.',
             '',
             '| dataset | variant | inference | mean-baseline status | matched-baseline status | mean-baseline delta | matched delta |',
             '|---|---|---|---|---|---:|---:|',
@@ -339,15 +346,26 @@ def write_report(summary_rows: list[dict[str, Any]]) -> None:
 
     lines += ['## Final 3-seed results', '']
     lines += [
-        '| dataset | task | variant | selected config | metric | direction | inference | matched baseline mean ± std | result mean ± std | delta | % delta | n | status | config path | result path |',
-        '|---|---|---|---|---|---|---|---:|---:|---:|---:|---:|---|---|---|',
+        '| dataset | task | variant | selected config | metric | direction | inference | matched validation baseline | validation metric | matched baseline test mean ± std | result test mean ± std | delta | % delta | n | status | config path | result path |',
+        '|---|---|---|---|---|---|---|---:|---:|---:|---:|---:|---:|---:|---|---|---|',
     ]
     for r in summary_rows:
         baseline_mean_std = f"{fmt(r['matched_baseline_mean'])} ± {fmt(r['matched_baseline_std'])}"
         mean_std = f"{fmt(r['mean'])} ± {fmt(r['std'])}"
         lines.append(
-            f"| {r['dataset']} | {r['task_type']} | {r['variant']} | {r['source_variant']} | {r['metric']} | {r['direction']} | {r['inference_mode']} | {baseline_mean_std} | {mean_std} | {fmt(r['absolute_delta'])} | {fmt(r['percent_delta'])} | {r['n_seeds']} | {r['status']} | `{r['config_path']}` | `{r['result_path']}` |"
+            f"| {r['dataset']} | {r['task_type']} | {r['variant']} | {r['source_variant']} | {r['metric']} | {r['direction']} | {r['inference_mode']} | {fmt(r['matched_validation_baseline'])} | {fmt(r['validation_metric'])} | {baseline_mean_std} | {mean_std} | {fmt(r['absolute_delta'])} | {fmt(r['percent_delta'])} | {r['n_seeds']} | {r['status']} | `{r['config_path']}` | `{r['result_path']}` |"
         )
+    if RESCUE_SELECTED_PATH.exists():
+        lines += ['', '## Rescue validation selections', '']
+        lines += [
+            '| dataset | final variant | selected rescue config | inference | validation metric | matched validation baseline | validation delta | validation status | confirmed |',
+            '|---|---|---|---|---:|---:|---:|---|---|',
+        ]
+        with RESCUE_SELECTED_PATH.open() as f:
+            for row in csv.DictReader(f):
+                lines.append(
+                    f"| {row['dataset']} | {row['final_variant']} | {row['source_variant']} | {row['inference_mode']} | {row['validation_metric']} | {row['matched_validation_baseline']} | {row['validation_delta']} | {row['validation_status']} | {row['confirm_3seed']} |"
+                )
     lines += ['', '## Validation-selected configs', '']
     if SELECTED_PATH.exists():
         lines += ['| dataset | final variant | selected sweep variant | inference | validation metric |', '|---|---|---|---|---:|']

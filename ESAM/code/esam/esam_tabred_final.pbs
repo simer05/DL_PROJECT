@@ -1,0 +1,30 @@
+#!/bin/bash
+#PBS -N tabm_esam_final
+#PBS -q normal
+#PBS -l select=1:ncpus=16:ngpus=1:mem=110gb
+#PBS -l walltime=06:00:00
+#PBS -j oe
+#PBS -o /mnt/ssd/users/prithvi/deepLearning/logs/esam/esam_tabred_final.$PBS_JOBID.log
+
+set -euo pipefail
+
+source /opt/miniconda3/etc/profile.d/conda.sh
+conda activate lpb
+
+cd /mnt/ssd/users/prithvi/deepLearning/TabM/paper
+mkdir -p /mnt/ssd/users/prithvi/deepLearning/logs/esam
+
+echo "hostname=$(hostname)"
+echo "date=$(date)"
+git -C /mnt/ssd/users/prithvi/deepLearning/TabM branch --show-current
+git -C /mnt/ssd/users/prithvi/deepLearning/TabM rev-parse HEAD
+python --version
+python - <<'PY'
+import torch
+print('torch', torch.__version__)
+print('cuda_available', torch.cuda.is_available())
+print('cuda_device_count', torch.cuda.device_count())
+PY
+nvidia-smi || true
+
+bash esam/run_esam_tabred_final.sh

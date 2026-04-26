@@ -1,0 +1,430 @@
+{
+  "generated_at": "2026-04-26T13:43:00",
+  "branch": "feature/tabm-esam",
+  "commit": "28e47ae301c92ec37787dde1ce923a0793f405b4",
+  "git_status_short": [
+    "M bin/ensemble.py",
+    " M bin/evaluate.py",
+    " M bin/go.py",
+    " M bin/model.py",
+    " M bin/tune.py",
+    " M lib/__init__.py",
+    " M lib/data.py",
+    " M lib/deep.py",
+    " M lib/env.py",
+    " M lib/metrics.py",
+    " M lib/util.py",
+    "?? esam/",
+    "?? outputs/",
+    "?? personb/",
+    "?? results/"
+  ],
+  "active_processes": [
+    "539731 bash esam/run_safe_esam_seed42_screen_5var_parallel.sh",
+    "539745 bash esam/run_safe_esam_seed42_screen_5var_parallel.sh",
+    "540661 python esam/run_experiment_esam.py --dataset cooking-time --base-config exp/tabm/tabred/cooking-time/0-evaluation/0.toml --data-root /mnt/ssd/users/prithvi/deepLearning/data/tabred_preprocessed --output-root /mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw --seed 42 --rho 0.0 --train-fraction 1.00 --train-subsample-seed 42 --run-tag baseline",
+    "540662 python bin/model.py /mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/cooking-time/trainfrac_1/seed42/start_0/rho_0p0/baseline/config.generated.toml --output /mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/cooking-time/trainfrac_1/seed42/start_0/rho_0p0/baseline --force",
+    "544519 /bin/sh -c pgrep -af 'run_experiment_esam.py|bin/model.py|run_safe_esam_seed42_screen_5var_parallel.sh' || true"
+  ],
+  "gpu_usage": [
+    "0, GPU-e449d029-bccd-d6b9-2d17-230455d68706, 652 MiB, 97887 MiB",
+    "1, GPU-4d483cfa-cf16-2bc6-b6b2-dfab0cd69b1c, 21817 MiB, 97887 MiB",
+    "2, GPU-f18c4a59-a337-be2f-1db0-ee7d39dd2efd, 36460 MiB, 97887 MiB"
+  ],
+  "gpu_apps": [
+    "GPU-e449d029-bccd-d6b9-2d17-230455d68706, 412375, python, 552 MiB",
+    "GPU-4d483cfa-cf16-2bc6-b6b2-dfab0cd69b1c, 540662, python, 21794 MiB",
+    "GPU-f18c4a59-a337-be2f-1db0-ee7d39dd2efd, 412375, python, 36436 MiB"
+  ],
+  "summary_table": [
+    {
+      "Area": "share_training_batches override",
+      "Status": "PASS",
+      "Severity": "OK",
+      "Evidence": "esam/run_experiment_esam.py:222-243,292",
+      "Action Needed": "No forced True found in active path."
+    },
+    {
+      "Area": "training budget",
+      "Status": "PASS",
+      "Severity": "OK",
+      "Evidence": "esam/run_safe_esam_seed42_screen_5var_parallel.sh:39-42 + run_meta",
+      "Action Needed": "Keep COMPACT=0 for final runs."
+    },
+    {
+      "Area": "baseline path unchanged",
+      "Status": "PASS",
+      "Severity": "OK",
+      "Evidence": "bin/model.py:874-880",
+      "Action Needed": "Ensure ESAM stays gated by use_esam and rho."
+    },
+    {
+      "Area": "ESAM perturb/restore",
+      "Status": "PASS",
+      "Severity": "OK",
+      "Evidence": "bin/model.py:541-571,899-915,932-940",
+      "Action Needed": "Monitor diagnostics for runtime anomalies."
+    },
+    {
+      "Area": "scheduled ESAM",
+      "Status": "PASS",
+      "Severity": "OK",
+      "Evidence": "bin/model.py:878-880 + run_experiment_esam.py:253-261",
+      "Action Needed": "No action."
+    },
+    {
+      "Area": "validation-only selection",
+      "Status": "PASS",
+      "Severity": "WARN",
+      "Evidence": "esam/prepare_selection_esam.py:95-115",
+      "Action Needed": "Signed-score assumption should be documented in final report."
+    },
+    {
+      "Area": "parser/output layout",
+      "Status": "PASS",
+      "Severity": "WARN",
+      "Evidence": "esam/prepare_selection_esam.py:20-77",
+      "Action Needed": "Populate log_path if full provenance is required."
+    },
+    {
+      "Area": "preprocessing split",
+      "Status": "PASS",
+      "Severity": "WARN",
+      "Evidence": "esam/preprocess_tabred_to_tabm.py:90-151,296-312",
+      "Action Needed": "ecom remains leakage-risk despite group_hash split."
+    },
+    {
+      "Area": "train-only preprocessing",
+      "Status": "PASS",
+      "Severity": "OK",
+      "Evidence": "esam/preprocess_tabred_to_tabm.py:188-215,348-353",
+      "Action Needed": "No action."
+    },
+    {
+      "Area": "NaN feature check",
+      "Status": "PASS",
+      "Severity": "OK",
+      "Evidence": "lib/data.py:185-194",
+      "Action Needed": "No action."
+    },
+    {
+      "Area": "ecom validity",
+      "Status": "FAIL",
+      "Severity": "CRITICAL",
+      "Evidence": "results/esam/ECOM_FIXED_AUDIT.md",
+      "Action Needed": "Keep ecom diagnostic-only unless leakage root cause fixed."
+    },
+    {
+      "Area": "delivery validity",
+      "Status": "PASS",
+      "Severity": "WARN",
+      "Evidence": "results/esam/DELIVERY_FIXED_AUDIT.md + run rows",
+      "Action Needed": "Keep conditional until delivery variants complete."
+    },
+    {
+      "Area": "GPU/run safety",
+      "Status": "PASS",
+      "Severity": "WARN",
+      "Evidence": "esam/run_safe_esam_seed42_screen_5var_parallel.sh:28,85-105",
+      "Action Needed": "Avoid duplicate launcher invocations on same dataset list."
+    }
+  ],
+  "config_rows_completed": [
+    {
+      "dataset": "homesite-insurance",
+      "variant": "full_esam_rho_0.0001",
+      "seed": 42,
+      "train_fraction": null,
+      "n_epochs": -1,
+      "patience": 16,
+      "batch_size": 1024,
+      "share_training_batches": false,
+      "compact_screen": false,
+      "rho": 0.0001,
+      "esam_start_epoch": 0,
+      "esam_end_epoch": -1,
+      "val_score": 0.9227858457762323,
+      "test_score": 0.9251418929283632,
+      "config_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0001/full_esam_rho_0.0001/config.generated.toml",
+      "report_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0001/full_esam_rho_0.0001/report.json",
+      "checkpoint_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0001/full_esam_rho_0.0001/checkpoint.pt",
+      "runtime": "0:02:01.598672"
+    },
+    {
+      "dataset": "homesite-insurance",
+      "variant": "baseline",
+      "seed": 42,
+      "train_fraction": 1.0,
+      "n_epochs": -1,
+      "patience": 16,
+      "batch_size": 1024,
+      "share_training_batches": false,
+      "compact_screen": false,
+      "rho": 0.0,
+      "esam_start_epoch": 0,
+      "esam_end_epoch": -1,
+      "val_score": 0.9227091429740233,
+      "test_score": 0.9246050007669888,
+      "config_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0/baseline/config.generated.toml",
+      "report_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0/baseline/report.json",
+      "checkpoint_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0/baseline/checkpoint.pt",
+      "runtime": "0:01:06.515360"
+    },
+    {
+      "dataset": "homesite-insurance",
+      "variant": "sched50_esam_rho_0.0005",
+      "seed": 42,
+      "train_fraction": null,
+      "n_epochs": -1,
+      "patience": 16,
+      "batch_size": 1024,
+      "share_training_batches": false,
+      "compact_screen": false,
+      "rho": 0.0005,
+      "esam_start_epoch": 0,
+      "esam_end_epoch": -1,
+      "val_score": 0.9227091429740233,
+      "test_score": 0.9250396277547681,
+      "config_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0005/sched50_esam_rho_0.0005/config.generated.toml",
+      "report_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0005/sched50_esam_rho_0.0005/report.json",
+      "checkpoint_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0005/sched50_esam_rho_0.0005/checkpoint.pt",
+      "runtime": "0:02:02.979684"
+    },
+    {
+      "dataset": "homesite-insurance",
+      "variant": "sched25_esam_rho_0.0005",
+      "seed": 42,
+      "train_fraction": null,
+      "n_epochs": -1,
+      "patience": 16,
+      "batch_size": 1024,
+      "share_training_batches": false,
+      "compact_screen": false,
+      "rho": 0.0005,
+      "esam_start_epoch": 0,
+      "esam_end_epoch": -1,
+      "val_score": 0.9227091429740233,
+      "test_score": 0.9250396277547681,
+      "config_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0005/sched25_esam_rho_0.0005/config.generated.toml",
+      "report_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0005/sched25_esam_rho_0.0005/report.json",
+      "checkpoint_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0005/sched25_esam_rho_0.0005/checkpoint.pt",
+      "runtime": "0:02:03.294734"
+    },
+    {
+      "dataset": "homesite-insurance",
+      "variant": "full_esam_rho_0.00025",
+      "seed": 42,
+      "train_fraction": null,
+      "n_epochs": -1,
+      "patience": 16,
+      "batch_size": 1024,
+      "share_training_batches": false,
+      "compact_screen": false,
+      "rho": 0.00025,
+      "esam_start_epoch": 0,
+      "esam_end_epoch": -1,
+      "val_score": 0.9227091429740233,
+      "test_score": 0.9251163266349645,
+      "config_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p00025/full_esam_rho_0.00025/config.generated.toml",
+      "report_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p00025/full_esam_rho_0.00025/report.json",
+      "checkpoint_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p00025/full_esam_rho_0.00025/checkpoint.pt",
+      "runtime": "0:02:08.043506"
+    },
+    {
+      "dataset": "cooking-time",
+      "variant": "baseline",
+      "seed": 42,
+      "train_fraction": null,
+      "n_epochs": -1,
+      "patience": 16,
+      "batch_size": 1024,
+      "share_training_batches": false,
+      "compact_screen": false,
+      "rho": 0.0,
+      "esam_start_epoch": 0,
+      "esam_end_epoch": -1,
+      "val_score": -7.403508576310421,
+      "test_score": -7.414216083185992,
+      "config_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/cooking-time/trainfrac_1/seed42/start_0/rho_0p0/baseline/config.generated.toml",
+      "report_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/cooking-time/trainfrac_1/seed42/start_0/rho_0p0/baseline/report.json",
+      "checkpoint_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/cooking-time/trainfrac_1/seed42/start_0/rho_0p0/baseline/checkpoint.pt",
+      "runtime": null
+    }
+  ],
+  "base_config_values": {
+    "homesite-insurance": {
+      "n_epochs": "-1",
+      "patience": "16",
+      "batch_size": "1024",
+      "share_training_batches": "false",
+      "base_config": "/mnt/ssd/users/prithvi/deepLearning/TabM/paper/exp/tabm/tabred/homesite-insurance/0-evaluation/0.toml"
+    },
+    "ecom-offers": {
+      "n_epochs": "-1",
+      "patience": "16",
+      "batch_size": "1024",
+      "share_training_batches": "false",
+      "base_config": "/mnt/ssd/users/prithvi/deepLearning/TabM/paper/exp/tabm/tabred/ecom-offers/0-evaluation/0.toml"
+    },
+    "cooking-time": {
+      "n_epochs": "-1",
+      "patience": "16",
+      "batch_size": "1024",
+      "share_training_batches": "false",
+      "base_config": "/mnt/ssd/users/prithvi/deepLearning/TabM/paper/exp/tabm/tabred/cooking-time/0-evaluation/0.toml"
+    },
+    "sberbank-housing": {
+      "n_epochs": "-1",
+      "patience": "16",
+      "batch_size": "256",
+      "share_training_batches": "false",
+      "base_config": "/mnt/ssd/users/prithvi/deepLearning/TabM/paper/exp/tabm/tabred/sberbank-housing/0-evaluation/0.toml"
+    },
+    "delivery-eta": {
+      "n_epochs": "-1",
+      "patience": "16",
+      "batch_size": "1024",
+      "share_training_batches": "false",
+      "base_config": "/mnt/ssd/users/prithvi/deepLearning/TabM/paper/exp/tabm/tabred/delivery-eta/0-evaluation/0.toml"
+    }
+  },
+  "esam_checks": {
+    "baseline_gate_use_esam": true,
+    "adapter_only_param_selection": true,
+    "perturbation_target_adapter_params_only": true,
+    "restore_before_optimizer_step": true,
+    "double_zero_grad": true,
+    "scheduled_end_epoch_logic": true,
+    "diagnostics_logging": true
+  },
+  "selection_checks": {
+    "baseline_candidate_included": true,
+    "validation_score_used": true,
+    "margin_applied": true,
+    "test_not_in_selection_branch": true,
+    "metric_direction_explicit": true
+  },
+  "parser_layout": {
+    "layout_ok": true,
+    "extract_fields_ok": true,
+    "log_path_missing_risk": true
+  },
+  "preprocessing_rows": [
+    {
+      "dataset": "homesite-insurance",
+      "ready": true,
+      "split_policy": "stratified",
+      "task_type": "binclass",
+      "target_column": "QuoteConversion_Flag",
+      "fit_scope": "train_only",
+      "leakage_checks": {
+        "duplicate_feature_hash_overlap": {
+          "train_val": 0,
+          "train_test": 0,
+          "val_test": 0
+        },
+        "target_like_columns": [],
+        "id_like_columns": []
+      },
+      "recommendation": "include"
+    },
+    {
+      "dataset": "cooking-time",
+      "ready": true,
+      "split_policy": "stratified_quantile",
+      "task_type": "regression",
+      "target_column": "cooking_time_minutes",
+      "fit_scope": "train_only",
+      "leakage_checks": {
+        "duplicate_feature_hash_overlap": {
+          "train_val": 0,
+          "train_test": 0,
+          "val_test": 0
+        },
+        "target_like_columns": [],
+        "id_like_columns": []
+      },
+      "recommendation": "include"
+    },
+    {
+      "dataset": "sberbank-housing",
+      "ready": true,
+      "split_policy": "stratified_quantile",
+      "task_type": "regression",
+      "target_column": "price_doc",
+      "fit_scope": "train_only",
+      "leakage_checks": {
+        "duplicate_feature_hash_overlap": {
+          "train_val": 223,
+          "train_test": 211,
+          "val_test": 61
+        },
+        "target_like_columns": [],
+        "id_like_columns": [
+          "ID_metro",
+          "ID_railroad_station_walk",
+          "ID_railroad_station_avto",
+          "ID_big_road1",
+          "ID_big_road2",
+          "ID_railroad_terminal",
+          "ID_bus_terminal"
+        ]
+      },
+      "recommendation": "include"
+    },
+    {
+      "dataset": "ecom-offers",
+      "ready": true,
+      "split_policy": "group_hash",
+      "task_type": "binclass",
+      "target_column": "repeater",
+      "fit_scope": "train_only",
+      "leakage_checks": {
+        "duplicate_feature_hash_overlap": {
+          "train_val": 1,
+          "train_test": 0,
+          "val_test": 1
+        },
+        "target_like_columns": [],
+        "id_like_columns": []
+      },
+      "recommendation": "diagnostic_only"
+    },
+    {
+      "dataset": "delivery-eta",
+      "ready": true,
+      "split_policy": "stratified_quantile",
+      "task_type": "regression",
+      "target_column": "delivery_eta_minutes",
+      "fit_scope": "train_only",
+      "leakage_checks": {
+        "duplicate_feature_hash_overlap": {
+          "train_val": 0,
+          "train_test": 0,
+          "val_test": 0
+        },
+        "target_like_columns": [],
+        "id_like_columns": []
+      },
+      "recommendation": "conditional"
+    }
+  ],
+  "feature_nan_check_fixed": true,
+  "ecom": {
+    "audit_passed": false,
+    "include_in_scientific_claims": false
+  },
+  "delivery": {
+    "audit_passed": "conditional",
+    "include_in_scientific_claims": "conditional",
+    "completed_rows": 0,
+    "variant_diff": null
+  },
+  "gpu_safety": {
+    "gpu2_avoided": true,
+    "cuda_visible_devices_set": true,
+    "wait_workers": true,
+    "output_collision_risk_if_duplicate_launcher": true
+  },
+  "final_recommendation": "B. SAFE TO CONTINUE, BUT SOME DATASETS MUST BE DIAGNOSTIC-ONLY"
+}

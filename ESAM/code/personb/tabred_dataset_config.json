@@ -1,0 +1,36 @@
+{
+  "data_root": "/home/users/ntu/prithvi2/DeepLearning/TabM/paper/data",
+  "datasets": {
+    "sberbank": {
+      "dataset_dir": "sberbank-housing",
+      "base_config": "exp/tabm/tabred/sberbank-housing/0-evaluation/0.toml"
+    },
+    "ecom-offers": {
+      "dataset_dir": "ecom-offers",
+      "base_config": "exp/tabm/tabred/ecom-offers/0-evaluation/0.toml"
+    },
+    "homesite": {
+      "dataset_dir": "homesite-insurance",
+      "base_config": "exp/tabm/tabred/homesite-insurance/0-evaluation/0.toml"
+    },
+    "cooking-time": {
+      "dataset_dir": "cooking-time",
+      "base_config": "exp/tabm/tabred/cooking-time/0-evaluation/0.toml"
+    },
+    "delivery-eta": {
+      "dataset_dir": "delivery-eta",
+      "base_config": "exp/tabm/tabred/delivery-eta/0-evaluation/0.toml"
+    }
+  },
+  "required_files": [
+    "info.json",
+    "Y_train.npy",
+    "Y_val.npy",
+    "Y_test.npy"
+  ],
+  "required_feature_train_files_any_of": [
+    "X_num_train.npy",
+    "X_cat_train.npy",
+    "X_bin_train.npy"
+  ]
+}

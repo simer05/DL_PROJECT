@@ -1,0 +1,15 @@
+#!/bin/bash
+#PBS -N tabm_esam_smoke
+#PBS -q normal
+#PBS -l select=1:ncpus=16:ngpus=1:mem=80gb
+#PBS -l walltime=02:30:00
+#PBS -j oe
+#PBS -o /mnt/ssd/users/prithvi/deepLearning/logs/esam/esam_smoke..log
+set -euo pipefail
+cd /mnt/ssd/users/prithvi/deepLearning/TabM/paper
+echo hostname=Prithvis-MacBook-Air.local
+echo date=Sat Apr 25 02:35:49 +08 2026
+git -C /mnt/ssd/users/prithvi/deepLearning/TabM branch --show-current
+git -C /mnt/ssd/users/prithvi/deepLearning/TabM rev-parse --short HEAD
+nvidia-smi || true
+bash esam/run_esam_smoke.sh

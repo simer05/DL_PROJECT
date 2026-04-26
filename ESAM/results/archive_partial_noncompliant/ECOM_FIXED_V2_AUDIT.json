@@ -1,0 +1,25 @@
+{
+  "dataset": "ecom-offers-v2",
+  "audit_passed": true,
+  "include_in_scientific_claims": true,
+  "split_overlap": {
+    "train_val": 0,
+    "train_test": 0,
+    "val_test": 0
+  },
+  "removed_columns": [
+    "id",
+    "offer",
+    "offerdate",
+    "repeattrips"
+  ],
+  "features_used": [
+    "chain",
+    "market"
+  ],
+  "majority_val_acc": 0.7143939393939394,
+  "majority_test_acc": 0.7232976905036371,
+  "logreg_val_acc": 0.7143939393939394,
+  "logreg_test_acc": 0.7232976905036371,
+  "reason": "Removed leaky repeattrips and enforced exact non-overlapping group split."
+}

@@ -1,0 +1,24 @@
+#!/bin/bash
+#PBS -N tabm_ncl_tabred_final
+#PBS -q normal
+#PBS -l select=1:ncpus=16:ngpus=1:mem=110gb
+#PBS -l walltime=06:00:00
+#PBS -j oe
+#PBS -o /home/users/ntu/prithvi2/DeepLearning/TabM/paper/job_logs/tabm_ncl_tabred_final.$PBS_JOBID.log
+
+set -euo pipefail
+module load miniforge3/25.3.1
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate tabm_ncl
+
+cd /home/users/ntu/prithvi2/DeepLearning/TabM/paper
+mkdir -p job_logs results outputs
+
+python - <<'PY'
+import torch
+print('torch', torch.__version__)
+print('cuda_available', torch.cuda.is_available())
+print('cuda_device_count', torch.cuda.device_count())
+PY
+
+bash personb/run_personb_tabred_final.sh

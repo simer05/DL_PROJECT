@@ -1,0 +1,98 @@
+{
+  "generated_at": "2026-04-26T16:39:45",
+  "branch": "feature/tabm-esam",
+  "commit": "28e47ae301c92ec37787dde1ce923a0793f405b4",
+  "items": [
+    {
+      "area": "Canonical TabReD data/splits",
+      "status": "FAIL_NEEDS_DATA_RERUN",
+      "fix_required": "Acquire pinned canonical .npy + split-default idx + manifest sha256",
+      "requires_rerun": "yes",
+      "priority": "P0"
+    },
+    {
+      "area": "Custom preprocessing split policies",
+      "status": "FAIL_NEEDS_DATA_RERUN",
+      "fix_required": "Stop using custom stratified/group_hash for final; use canonical split-default",
+      "requires_rerun": "yes",
+      "priority": "P0"
+    },
+    {
+      "area": "paper/lib/data.py modified",
+      "status": "FAIL_NEEDS_FIX",
+      "fix_required": "Constrain to safe NaN check or revert to baseline-compatible minimal patch",
+      "requires_rerun": "possibly",
+      "priority": "P1"
+    },
+    {
+      "area": "Run layout under outputs/esam",
+      "status": "FAIL_NEEDS_EXPERIMENT_RERUN",
+      "fix_required": "Use paper/exp/esam/<dataset>/<variant>-evaluation/<seed> layout",
+      "requires_rerun": "yes",
+      "priority": "P0"
+    },
+    {
+      "area": "Inference modes mean/best/greedy",
+      "status": "FAIL_NEEDS_EXPERIMENT_RERUN",
+      "fix_required": "Run evaluation modes for each completed training run",
+      "requires_rerun": "yes",
+      "priority": "P1"
+    },
+    {
+      "area": "3-seed minimum",
+      "status": "FAIL_NEEDS_EXPERIMENT_RERUN",
+      "fix_required": "Run seeds 0/1/2 (or approved 42/43/44)",
+      "requires_rerun": "yes",
+      "priority": "P0"
+    },
+    {
+      "area": "report.json missing git_commit/amp_dtype",
+      "status": "FAIL_NEEDS_FIX",
+      "fix_required": "Add metadata writing in model report block",
+      "requires_rerun": "yes (new runs)",
+      "priority": "P1"
+    },
+    {
+      "area": "ecom-offers leakage risk",
+      "status": "FAIL_NEEDS_DATA_RERUN",
+      "fix_required": "Re-audit on canonical split only; block claims until clean",
+      "requires_rerun": "yes",
+      "priority": "P0"
+    },
+    {
+      "area": "delivery-eta conditional validity",
+      "status": "FAIL_NEEDS_DATA_RERUN",
+      "fix_required": "Canonical audit + sanity baseline under canonical pipeline",
+      "requires_rerun": "yes",
+      "priority": "P0"
+    },
+    {
+      "area": "Off-state equivalence test",
+      "status": "FAIL_NEEDS_FIX",
+      "fix_required": "Add full-model deterministic off-state equivalence test",
+      "requires_rerun": "no",
+      "priority": "P1"
+    },
+    {
+      "area": "Run dirs require 0.toml/report.json/DONE",
+      "status": "FAIL_NEEDS_EXPERIMENT_RERUN",
+      "fix_required": "Use strict run-dir contract + DONE marker",
+      "requires_rerun": "yes",
+      "priority": "P0"
+    },
+    {
+      "area": "Aggregator under paper/exp/esam/_aggregated",
+      "status": "FAIL_NEEDS_FIX",
+      "fix_required": "Add compliant aggregator outputs and filters",
+      "requires_rerun": "no",
+      "priority": "P1"
+    },
+    {
+      "area": "NSCC/PBS rules",
+      "status": "NOT_APPLICABLE_ARGCLUSTER",
+      "fix_required": "Ignored per instruction",
+      "requires_rerun": "no",
+      "priority": "N/A"
+    }
+  ]
+}

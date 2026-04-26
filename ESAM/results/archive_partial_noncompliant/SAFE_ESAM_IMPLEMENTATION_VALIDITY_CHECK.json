@@ -1,0 +1,470 @@
+{
+  "generated_at": "2026-04-26T13:34:17",
+  "summary_table": [
+    {
+      "Area": "share_training_batches config",
+      "Status": "PASS",
+      "Severity": "OK",
+      "Action Required": "No forced override in current path; keep base config value per dataset."
+    },
+    {
+      "Area": "training budget",
+      "Status": "PASS",
+      "Severity": "OK",
+      "Action Required": "Current run uses full/base config; keep COMPACT=0 for final screen."
+    },
+    {
+      "Area": "ESAM perturb/restore",
+      "Status": "PASS",
+      "Severity": "OK",
+      "Action Required": "Adapter-only perturbation and restore-before-step verified in code."
+    },
+    {
+      "Area": "validation-only selection",
+      "Status": "PASS",
+      "Severity": "OK",
+      "Action Required": "Use prepare_selection_esam.py with margin and baseline fallback."
+    },
+    {
+      "Area": "parser layout",
+      "Status": "PASS",
+      "Severity": "OK",
+      "Action Required": "Dry-run parser works on current nested layout."
+    },
+    {
+      "Area": "preprocessing split",
+      "Status": "PASS",
+      "Severity": "WARN",
+      "Action Required": "Split policies present; ecom still leakage-risk despite group_hash."
+    },
+    {
+      "Area": "NaN feature check",
+      "Status": "PASS",
+      "Severity": "OK",
+      "Action Required": "lib/data.py now checks NaNs on x_num/x_bin arrays directly."
+    },
+    {
+      "Area": "ecom validity",
+      "Status": "FAIL",
+      "Severity": "CRITICAL",
+      "Action Required": "Run rows included, but mark diagnostic-only if failed."
+    },
+    {
+      "Area": "delivery validity",
+      "Status": "PASS",
+      "Severity": "WARN",
+      "Action Required": "Keep conditional until full variant behavior verified in current screen."
+    }
+  ],
+  "final_decision": "B. CONTINUE BUT MARK SOME DATASETS DIAGNOSTIC-ONLY",
+  "config_training": {
+    "forced_share_training_batches_override_found": false,
+    "force_hits": "",
+    "weak_budget_used": false,
+    "compact_hits_count": 0,
+    "runs": [
+      {
+        "dataset": "homesite-insurance",
+        "variant": "full_esam_rho_0.0001",
+        "seed": 42,
+        "train_fraction": 1.0,
+        "n_epochs": -1,
+        "patience": 16,
+        "batch_size": 1024,
+        "share_training_batches": false,
+        "config_file_used": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0001/full_esam_rho_0.0001/config.generated.toml",
+        "compact_screen": null,
+        "base_config": "",
+        "checkpoint_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0001/full_esam_rho_0.0001/checkpoint.pt",
+        "report_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0001/full_esam_rho_0.0001/report.json",
+        "val_score": 0.9227858457762323,
+        "test_score": 0.9251418929283632,
+        "runtime": "0:02:01.598672"
+      },
+      {
+        "dataset": "homesite-insurance",
+        "variant": "baseline",
+        "seed": 42,
+        "train_fraction": 1.0,
+        "n_epochs": -1,
+        "patience": 16,
+        "batch_size": 1024,
+        "share_training_batches": false,
+        "config_file_used": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0/baseline/config.generated.toml",
+        "compact_screen": false,
+        "base_config": "",
+        "checkpoint_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0/baseline/checkpoint.pt",
+        "report_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0/baseline/report.json",
+        "val_score": 0.9227091429740233,
+        "test_score": 0.9246050007669888,
+        "runtime": "0:01:06.515360"
+      },
+      {
+        "dataset": "homesite-insurance",
+        "variant": "sched50_esam_rho_0.0005",
+        "seed": 42,
+        "train_fraction": 1.0,
+        "n_epochs": -1,
+        "patience": 16,
+        "batch_size": 1024,
+        "share_training_batches": false,
+        "config_file_used": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0005/sched50_esam_rho_0.0005/config.generated.toml",
+        "compact_screen": null,
+        "base_config": "",
+        "checkpoint_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0005/sched50_esam_rho_0.0005/checkpoint.pt",
+        "report_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0005/sched50_esam_rho_0.0005/report.json",
+        "val_score": 0.9227091429740233,
+        "test_score": 0.9250396277547681,
+        "runtime": "0:02:02.979684"
+      },
+      {
+        "dataset": "homesite-insurance",
+        "variant": "sched25_esam_rho_0.0005",
+        "seed": 42,
+        "train_fraction": 1.0,
+        "n_epochs": -1,
+        "patience": 16,
+        "batch_size": 1024,
+        "share_training_batches": false,
+        "config_file_used": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0005/sched25_esam_rho_0.0005/config.generated.toml",
+        "compact_screen": null,
+        "base_config": "",
+        "checkpoint_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0005/sched25_esam_rho_0.0005/checkpoint.pt",
+        "report_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p0005/sched25_esam_rho_0.0005/report.json",
+        "val_score": 0.9227091429740233,
+        "test_score": 0.9250396277547681,
+        "runtime": "0:02:03.294734"
+      },
+      {
+        "dataset": "homesite-insurance",
+        "variant": "full_esam_rho_0.00025",
+        "seed": 42,
+        "train_fraction": 1.0,
+        "n_epochs": -1,
+        "patience": 16,
+        "batch_size": 1024,
+        "share_training_batches": false,
+        "config_file_used": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p00025/full_esam_rho_0.00025/config.generated.toml",
+        "compact_screen": null,
+        "base_config": "",
+        "checkpoint_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p00025/full_esam_rho_0.00025/checkpoint.pt",
+        "report_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/homesite-insurance/trainfrac_1/seed42/start_0/rho_0p00025/full_esam_rho_0.00025/report.json",
+        "val_score": 0.9227091429740233,
+        "test_score": 0.9251163266349645,
+        "runtime": "0:02:08.043506"
+      },
+      {
+        "dataset": "cooking-time",
+        "variant": "baseline",
+        "seed": 42,
+        "train_fraction": 1.0,
+        "n_epochs": -1,
+        "patience": 16,
+        "batch_size": 1024,
+        "share_training_batches": false,
+        "config_file_used": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/cooking-time/trainfrac_1/seed42/start_0/rho_0p0/baseline/config.generated.toml",
+        "compact_screen": null,
+        "base_config": "",
+        "checkpoint_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/cooking-time/trainfrac_1/seed42/start_0/rho_0p0/baseline/checkpoint.pt",
+        "report_path": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam/safe_esam_all5_full_seed42/raw/cooking-time/trainfrac_1/seed42/start_0/rho_0p0/baseline/report.json",
+        "val_score": -7.407313532057829,
+        "test_score": -7.4172973650391025,
+        "runtime": null
+      }
+    ],
+    "base_settings": {
+      "homesite-insurance": {
+        "n_epochs": -1,
+        "patience": 16,
+        "batch_size": 1024,
+        "share_training_batches": false,
+        "base_config_path": "/mnt/ssd/users/prithvi/deepLearning/TabM/paper/exp/tabm/tabred/homesite-insurance/0-evaluation/0.toml"
+      },
+      "ecom-offers": {
+        "n_epochs": -1,
+        "patience": 16,
+        "batch_size": 1024,
+        "share_training_batches": false,
+        "base_config_path": "/mnt/ssd/users/prithvi/deepLearning/TabM/paper/exp/tabm/tabred/ecom-offers/0-evaluation/0.toml"
+      },
+      "cooking-time": {
+        "n_epochs": -1,
+        "patience": 16,
+        "batch_size": 1024,
+        "share_training_batches": false,
+        "base_config_path": "/mnt/ssd/users/prithvi/deepLearning/TabM/paper/exp/tabm/tabred/cooking-time/0-evaluation/0.toml"
+      },
+      "sberbank-housing": {
+        "n_epochs": -1,
+        "patience": 16,
+        "batch_size": 256,
+        "share_training_batches": false,
+        "base_config_path": "/mnt/ssd/users/prithvi/deepLearning/TabM/paper/exp/tabm/tabred/sberbank-housing/0-evaluation/0.toml"
+      },
+      "delivery-eta": {
+        "n_epochs": -1,
+        "patience": 16,
+        "batch_size": 1024,
+        "share_training_batches": false,
+        "base_config_path": "/mnt/ssd/users/prithvi/deepLearning/TabM/paper/exp/tabm/tabred/delivery-eta/0-evaluation/0.toml"
+      }
+    }
+  },
+  "esam_checks": {
+    "code_checks": {
+      "baseline_path_gated_by_use_esam": true,
+      "adapter_only_selection": true,
+      "shared_backbone_not_perturbed": true,
+      "restore_before_step": true,
+      "double_zero_grad_present": true,
+      "scheduled_esam_end_epoch": true,
+      "esam_diagnostics_saved": true
+    },
+    "adapter_parameter_names": [
+      "backbone.blocks.0.0.r",
+      "backbone.blocks.0.0.s",
+      "backbone.blocks.0.0.bias",
+      "backbone.blocks.1.0.r",
+      "backbone.blocks.1.0.s",
+      "backbone.blocks.1.0.bias"
+    ],
+    "adapter_parameter_count_max_observed": 6,
+    "fallback_mode_observed_any": false,
+    "nan_inf_in_diagnostics_any": false
+  },
+  "selection_parser": {
+    "protocol_ok": true,
+    "uses_test_for_selection": false,
+    "parser_fields_ok": true,
+    "all_rows_count": 6,
+    "selected_rows_count": 2,
+    "dryrun_csv": "/mnt/ssd/users/prithvi/deepLearning/results/esam/SAFE_ESAM_SELECTION_DRYRUN_CHECK.csv"
+  },
+  "preprocessing_checks": [
+    {
+      "dataset": "homesite-insurance",
+      "ready": true,
+      "task_type": "binclass",
+      "score": "accuracy",
+      "metric_direction": "higher_is_better_score",
+      "target_column": "QuoteConversion_Flag",
+      "split_policy": "stratified",
+      "fit_scope": "train_only",
+      "dup_overlap": {
+        "train_val": 0,
+        "train_test": 0,
+        "val_test": 0
+      },
+      "target_like_columns": [],
+      "id_like_columns": [],
+      "nan_report": {
+        "Y_train": false,
+        "Y_val": false,
+        "Y_test": false,
+        "X_num_train": false,
+        "X_num_val": false,
+        "X_num_test": false,
+        "X_bin_train": false,
+        "X_bin_val": false,
+        "X_bin_test": false,
+        "X_cat_train": false,
+        "X_cat_val": false,
+        "X_cat_test": false
+      },
+      "train_n": 182527,
+      "train_mean": 0.18751198452831636,
+      "train_std": 0.3903219698999389,
+      "val_n": 39113,
+      "val_mean": 0.1875079896709534,
+      "val_std": 0.39031877162200523,
+      "test_n": 39113,
+      "test_mean": 0.1875079896709534,
+      "test_std": 0.39031877162200523
+    },
+    {
+      "dataset": "cooking-time",
+      "ready": true,
+      "task_type": "regression",
+      "score": "rmse",
+      "metric_direction": "higher_is_better_score",
+      "target_column": "cooking_time_minutes",
+      "split_policy": "stratified_quantile",
+      "fit_scope": "train_only",
+      "dup_overlap": {
+        "train_val": 0,
+        "train_test": 0,
+        "val_test": 0
+      },
+      "target_like_columns": [],
+      "id_like_columns": [],
+      "nan_report": {
+        "Y_train": false,
+        "Y_val": false,
+        "Y_test": false,
+        "X_num_train": false,
+        "X_num_val": false,
+        "X_num_test": false,
+        "X_bin_train": false,
+        "X_bin_val": false,
+        "X_bin_test": false
+      },
+      "train_n": 8959749,
+      "train_mean": 15.77555054859359,
+      "train_std": 10.674268199307337,
+      "val_n": 1919946,
+      "val_mean": 15.775313316104292,
+      "val_std": 10.667179501910182,
+      "test_n": 1919947,
+      "test_mean": 15.772426036106479,
+      "test_std": 10.66669643909415
+    },
+    {
+      "dataset": "sberbank-housing",
+      "ready": true,
+      "task_type": "regression",
+      "score": "rmse",
+      "metric_direction": "higher_is_better_score",
+      "target_column": "price_doc",
+      "split_policy": "stratified_quantile",
+      "fit_scope": "train_only",
+      "dup_overlap": {
+        "train_val": 223,
+        "train_test": 211,
+        "val_test": 61
+      },
+      "target_like_columns": [],
+      "id_like_columns": [
+        "ID_metro",
+        "ID_railroad_station_walk",
+        "ID_railroad_station_avto",
+        "ID_big_road1",
+        "ID_big_road2",
+        "ID_railroad_terminal",
+        "ID_bus_terminal"
+      ],
+      "nan_report": {
+        "Y_train": false,
+        "Y_val": false,
+        "Y_test": false,
+        "X_num_train": false,
+        "X_num_val": false,
+        "X_num_test": false,
+        "X_bin_train": false,
+        "X_bin_val": false,
+        "X_bin_test": false,
+        "X_cat_train": false,
+        "X_cat_val": false,
+        "X_cat_test": false
+      },
+      "train_n": 21329,
+      "train_mean": 7106147.788691453,
+      "train_std": 4678382.741013362,
+      "val_n": 4571,
+      "val_mean": 7157661.760446291,
+      "val_std": 5067543.276497892,
+      "test_n": 4571,
+      "test_mean": 7167208.456792824,
+      "test_std": 4949669.283548686
+    },
+    {
+      "dataset": "ecom-offers",
+      "ready": true,
+      "task_type": "binclass",
+      "score": "accuracy",
+      "metric_direction": "higher_is_better_score",
+      "target_column": "repeater",
+      "split_policy": "group_hash",
+      "fit_scope": "train_only",
+      "dup_overlap": {
+        "train_val": 1,
+        "train_test": 0,
+        "val_test": 1
+      },
+      "target_like_columns": [],
+      "id_like_columns": [],
+      "nan_report": {
+        "Y_train": false,
+        "Y_val": false,
+        "Y_test": false,
+        "X_num_train": false,
+        "X_num_val": false,
+        "X_num_test": false
+      },
+      "train_n": 112040,
+      "train_mean": 0.2403695108889682,
+      "train_std": 0.4273078622304607,
+      "val_n": 24009,
+      "val_mean": 0.26615019367737097,
+      "val_std": 0.44194373859448327,
+      "test_n": 24008,
+      "test_mean": 0.4214011996001333,
+      "test_std": 0.49378358475723144
+    },
+    {
+      "dataset": "delivery-eta",
+      "ready": true,
+      "task_type": "regression",
+      "score": "rmse",
+      "metric_direction": "higher_is_better_score",
+      "target_column": "delivery_eta_minutes",
+      "split_policy": "stratified_quantile",
+      "fit_scope": "train_only",
+      "dup_overlap": {
+        "train_val": 0,
+        "train_test": 0,
+        "val_test": 0
+      },
+      "target_like_columns": [],
+      "id_like_columns": [],
+      "nan_report": {
+        "Y_train": false,
+        "Y_val": false,
+        "Y_test": false,
+        "X_num_train": false,
+        "X_num_val": false,
+        "X_num_test": false,
+        "X_bin_train": false,
+        "X_bin_val": false,
+        "X_bin_test": false
+      },
+      "train_n": 11930830,
+      "train_mean": 7.53334459814688,
+      "train_std": 6.24055013635461,
+      "val_n": 2556606,
+      "val_mean": 7.5302026277526455,
+      "val_std": 6.230166802128451,
+      "test_n": 2556607,
+      "test_mean": 7.533577818544665,
+      "test_std": 6.241760422431994
+    }
+  ],
+  "ecom": {
+    "audit_passed": false,
+    "include_in_scientific_claims": false,
+    "reason": "Leakage-risk remains suspicious (logistic val/test=1.0)."
+  },
+  "delivery": {
+    "audit_passed": true,
+    "include_in_scientific_claims": true,
+    "reason": "Target/metric pipeline numerically valid; include only after variant behavior verified.",
+    "variant_scores_differ_so_far": null
+  },
+  "live_run": {
+    "completed_runs": 6,
+    "active_runs": 3,
+    "failed_runs_heuristic": 0,
+    "skipped_runs": 1,
+    "best_by_dataset": {
+      "cooking-time": {
+        "variant": "baseline",
+        "val_score": -7.407313532057829,
+        "test_score": -7.4172973650391025
+      },
+      "homesite-insurance": {
+        "variant": "full_esam_rho_0.0001",
+        "val_score": 0.9227858457762323,
+        "test_score": 0.9251418929283632
+      }
+    }
+  }
+}

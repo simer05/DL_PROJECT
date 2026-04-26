@@ -1,0 +1,65 @@
+{
+  "generated_at": "2026-04-26T16:39:45",
+  "datasets": {
+    "sberbank-housing": {
+      "canonical_files_present": false,
+      "split_default_present": false,
+      "row_count_current": 30471,
+      "row_count_expected": 28321,
+      "row_count_match": false,
+      "sha256_match": false,
+      "ready": false,
+      "npy_count": 0,
+      "manifest_present": false,
+      "split_policy_current": "stratified_quantile"
+    },
+    "ecom-offers": {
+      "canonical_files_present": false,
+      "split_default_present": false,
+      "row_count_current": 160057,
+      "row_count_expected": 160057,
+      "row_count_match": true,
+      "sha256_match": false,
+      "ready": false,
+      "npy_count": 0,
+      "manifest_present": false,
+      "split_policy_current": "group_hash"
+    },
+    "homesite-insurance": {
+      "canonical_files_present": false,
+      "split_default_present": false,
+      "row_count_current": 260753,
+      "row_count_expected": 260753,
+      "row_count_match": true,
+      "sha256_match": false,
+      "ready": false,
+      "npy_count": 0,
+      "manifest_present": false,
+      "split_policy_current": "stratified"
+    },
+    "cooking-time": {
+      "canonical_files_present": false,
+      "split_default_present": false,
+      "row_count_current": 12799642,
+      "row_count_expected": 319986,
+      "row_count_match": false,
+      "sha256_match": false,
+      "ready": false,
+      "npy_count": 0,
+      "manifest_present": false,
+      "split_policy_current": "stratified_quantile"
+    },
+    "delivery-eta": {
+      "canonical_files_present": false,
+      "split_default_present": false,
+      "row_count_current": 17044043,
+      "row_count_expected": 350516,
+      "row_count_match": false,
+      "sha256_match": false,
+      "ready": false,
+      "npy_count": 0,
+      "manifest_present": false,
+      "split_policy_current": "stratified_quantile"
+    }
+  }
+}

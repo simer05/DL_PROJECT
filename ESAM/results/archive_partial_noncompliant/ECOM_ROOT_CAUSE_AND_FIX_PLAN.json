@@ -1,0 +1,39 @@
+{
+  "dataset": "ecom-offers",
+  "root_cause": "repeattrips creates deterministic label mapping with current feature set",
+  "old_feature_set": [
+    "chain",
+    "market",
+    "repeattrips"
+  ],
+  "old_groups_all_pure": true,
+  "fix": {
+    "dataset_version": "ecom-offers-v2",
+    "removed_columns": [
+      "id",
+      "offer",
+      "offerdate",
+      "repeattrips"
+    ],
+    "kept_features": [
+      "chain",
+      "market"
+    ],
+    "split_policy": "group_exact_feature_key",
+    "fit_scope": "train_only",
+    "seed": 42
+  },
+  "v2_sanity": {
+    "duplicate_overlap": {
+      "train_val": 0,
+      "train_test": 0,
+      "val_test": 0
+    },
+    "majority_val_acc": 0.7143939393939394,
+    "majority_test_acc": 0.7232976905036371,
+    "logreg_val_acc": 0.7143939393939394,
+    "logreg_test_acc": 0.7232976905036371,
+    "trivially_perfect": false
+  },
+  "recommended_for_scientific_claims": true
+}

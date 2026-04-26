@@ -1,0 +1,46 @@
+{
+  "data_preprocessed_root": "/mnt/ssd/users/prithvi/deepLearning/data/tabred_preprocessed",
+  "outputs_root": "/mnt/ssd/users/prithvi/deepLearning/outputs/esam",
+  "results_root": "/mnt/ssd/users/prithvi/deepLearning/results/esam",
+  "logs_root": "/mnt/ssd/users/prithvi/deepLearning/logs/esam",
+  "checkpoints_root": "/mnt/ssd/users/prithvi/deepLearning/checkpoints/esam",
+  "artifacts_root": "/mnt/ssd/users/prithvi/deepLearning/artifacts/esam",
+  "base_configs": {
+    "homesite-insurance": "exp/tabm/tabred/homesite-insurance/0-evaluation/0.toml",
+    "ecom-offers": "exp/tabm/tabred/ecom-offers/0-evaluation/0.toml",
+    "cooking-time": "exp/tabm/tabred/cooking-time/0-evaluation/0.toml",
+    "sberbank-housing": "exp/tabm/tabred/sberbank-housing/0-evaluation/0.toml",
+    "delivery-eta": "exp/tabm/tabred/delivery-eta/0-evaluation/0.toml"
+  },
+  "smoke": {
+    "datasets": ["homesite-insurance", "ecom-offers", "cooking-time"],
+    "seed": 42,
+    "rhos": [0.0, 0.005, 0.01, 0.05],
+    "n_epochs": 5,
+    "patience": 3,
+    "batch_size_override": 512
+  },
+  "pilot": {
+    "datasets": ["homesite-insurance", "ecom-offers", "cooking-time"],
+    "seeds": [42, 43, 44],
+    "rhos": [0.0, 0.005, 0.01, 0.05],
+    "n_epochs": 80,
+    "patience": 12
+  },
+  "final": {
+    "datasets": ["homesite-insurance", "ecom-offers", "cooking-time", "sberbank-housing", "delivery-eta"],
+    "seeds": [42, 43, 44],
+    "default_selected_rho": 0.01
+  },
+  "esam": {
+    "use_esam": true,
+    "esam_rho": 0.01,
+    "esam_eps": 1e-12,
+    "esam_adapter_only": true,
+    "esam_memberwise": true,
+    "esam_start_epoch": 0,
+    "esam_warmup_epochs": 0,
+    "esam_log_diagnostics": true,
+    "esam_diagnostics_every": 100
+  }
+}

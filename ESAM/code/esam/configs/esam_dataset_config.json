@@ -1,0 +1,60 @@
+{
+  "raw_data_root": "/mnt/ssd/users/prithvi/deepLearning/data/tabred",
+  "preprocessed_root": "/mnt/ssd/users/prithvi/deepLearning/data/tabred_preprocessed",
+  "artifacts_root": "/mnt/ssd/users/prithvi/deepLearning/artifacts/esam",
+  "default_seed": 42,
+  "default_split": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "datasets": {
+    "homesite-insurance": {
+      "enabled": true,
+      "format": "zip_csv",
+      "train_file": "homesite-insurance/train.csv.zip",
+      "target_column": "QuoteConversion_Flag",
+      "task_type": "binclass"
+    },
+    "ecom-offers": {
+      "enabled": true,
+      "format": "csv_gz",
+      "train_file": "ecom-offers/trainHistory.csv.gz",
+      "target_column": "repeater",
+      "task_type": "binclass",
+      "drop_columns": [
+        "id",
+        "offer",
+        "offerdate"
+      ]
+    },
+    "cooking-time": {
+      "enabled": true,
+      "format": "parquet",
+      "train_file": "cooking_time.parquet",
+      "target_column": "cooking_time_minutes",
+      "task_type": "regression",
+      "drop_columns": [
+        "timestamp"
+      ]
+    },
+    "sberbank-housing": {
+      "enabled": true,
+      "format": "zip_csv",
+      "train_file": "sberbank-housing/train.csv.zip",
+      "target_column": "price_doc",
+      "task_type": "regression",
+      "drop_columns": [
+        "id",
+        "timestamp"
+      ]
+    },
+    "delivery-eta": {
+      "enabled": true,
+      "format": "parquet",
+      "train_file": "delivery-eta/delivery_eta.parquet",
+      "target_column": "delivery_eta_minutes",
+      "task_type": "regression"
+    }
+  }
+}

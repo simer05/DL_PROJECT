@@ -1,0 +1,14 @@
+#!/bin/bash
+#PBS -N tabm_ncl_post
+#PBS -q normal
+#PBS -l select=1:ncpus=16:ngpus=1:mem=110gb
+#PBS -l walltime=04:00:00
+#PBS -j oe
+#PBS -o /home/users/ntu/prithvi2/DeepLearning/TabM/paper/job_logs/tabm_ncl_post.$PBS_JOBID.log
+
+set -euo pipefail
+module load miniforge3/25.3.1
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate tabm_ncl
+cd /home/users/ntu/prithvi2/DeepLearning/TabM/paper
+bash personb/run_post_pipeline.sh

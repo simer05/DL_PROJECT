@@ -1,0 +1,24 @@
+{
+  "data_root": "/home/users/ntu/prithvi2/DeepLearning/TabM/paper/data",
+  "datasets": {
+    "adult": {
+      "dataset_dir": "adult",
+      "base_config": "exp/tabm/adult/0-evaluation/0.toml"
+    },
+    "covtype2": {
+      "dataset_dir": "covtype2",
+      "base_config": "exp/tabm/covtype2/0-evaluation/0.toml"
+    }
+  },
+  "required_files": [
+    "info.json",
+    "Y_train.npy",
+    "Y_val.npy",
+    "Y_test.npy"
+  ],
+  "required_feature_train_files_any_of": [
+    "X_num_train.npy",
+    "X_cat_train.npy",
+    "X_bin_train.npy"
+  ]
+}

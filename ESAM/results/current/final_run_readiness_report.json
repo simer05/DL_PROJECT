@@ -1,0 +1,92 @@
+{
+  "generated_at": "2026-04-26T16:39:45",
+  "branch": "feature/tabm-esam",
+  "commit": "28e47ae301c92ec37787dde1ce923a0793f405b4",
+  "decision": "C. NOT READY \u2014 DATA BLOCKER",
+  "readiness": [
+    {
+      "area": "Canonical data",
+      "status": "FAIL",
+      "ready": "no",
+      "requires_rerun": "yes",
+      "notes": "Canonical artifacts/split-default/sha256 not verified"
+    },
+    {
+      "area": "Five datasets ready",
+      "status": "FAIL",
+      "ready": "no",
+      "requires_rerun": "yes",
+      "notes": "ecom and delivery blocked under strict canonical policy"
+    },
+    {
+      "area": "Ecom validity",
+      "status": "FAIL",
+      "ready": "no",
+      "requires_rerun": "yes",
+      "notes": "canonical audit blocked; prior leakage risk"
+    },
+    {
+      "area": "Delivery validity",
+      "status": "FAIL",
+      "ready": "no",
+      "requires_rerun": "yes",
+      "notes": "canonical audit blocked"
+    },
+    {
+      "area": "Code surface",
+      "status": "FAIL",
+      "ready": "no",
+      "requires_rerun": "yes",
+      "notes": "shared core files modified beyond strict allowance"
+    },
+    {
+      "area": "Baseline equivalence",
+      "status": "FAIL",
+      "ready": "no",
+      "requires_rerun": "yes",
+      "notes": "full-model bit-identical test not complete"
+    },
+    {
+      "area": "Config generation",
+      "status": "FAIL",
+      "ready": "no",
+      "requires_rerun": "yes",
+      "notes": "generator/run layout not finalized"
+    },
+    {
+      "area": "report.json metadata",
+      "status": "FAIL",
+      "ready": "no",
+      "requires_rerun": "yes",
+      "notes": "git_commit/amp_dtype missing"
+    },
+    {
+      "area": "Run layout",
+      "status": "FAIL",
+      "ready": "no",
+      "requires_rerun": "yes",
+      "notes": "not using paper/exp/esam strict layout"
+    },
+    {
+      "area": "Inference modes",
+      "status": "FAIL",
+      "ready": "no",
+      "requires_rerun": "yes",
+      "notes": "3-mode eval missing for strict final"
+    },
+    {
+      "area": "3-seed plan",
+      "status": "PASS",
+      "ready": "yes",
+      "requires_rerun": "yes",
+      "notes": "plan defined; runs pending"
+    },
+    {
+      "area": "Aggregator",
+      "status": "FAIL",
+      "ready": "no",
+      "requires_rerun": "yes",
+      "notes": "strict aggregator not finalized"
+    }
+  ]
+}

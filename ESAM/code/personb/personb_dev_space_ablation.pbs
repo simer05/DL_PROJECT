@@ -1,0 +1,30 @@
+#!/bin/bash
+#PBS -N personb_devspace
+#PBS -q normal
+#PBS -l select=1:ncpus=16:ngpus=1:mem=110gb
+#PBS -l walltime=05:30:00
+#PBS -j oe
+#PBS -o /home/users/ntu/prithvi2/DeepLearning/TabM/paper/job_logs/personb_dev_space_ablation.$PBS_JOBID.log
+
+set -euo pipefail
+module load miniforge3/25.3.1
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate tabm_ncl
+
+cd /home/users/ntu/prithvi2/DeepLearning/TabM/paper
+
+python - <<'PY'
+import torch
+print('torch', torch.__version__)
+print('cuda_available', torch.cuda.is_available())
+print('cuda_device_count', torch.cuda.device_count())
+PY
+
+BASE_PREFIX=personb_dev_space_ablation_v1 \
+SEEDS_CSV=0,1,2 \
+LAMBDAS_CSV=0,5e-4,1e-3,2e-3 \
+N_EPOCHS=40 \
+PATIENCE=8 \
+MAX_RETRIES=2 \
+NCL_WARMUP_EPOCHS=10 \
+bash personb/run_personb_dev_space_ablation.sh

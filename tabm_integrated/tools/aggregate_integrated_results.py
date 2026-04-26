@@ -196,6 +196,14 @@ def select_final_configs() -> None:
     print(f'final manifest: {FINAL_MANIFEST.relative_to(PAPER)} ({len(final_paths)} jobs)')
 
 
+def task_type_from_metric(metric: str) -> str:
+    if metric == 'RMSE':
+        return 'regression'
+    if metric == 'AUROC':
+        return 'binclass'
+    return ''
+
+
 def summarize_final() -> list[dict[str, Any]]:
     selection = {}
     if SELECTED_PATH.exists():
@@ -205,7 +213,10 @@ def summarize_final() -> list[dict[str, Any]]:
     rows = [r for r in collect_rows() if r['wave'] == 'final']
     wanted = set((d, v) for d in DATASET_ORDER for v in FINAL_DISPLAY)
     grouped = defaultdict(list)
+    baseline_grouped = defaultdict(list)
     for row in rows:
+        if row['variant'] == 'baseline_plr':
+            baseline_grouped[(row['dataset'], row['inference_mode'])].append(row)
         if (row['dataset'], row['variant']) not in wanted:
             continue
         sel = selection.get((row['dataset'], row['variant']))
@@ -216,11 +227,6 @@ def summarize_final() -> list[dict[str, Any]]:
         grouped[(row['dataset'], row['variant'])].append(row)
 
     out = []
-    baseline_stats = {}
-    for dataset in DATASET_ORDER:
-        vals = [r['test_metric'] for r in grouped.get((dataset, 'baseline_plr'), [])]
-        baseline_stats[dataset] = (statistics.mean(vals), statistics.stdev(vals) if len(vals) > 1 else 0.0) if vals else (float('nan'), float('nan'))
-
     for dataset in DATASET_ORDER:
         for variant in FINAL_DISPLAY:
             rs = sorted(grouped.get((dataset, variant), []), key=lambda r: r['seed'])
@@ -228,36 +234,54 @@ def summarize_final() -> list[dict[str, Any]]:
             invalid = n != 3 or any(r['failure'] for r in rs)
             metric = rs[0]['metric'] if rs else ''
             direction = rs[0]['direction'] if rs else ''
+            selected_inference = 'mean' if variant == 'baseline_plr' else selection.get((dataset, variant), {}).get('inference_mode', rs[0]['inference_mode'] if rs else '')
+            baseline_rs = sorted(baseline_grouped.get((dataset, selected_inference), []), key=lambda r: r['seed'])
+            baseline_invalid = len(baseline_rs) != 3 or any(r['failure'] for r in baseline_rs)
             val_mean = statistics.mean([r['validation_metric'] for r in rs]) if rs else float('nan')
             test_values = [r['test_metric'] for r in rs]
             test_mean = statistics.mean(test_values) if test_values else float('nan')
             test_std = statistics.stdev(test_values) if len(test_values) > 1 else 0.0
-            base_mean, base_std = baseline_stats[dataset]
-            delta, pct = signed_delta(test_mean, base_mean, direction) if rs else (float('nan'), float('nan'))
-            status = 'baseline' if variant == 'baseline_plr' else status_for(delta, base_std, n, invalid)
+            baseline_values = [r['test_metric'] for r in baseline_rs]
+            base_mean = statistics.mean(baseline_values) if baseline_values else float('nan')
+            base_std = statistics.stdev(baseline_values) if len(baseline_values) > 1 else 0.0
+            delta, pct = signed_delta(test_mean, base_mean, direction) if rs and baseline_rs else (float('nan'), float('nan'))
+            status = 'baseline' if variant == 'baseline_plr' else status_for(delta, base_std, n, invalid or baseline_invalid)
             sel = selection.get((dataset, variant), {})
+            source_variant = sel.get('source_variant', variant)
+            config_paths = ';'.join(r['config_path'] for r in rs)
+            result_paths = ';'.join(r['result_path'] for r in rs)
             out.append({
                 'dataset': dataset,
+                'task_type': task_type_from_metric(metric),
                 'variant': variant,
-                'source_variant': sel.get('source_variant', variant),
+                'source_variant': source_variant,
+                'selected_config': source_variant,
                 'metric': metric,
                 'direction': direction,
+                'metric_direction': direction,
                 'validation_metric': val_mean,
                 'test_metric': test_mean,
                 'mean': test_mean,
                 'std': test_std,
+                'test_mean': test_mean,
+                'test_std': test_std,
                 'n_seeds': n,
                 'baseline_mean': base_mean,
+                'baseline_std': base_std,
+                'matched_baseline_inference_mode': selected_inference,
+                'matched_baseline_mean': base_mean,
+                'matched_baseline_std': base_std,
                 'absolute_delta': delta,
                 'percent_delta': pct,
                 'precision': '3 seeds',
-                'inference_mode': sel.get('inference_mode', 'mean' if variant == 'baseline_plr' else ''),
-                'config_path': ';'.join(r['config_path'] for r in rs),
-                'result_path': ';'.join(r['result_path'] for r in rs),
+                'inference_mode': selected_inference,
+                'selected_inference_mode': selected_inference,
+                'config_path': config_paths,
+                'result_path': result_paths,
+                'matched_baseline_result_path': ';'.join(r['result_path'] for r in baseline_rs),
                 'status': status,
             })
     return out
-
 
 def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -277,24 +301,64 @@ def fmt(x: Any) -> str:
 
 def write_report(summary_rows: list[dict[str, Any]]) -> None:
     lines = ['# Integrated TabM final experiment report', '']
-    lines += ['Official TabM PLR/PiecewiseLinearEmbeddings baseline configs are preserved exactly; variants add only module flags for RLA, ESAM, MFB, and CF-FISD.', '']
-    lines += ['## Final 3-seed results', '']
-    lines += ['| dataset | variant | source config | metric | inference | mean ± std | delta | status |', '|---|---|---|---|---|---:|---:|---|']
+    lines += [
+        'Official TabM PLR/PiecewiseLinearEmbeddings baseline configs are preserved exactly; variants add only module flags for RLA, ESAM, MFB, and CF-FISD.',
+        'Deltas and win/loss statuses are computed against `baseline_plr` using the same selected inference mode (`mean`, `best-head`, or `greedy-heads`) as the variant row.',
+        '',
+    ]
+    mean_baseline = {
+        r['dataset']: r
+        for r in summary_rows
+        if r['variant'] == 'baseline_plr' and r['inference_mode'] == 'mean'
+    }
+    changed = []
     for r in summary_rows:
+        if r['variant'] == 'baseline_plr':
+            continue
+        base = mean_baseline.get(r['dataset'])
+        if not base:
+            continue
+        old_delta, _ = signed_delta(float(r['mean']), float(base['mean']), r['direction'])
+        old_status = status_for(old_delta, float(base['std']), int(r['n_seeds']), int(r['n_seeds']) != 3)
+        if old_status != r['status']:
+            changed.append((r, old_status, old_delta))
+    if changed:
+        lines += [
+            '## Matched-inference correction',
+            '',
+            'The earlier mean-baseline comparison changed when every variant was compared with the matching baseline inference mode. Per the rescue protocol stop condition, no new rescue sweep is claimed in this report.',
+            '',
+            '| dataset | variant | inference | mean-baseline status | matched-baseline status | mean-baseline delta | matched delta |',
+            '|---|---|---|---|---|---:|---:|',
+        ]
+        for r, old_status, old_delta in changed:
+            lines.append(
+                f"| {r['dataset']} | {r['variant']} | {r['inference_mode']} | {old_status} | {r['status']} | {fmt(old_delta)} | {fmt(r['absolute_delta'])} |"
+            )
+        lines += ['']
+
+    lines += ['## Final 3-seed results', '']
+    lines += [
+        '| dataset | task | variant | selected config | metric | direction | inference | matched baseline mean ± std | result mean ± std | delta | % delta | n | status | config path | result path |',
+        '|---|---|---|---|---|---|---|---:|---:|---:|---:|---:|---|---|---|',
+    ]
+    for r in summary_rows:
+        baseline_mean_std = f"{fmt(r['matched_baseline_mean'])} ± {fmt(r['matched_baseline_std'])}"
         mean_std = f"{fmt(r['mean'])} ± {fmt(r['std'])}"
-        lines.append(f"| {r['dataset']} | {r['variant']} | {r['source_variant']} | {r['metric']} | {r['inference_mode']} | {mean_std} | {fmt(r['absolute_delta'])} | {r['status']} |")
+        lines.append(
+            f"| {r['dataset']} | {r['task_type']} | {r['variant']} | {r['source_variant']} | {r['metric']} | {r['direction']} | {r['inference_mode']} | {baseline_mean_std} | {mean_std} | {fmt(r['absolute_delta'])} | {fmt(r['percent_delta'])} | {r['n_seeds']} | {r['status']} | `{r['config_path']}` | `{r['result_path']}` |"
+        )
     lines += ['', '## Validation-selected configs', '']
     if SELECTED_PATH.exists():
         lines += ['| dataset | final variant | selected sweep variant | inference | validation metric |', '|---|---|---|---|---:|']
         with SELECTED_PATH.open() as f:
             for row in csv.DictReader(f):
                 lines.append(f"| {row['dataset']} | {row['final_variant']} | {row['source_variant']} | {row['inference_mode']} | {row['validation_metric']} |")
-    lines += ['', '## Module wins vs baseline', '']
+    lines += ['', '## Module wins vs matched baseline', '']
     for variant in FINAL_DISPLAY[1:]:
         wins = [r['dataset'] for r in summary_rows if r['variant'] == variant and r['status'] in {'clear_win','weak_win'}]
         lines.append(f"- `{variant}`: {', '.join(wins) if wins else 'none'}")
     REPORT_PATH.write_text('\n'.join(lines) + '\n')
-
 
 def stage_wave(manifest: str) -> None:
     rows = collect_rows()

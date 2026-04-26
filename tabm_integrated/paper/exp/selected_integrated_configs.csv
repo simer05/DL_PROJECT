@@ -4,7 +4,7 @@ sberbank-housing,best_rla_only,rla_rank2_noise0.001,sweeps,greedy-heads,0.232861
 sberbank-housing,best_esam_only,esam_rho0.0025,sweeps,greedy-heads,0.23295802298295287,-0.23295802298295287,exp/integrated/sweeps/sberbank-housing/esam_rho0.0025-evaluation/0.toml,,,,
 sberbank-housing,best_mfb_only,mfb_keep0.8,sweeps,greedy-heads,0.23237596587359466,-0.23237596587359466,exp/integrated/sweeps/sberbank-housing/mfb_keep0.8-evaluation/0.toml,,,,
 sberbank-housing,best_cf_fisd_only,cf_fisd_only,smoke,greedy-heads,0.23327114512588593,-0.23327114512588593,exp/integrated/smoke/sberbank-housing/cf_fisd_only-evaluation/0.toml,,,,
-sberbank-housing,best_combined,mfb_cf_fisd,sweeps,greedy-heads,0.23320900639668657,-0.23320900639668657,exp/integrated/sweeps/sberbank-housing/mfb_cf_fisd-evaluation/0.toml,,,,
+sberbank-housing,best_combined,sb_comb_rla_mfb_cf_r1_n1em05_k0p975_l0p001,rescue_sberbank_combined,best-head,0.23560357747729638,-0.23560357747729638,exp/integrated/rescue_sberbank_combined/sberbank-housing/sb_comb_rla_mfb_cf_r1_n1em05_k0p975_l0p001-evaluation/0.toml,0.23955454428788905,0.0039509668105926765,1.6492973749830142,validation_win
 ecom-offers,baseline_plr,baseline_plr,smoke,mean,,,exp/integrated/smoke/ecom-offers/baseline_plr-evaluation/0.toml,,,,
 ecom-offers,best_rla_only,rla_rank2_noise0.0001,sweeps,best-head,0.6396541901648656,0.6396541901648656,exp/integrated/sweeps/ecom-offers/rla_rank2_noise0.0001-evaluation/0.toml,,,,
 ecom-offers,best_esam_only,esam_rho0.001,sweeps,greedy-heads,0.641845068859757,0.641845068859757,exp/integrated/sweeps/ecom-offers/esam_rho0.001-evaluation/0.toml,,,,

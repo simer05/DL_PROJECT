@@ -1,0 +1,51 @@
+batch_size = 256
+patience = 16
+n_epochs = -1
+gradient_clipping_norm = 1.0
+amp = true
+seed = 0
+head_selection = true
+rla_adapter_lr_multiplier = 1.0
+rla_extra_paths_freeze_fraction = 0.0
+use_esam = true
+esam_rho = 0.0025
+esam_eps = 1e-12
+esam_adapter_only = true
+esam_memberwise = true
+esam_warmup_epochs = 0
+esam_start_epoch = 0
+esam_end_epoch = -1
+esam_log_diagnostics = false
+esam_diagnostics_every = 100
+
+[data]
+cache = true
+path = "data/sberbank-housing"
+num_policy = "noisy-quantile"
+cat_policy = "ordinal"
+
+[optimizer]
+lr = 0.0008922700423431547
+weight_decay = 0.00021333759467820313
+
+[model]
+arch_type = "tabm"
+k = 32
+share_training_batches = false
+rla_rank = 1
+rla_first_only = false
+rla_additive = false
+rla_init = "base_preserving"
+rla_base_preserve_noise = 1e-05
+
+[model.backbone]
+n_blocks = 3
+d_block = 256
+dropout = 0.3128700072370906
+
+[model.num_embeddings]
+type = "PiecewiseLinearEmbeddings"
+d_embedding = 28
+
+[bins]
+n_bins = 84

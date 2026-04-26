@@ -1,0 +1,435 @@
+{
+    "function": "bin.run_integrated.main",
+    "gpus": [
+        "NVIDIA GeForce RTX 4090"
+    ],
+    "config": {
+        "batch_size": 1024,
+        "patience": 16,
+        "n_epochs": -1,
+        "gradient_clipping_norm": 1.0,
+        "amp": true,
+        "seed": 0,
+        "head_selection": true,
+        "rla_adapter_lr_multiplier": 1.0,
+        "rla_extra_paths_freeze_fraction": 0.0,
+        "data": {
+            "cache": true,
+            "path": "data/ecom-offers",
+            "num_policy": "noisy-quantile"
+        },
+        "optimizer": {
+            "lr": 0.00024262819114537424,
+            "weight_decay": 0.0001501852317298042
+        },
+        "model": {
+            "arch_type": "tabm",
+            "k": 32,
+            "share_training_batches": false,
+            "rla_rank": 4,
+            "rla_first_only": false,
+            "rla_additive": false,
+            "rla_init": "base_preserving",
+            "rla_base_preserve_noise": 0.0001,
+            "backbone": {
+                "n_blocks": 1,
+                "d_block": 960,
+                "dropout": 0.0
+            },
+            "num_embeddings": {
+                "type": "PiecewiseLinearEmbeddings",
+                "d_embedding": 16
+            },
+            "mfb": {
+                "enabled": true,
+                "mask_mode": "member_fixed",
+                "mask_granularity": "feature_group",
+                "keep_rate": 0.9,
+                "training_only": false,
+                "inverted_scaling": true,
+                "use_soft_mask": false,
+                "mask_strength": 1.0,
+                "anchor_fraction": 0.0,
+                "warmup_epochs": 0,
+                "mask_seed": 0
+            }
+        },
+        "bins": {
+            "n_bins": 47
+        },
+        "cf_fisd": {
+            "lambda": 0.1,
+            "variant": "raw",
+            "dataset_name": "ecom-offers",
+            "teacher_dir": "../../cf_fisd_recovered/paper/exp/cf_fisd/_teachers/tabred/ecom-offers",
+            "teacher_names": [
+                "xgb",
+                "lgbm",
+                "cat"
+            ]
+        }
+    },
+    "n_parameters": 2120128,
+    "prediction_type": "probs",
+    "mfb": {
+        "enabled": true,
+        "config": {
+            "enabled": true,
+            "mask_mode": "member_fixed",
+            "mask_granularity": "feature_group",
+            "keep_rate": 0.9,
+            "training_only": false,
+            "inverted_scaling": true,
+            "use_soft_mask": false,
+            "mask_strength": 1.0,
+            "anchor_fraction": 0.0,
+            "warmup_epochs": 0,
+            "mask_seed": 0
+        },
+        "mask_stats": {
+            "keep_rate_actual": 0.887499988079071,
+            "min_features_per_member": 92.0,
+            "mean_features_per_member": 97.625,
+            "max_features_per_member": 103.0,
+            "min_members_per_feature": 24.0,
+            "mean_members_per_feature": 28.399999618530273,
+            "max_members_per_feature": 32.0,
+            "mean_pairwise_jaccard": 0.797659951359852,
+            "anchor_fraction_configured": 0.0,
+            "n_anchor_members": 0.0,
+            "core_fraction_configured": 0.0,
+            "n_core_features": 0.0
+        }
+    },
+    "cf_fisd": {
+        "lambda": 0.1,
+        "variant": "raw",
+        "teacher_names": [
+            "xgb",
+            "lgbm",
+            "cat"
+        ],
+        "member_groups": {
+            "xgb": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+            ],
+            "lgbm": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21
+            ],
+            "cat": [
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31
+            ]
+        },
+        "d_features": [
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+        ],
+        "n_features": 110,
+        "teacher_dir": "../../cf_fisd_recovered/paper/exp/cf_fisd/_teachers/tabred/ecom-offers"
+    },
+    "epoch_size": 107,
+    "ncl": {
+        "use_ncl": false,
+        "lambda_ncl": 0.0,
+        "ncl_warmup_epochs": 0,
+        "ncl_space": "logits"
+    },
+    "esam": {
+        "use_esam": false,
+        "esam_rho": 0.01,
+        "esam_eps": 1e-12,
+        "esam_adapter_only": true,
+        "esam_memberwise": true,
+        "esam_warmup_epochs": 0,
+        "esam_start_epoch": 0,
+        "esam_end_epoch": -1,
+        "esam_log_diagnostics": true,
+        "esam_diagnostics_every": 100,
+        "adapter_parameter_names": [
+            {
+                "name": "backbone.blocks.0.0.R",
+                "shape": [
+                    32,
+                    1676,
+                    4
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.S",
+                "shape": [
+                    32,
+                    960,
+                    4
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.bias",
+                "shape": [
+                    32,
+                    960
+                ]
+            }
+        ],
+        "diagnostics_path": null,
+        "n_diagnostics_records": 0
+    },
+    "rla_training": {
+        "adapter_lr_multiplier": 1.0,
+        "extra_paths_freeze_fraction": 0.0,
+        "extra_paths_freeze_until_epoch": 0
+    },
+    "best_step": 321,
+    "metrics": {
+        "train": {
+            "0": {
+                "precision": 0.7914072107595307,
+                "recall": 0.9632568692904406,
+                "f1-score": 0.8689166671131662,
+                "support": 84179.0
+            },
+            "1": {
+                "precision": 0.5506319918640128,
+                "recall": 0.15062395676019394,
+                "f1-score": 0.2365423623030114,
+                "support": 25162.0
+            },
+            "accuracy": 0.7762504458528823,
+            "macro avg": {
+                "precision": 0.6710196013117717,
+                "recall": 0.5569404130253173,
+                "f1-score": 0.5527295147080888,
+                "support": 109341.0
+            },
+            "weighted avg": {
+                "precision": 0.7359990284871075,
+                "recall": 0.7762504458528823,
+                "f1-score": 0.7233920948334804,
+                "support": 109341.0
+            },
+            "cross-entropy": 0.5022261934082275,
+            "roc-auc": 0.6755481612167327,
+            "score": 0.6755481612167327
+        },
+        "val": {
+            "0": {
+                "precision": 0.7100723427935448,
+                "recall": 0.8222709111998969,
+                "f1-score": 0.7620640229335881,
+                "support": 15518.0
+            },
+            "1": {
+                "precision": 0.5615959306946431,
+                "recall": 0.40409470433489647,
+                "f1-score": 0.470001330317946,
+                "support": 8743.0
+            },
+            "accuracy": 0.6715716582168914,
+            "macro avg": {
+                "precision": 0.635834136744094,
+                "recall": 0.6131828077673966,
+                "f1-score": 0.6160326766257671,
+                "support": 24261.0
+            },
+            "weighted avg": {
+                "precision": 0.6565655099762373,
+                "recall": 0.6715716582168914,
+                "f1-score": 0.656812626802408,
+                "support": 24261.0
+            },
+            "cross-entropy": 0.6242117770764835,
+            "roc-auc": 0.6476721782117019,
+            "score": 0.6476721782117019
+        },
+        "test": {
+            "0": {
+                "precision": 0.6831312812654919,
+                "recall": 0.8957570027183548,
+                "f1-score": 0.775127202065915,
+                "support": 16922.0
+            },
+            "1": {
+                "precision": 0.5864978902953587,
+                "recall": 0.26245672925626773,
+                "f1-score": 0.36263497354880786,
+                "support": 9533.0
+            },
+            "accuracy": 0.6675486675486676,
+            "macro avg": {
+                "precision": 0.6348145857804253,
+                "recall": 0.5791068659873113,
+                "f1-score": 0.5688810878073615,
+                "support": 26455.0
+            },
+            "weighted avg": {
+                "precision": 0.6483096552545949,
+                "recall": 0.6675486675486676,
+                "f1-score": 0.626486551358919,
+                "support": 26455.0
+            },
+            "cross-entropy": 0.6431486794584158,
+            "roc-auc": 0.6040083543113315,
+            "score": 0.6040083543113315
+        }
+    },
+    "time": "0:02:18.381792",
+    "diversity": {
+        "train": {
+            "mean_centered_corr": -0.010318981483578682,
+            "mean_pairwise_disagreement": 0.026643028719563627,
+            "member_std": 0.029531365260481834
+        },
+        "val": {
+            "mean_centered_corr": -0.01181983295828104,
+            "mean_pairwise_disagreement": 0.09317281751809289,
+            "member_std": 0.06609699130058289
+        },
+        "test": {
+            "mean_centered_corr": -0.010081159882247448,
+            "mean_pairwise_disagreement": 0.05819193883710013,
+            "member_std": 0.06373059004545212
+        }
+    },
+    "chunk_size": null,
+    "eval_batch_size": 8192,
+    "heads": [
+        24
+    ],
+    "head_selection_time": "0:00:04.830833"
+}

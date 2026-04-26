@@ -1,0 +1,46 @@
+batch_size = 1024
+patience = 16
+n_epochs = -1
+gradient_clipping_norm = 1.0
+amp = true
+seed = 0
+head_selection = true
+
+[data]
+cache = true
+path = "data/ecom-offers"
+num_policy = "noisy-quantile"
+
+[optimizer]
+lr = 0.00024262819114537424
+weight_decay = 0.0001501852317298042
+
+[model]
+arch_type = "tabm"
+k = 32
+share_training_batches = false
+
+[model.backbone]
+n_blocks = 1
+d_block = 960
+dropout = 0.0
+
+[model.num_embeddings]
+type = "PiecewiseLinearEmbeddings"
+d_embedding = 16
+
+[model.mfb]
+enabled = true
+mask_mode = "member_fixed"
+mask_granularity = "feature_group"
+keep_rate = 0.95
+training_only = false
+inverted_scaling = true
+use_soft_mask = false
+mask_strength = 1.0
+anchor_fraction = 0.0
+warmup_epochs = 0
+mask_seed = 0
+
+[bins]
+n_bins = 47

@@ -1,0 +1,68 @@
+batch_size = 1024
+patience = 16
+n_epochs = -1
+gradient_clipping_norm = 1.0
+amp = true
+seed = 0
+head_selection = true
+use_esam = true
+esam_rho = 0.005
+esam_eps = 1e-12
+esam_adapter_only = true
+esam_memberwise = true
+esam_warmup_epochs = 0
+esam_start_epoch = 0
+esam_end_epoch = -1
+esam_log_diagnostics = false
+esam_diagnostics_every = 100
+
+[data]
+cache = true
+path = "data/homesite-insurance"
+num_policy = "noisy-quantile"
+cat_policy = "ordinal"
+
+[optimizer]
+lr = 0.0018580623030886075
+weight_decay = 0.0001614529849348179
+
+[model]
+arch_type = "tabm"
+k = 32
+share_training_batches = false
+
+[model.backbone]
+n_blocks = 3
+d_block = 704
+dropout = 0.0
+
+[model.num_embeddings]
+type = "PiecewiseLinearEmbeddings"
+d_embedding = 8
+
+[model.mfb]
+enabled = true
+mask_mode = "member_fixed"
+mask_granularity = "feature_group"
+keep_rate = 0.9
+training_only = false
+inverted_scaling = true
+use_soft_mask = false
+mask_strength = 1.0
+anchor_fraction = 0.0
+warmup_epochs = 0
+mask_seed = 0
+
+[bins]
+n_bins = 15
+
+[cf_fisd]
+lambda = 0.1
+variant = "raw"
+dataset_name = "homesite-insurance"
+teacher_dir = "../../cf_fisd_recovered/paper/exp/cf_fisd/_teachers/tabred/homesite-insurance"
+teacher_names = [
+    "xgb",
+    "lgbm",
+    "cat",
+]

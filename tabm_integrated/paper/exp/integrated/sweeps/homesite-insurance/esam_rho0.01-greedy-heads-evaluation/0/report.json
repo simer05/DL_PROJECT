@@ -1,0 +1,282 @@
+{
+    "function": "bin.run_integrated.main",
+    "gpus": [
+        "NVIDIA GeForce RTX 4090"
+    ],
+    "config": {
+        "batch_size": 1024,
+        "patience": 16,
+        "n_epochs": -1,
+        "gradient_clipping_norm": 1.0,
+        "amp": true,
+        "seed": 0,
+        "head_selection": true,
+        "use_esam": true,
+        "esam_rho": 0.01,
+        "esam_eps": 1e-12,
+        "esam_adapter_only": true,
+        "esam_memberwise": true,
+        "esam_warmup_epochs": 0,
+        "esam_start_epoch": 0,
+        "esam_end_epoch": -1,
+        "esam_log_diagnostics": false,
+        "esam_diagnostics_every": 100,
+        "data": {
+            "cache": true,
+            "path": "data/homesite-insurance",
+            "num_policy": "noisy-quantile",
+            "cat_policy": "ordinal"
+        },
+        "optimizer": {
+            "lr": 0.0018580623030886075,
+            "weight_decay": 0.0001614529849348179
+        },
+        "model": {
+            "arch_type": "tabm",
+            "k": 32,
+            "share_training_batches": false,
+            "backbone": {
+                "n_blocks": 3,
+                "d_block": 704,
+                "dropout": 0.0
+            },
+            "num_embeddings": {
+                "type": "PiecewiseLinearEmbeddings",
+                "d_embedding": 8
+            }
+        },
+        "bins": {
+            "n_bins": 15
+        }
+    },
+    "n_parameters": 2874464,
+    "prediction_type": "probs",
+    "mfb": {
+        "enabled": false,
+        "config": {},
+        "mask_stats": {
+            "keep_rate_actual": 1.0
+        }
+    },
+    "cf_fisd": {
+        "lambda": 0.0
+    },
+    "epoch_size": 220,
+    "ncl": {
+        "use_ncl": false,
+        "lambda_ncl": 0.0,
+        "ncl_warmup_epochs": 0,
+        "ncl_space": "logits"
+    },
+    "esam": {
+        "use_esam": true,
+        "esam_rho": 0.01,
+        "esam_eps": 1e-12,
+        "esam_adapter_only": true,
+        "esam_memberwise": true,
+        "esam_warmup_epochs": 0,
+        "esam_start_epoch": 0,
+        "esam_end_epoch": -1,
+        "esam_log_diagnostics": false,
+        "esam_diagnostics_every": 100,
+        "adapter_parameter_names": [
+            {
+                "name": "backbone.blocks.0.0.r",
+                "shape": [
+                    32,
+                    2206
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.s",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.bias",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.r",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.s",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.bias",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.2.0.r",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.2.0.s",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.2.0.bias",
+                "shape": [
+                    32,
+                    704
+                ]
+            }
+        ],
+        "diagnostics_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sweeps/homesite-insurance/esam_rho0.01-evaluation/_esam_diagnostics/esam_rho0.01-evaluation__0.jsonl",
+        "n_diagnostics_records": 0
+    },
+    "rla_training": {
+        "adapter_lr_multiplier": 1.0,
+        "extra_paths_freeze_fraction": 0.0,
+        "extra_paths_freeze_until_epoch": 0
+    },
+    "best_step": 1980,
+    "metrics": {
+        "train": {
+            "0": {
+                "precision": 0.9505159911985807,
+                "recall": 0.9804254524072517,
+                "f1-score": 0.9652390793901555,
+                "support": 181971.0
+            },
+            "1": {
+                "precision": 0.9027387161073642,
+                "recall": 0.7806795910174975,
+                "f1-score": 0.8372841006939168,
+                "support": 42349.0
+            },
+            "accuracy": 0.942715763195435,
+            "macro avg": {
+                "precision": 0.9266273536529724,
+                "recall": 0.8805525217123746,
+                "f1-score": 0.9012615900420362,
+                "support": 224320.0
+            },
+            "weighted avg": {
+                "precision": 0.9414961988357154,
+                "recall": 0.942715763195435,
+                "f1-score": 0.9410826716119502,
+                "support": 224320.0
+            },
+            "cross-entropy": 0.1373233192307072,
+            "roc-auc": 0.9795565058577262,
+            "score": 0.9795565058577262
+        },
+        "val": {
+            "0": {
+                "precision": 0.9383593033913841,
+                "recall": 0.9784361746610118,
+                "f1-score": 0.9579787700675498,
+                "support": 16741.0
+            },
+            "1": {
+                "precision": 0.8653989560029829,
+                "recall": 0.6832499264056521,
+                "f1-score": 0.7636124362559632,
+                "support": 3397.0
+            },
+            "accuracy": 0.9286423676631245,
+            "macro avg": {
+                "precision": 0.9018791296971835,
+                "recall": 0.830843050533332,
+                "f1-score": 0.8607956031617565,
+                "support": 20138.0
+            },
+            "weighted avg": {
+                "precision": 0.9260519094059635,
+                "recall": 0.9286423676631245,
+                "f1-score": 0.9251918778261178,
+                "support": 20138.0
+            },
+            "cross-entropy": 0.17333139914835735,
+            "roc-auc": 0.9587733087820138,
+            "score": 0.9587733087820138
+        },
+        "test": {
+            "0": {
+                "precision": 0.9348479296445584,
+                "recall": 0.9702593747623032,
+                "f1-score": 0.9522245446401911,
+                "support": 13147.0
+            },
+            "1": {
+                "precision": 0.8524528301886792,
+                "recall": 0.7175984752223634,
+                "f1-score": 0.7792342186961021,
+                "support": 3148.0
+            },
+            "accuracy": 0.9214482970236268,
+            "macro avg": {
+                "precision": 0.8936503799166189,
+                "recall": 0.8439289249923333,
+                "f1-score": 0.8657293816681466,
+                "support": 16295.0
+            },
+            "weighted avg": {
+                "precision": 0.9189301773839197,
+                "recall": 0.9214482970236268,
+                "f1-score": 0.9188048732028181,
+                "support": 16295.0
+            },
+            "cross-entropy": 0.17776343990066415,
+            "roc-auc": 0.9626104060922291,
+            "score": 0.9626104060922291
+        }
+    },
+    "time": "0:05:01.917656",
+    "diversity": {
+        "train": {
+            "mean_centered_corr": 0.049148593097925186,
+            "mean_pairwise_disagreement": 0.03323895011734389,
+            "member_std": 0.030483398586511612
+        },
+        "val": {
+            "mean_centered_corr": 0.056430645287036896,
+            "mean_pairwise_disagreement": 0.03106348453733753,
+            "member_std": 0.03352737799286842
+        },
+        "test": {
+            "mean_centered_corr": 0.07052021473646164,
+            "mean_pairwise_disagreement": 0.039438181116313135,
+            "member_std": 0.03553345799446106
+        }
+    },
+    "chunk_size": null,
+    "eval_batch_size": 32768,
+    "heads": [
+        26,
+        30,
+        24,
+        5,
+        17,
+        31,
+        22,
+        13,
+        15,
+        20,
+        24
+    ],
+    "head_selection_time": "0:00:11.234254"
+}

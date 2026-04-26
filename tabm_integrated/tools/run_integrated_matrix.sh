@@ -1,79 +1,112 @@
 #!/usr/bin/env bash
 set -euo pipefail
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-PAPER="$ROOT/paper"
+
+PAPER_DIR="${PAPER_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/../paper" && pwd)}"
+MANIFEST="${1:-${MANIFEST:-}}"
+if [[ -z "$MANIFEST" ]]; then
+  echo "usage: $0 paper/exp/integrated/manifest_*.txt" >&2
+  exit 2
+fi
+cd "$PAPER_DIR"
+if [[ ! -f "$MANIFEST" ]]; then
+  echo "manifest not found: $MANIFEST" >&2
+  exit 2
+fi
+
 PYTHON="${PYTHON:-/workspace/.venvs/tabm_integrated/bin/python}"
 N_GPUS="${N_GPUS:-16}"
-SEEDS="${SEEDS:-0}"
-VARIANTS="${VARIANTS:-baseline_plr rla_only esam_only mfb_only cf_fisd_only all_four_combined}"
-DATASETS="sberbank-housing ecom-offers homesite-insurance cooking-time delivery-eta"
-LOG_ROOT="$PAPER/exp/integrated/_logs"
-QUEUE="$PAPER/exp/integrated/_queue_${SEEDS// /_}.txt"
+FORCE="${FORCE:-0}"
+LOG_ROOT="exp/integrated/_logs/$(basename "$MANIFEST" .txt)_$(date +%Y%m%d_%H%M%S)"
 mkdir -p "$LOG_ROOT"
-"$PYTHON" "$ROOT/tools/generate_integrated_configs.py"
-: > "$QUEUE"
-for seed in $SEEDS; do
-  for dataset in $DATASETS; do
-    for variant in $VARIANTS; do
-      cfg="$PAPER/exp/integrated/$dataset/$variant-evaluation/$seed.toml"
-      out="$PAPER/exp/integrated/$dataset/$variant-evaluation/$seed"
-      if [[ -f "$out/DONE" && -f "$out/report.json" ]] && "$PYTHON" - "$out/report.json" <<'PYCHK'
+QUEUE="exp/integrated/_queue_$(basename "$MANIFEST" .txt)_$$.txt"
+LOCK="$QUEUE.lock"
+cp "$MANIFEST" "$QUEUE"
+: > "$LOCK"
+USAGE_CSV="$LOG_ROOT/gpu_usage.csv"
+echo "gpu,config,started_at" > "$USAGE_CSV"
+
+cleanup_artifacts() {
+  local out="$1"
+  rm -f "$out/checkpoint.pt" "$out/checkpoint_best.pt" "$out/predictions.npz" "$out/summary.json"
+  rm -f "$out"/events.out.tfevents.* 2>/dev/null || true
+}
+
+check_done() {
+  local out="$1"
+  "$PYTHON" - "$out" <<'PY'
 import json, sys
-r=json.load(open(sys.argv[1]))
-sys.exit(1 if r.get('failure') else 0)
-PYCHK
-      then
-        echo "reuse $dataset $variant $seed"
-      else
-        echo "$cfg|$out|$dataset|$variant|$seed" >> "$QUEUE"
-      fi
-    done
-  done
-done
+from pathlib import Path
+out=Path(sys.argv[1])
+report=out/'report.json'
+done=out/'DONE'
+if not done.exists() or not report.exists():
+    raise SystemExit(1)
+payload=json.loads(report.read_text())
+if payload.get('failure'):
+    raise SystemExit(2)
+PY
+}
+
 worker() {
-  gpu="$1"
+  local gpu="$1"
+  export CUDA_VISIBLE_DEVICES="$gpu"
   while true; do
-    line=""
-    exec 9<>"$QUEUE.lock"
-    flock 9
-    if [[ -s "$QUEUE" ]]; then
-      line="$(head -n 1 "$QUEUE")"
-      tail -n +2 "$QUEUE" > "$QUEUE.tmp"
-      mv "$QUEUE.tmp" "$QUEUE"
+    local cfg=""
+    {
+      flock 9
+      if [[ -s "$QUEUE" ]]; then
+        cfg="$(head -n 1 "$QUEUE")"
+        tail -n +2 "$QUEUE" > "$QUEUE.tmp"
+        mv "$QUEUE.tmp" "$QUEUE"
+      fi
+    } 9>"$LOCK"
+    [[ -n "$cfg" ]] || break
+    local out="${cfg%.toml}"
+    local safe
+    safe="$(echo "$cfg" | tr '/ ' '__')"
+    local log="$LOG_ROOT/gpu${gpu}_${safe}.out"
+    echo "$gpu,$cfg,$(date -Is)" >> "$USAGE_CSV"
+    if [[ "$FORCE" != "1" ]] && check_done "$out" >/dev/null 2>&1; then
+      echo "SKIP $cfg" | tee -a "$log"
+      cleanup_artifacts "$out"
+      continue
     fi
-    flock -u 9
-    [[ -z "$line" ]] && break
-    IFS='|' read -r cfg out dataset variant seed <<< "$line"
-    mkdir -p "$(dirname "$out")" "$LOG_ROOT/$dataset/$variant"
-    log="$LOG_ROOT/$dataset/$variant/seed${seed}.gpu${gpu}.log"
-    echo "START $(date -Iseconds) gpu=$gpu dataset=$dataset variant=$variant seed=$seed" | tee "$log"
-    if ! (cd "$PAPER" && CUDA_VISIBLE_DEVICES="$gpu" "$PYTHON" "$PAPER/bin/run_integrated.py" "$cfg" "$out" --force) >> "$log" 2>&1; then
-      echo "FAIL dataset=$dataset variant=$variant seed=$seed log=$log" | tee -a "$log"
-      touch "$PAPER/exp/integrated/FAILED"
-      exit 1
+    mkdir -p "$out"
+    echo "RUN gpu=$gpu cfg=$cfg out=$out" | tee "$log"
+    set +e
+    "$PYTHON" bin/run_integrated.py "$cfg" --output "$out" --force >> "$log" 2>&1
+    rc=$?
+    set -e
+    cleanup_artifacts "$out"
+    if [[ $rc -ne 0 ]]; then
+      echo "FAILED rc=$rc cfg=$cfg log=$log" | tee -a "$LOG_ROOT/FAILED"
+      return $rc
     fi
-    if [[ ! -f "$out/DONE" || ! -f "$out/report.json" ]]; then
-      echo "FAIL missing DONE/report dataset=$dataset variant=$variant seed=$seed log=$log" | tee -a "$log"
-      touch "$PAPER/exp/integrated/FAILED"
-      exit 1
+    if ! check_done "$out" >/dev/null 2>&1; then
+      echo "FAILED missing DONE/report or failure block cfg=$cfg log=$log" | tee -a "$LOG_ROOT/FAILED"
+      return 1
     fi
-    if ! "$PYTHON" - "$out/report.json" <<'PYCHK'
-import json, sys
-r=json.load(open(sys.argv[1]))
-sys.exit(1 if r.get('failure') else 0)
-PYCHK
-    then
-      echo "FAIL failure block dataset=$dataset variant=$variant seed=$seed log=$log" | tee -a "$log"
-      touch "$PAPER/exp/integrated/FAILED"
-      exit 1
-    fi
-    echo "DONE $(date -Iseconds) gpu=$gpu dataset=$dataset variant=$variant seed=$seed" | tee -a "$log"
+    echo "DONE $cfg" | tee -a "$log"
   done
 }
-rm -f "$PAPER/exp/integrated/FAILED"
+
 pids=()
-for gpu in $(seq 0 $((N_GPUS - 1))); do worker "$gpu" & pids+=("$!"); done
-status=0
-for pid in "${pids[@]}"; do wait "$pid" || status=1; done
-"$PYTHON" "$ROOT/tools/aggregate_integrated_results.py" || status=1
-exit "$status"
+for ((gpu=0; gpu<N_GPUS; gpu++)); do
+  worker "$gpu" &
+  pids+=("$!")
+done
+rc=0
+for pid in "${pids[@]}"; do
+  if ! wait "$pid"; then
+    rc=1
+  fi
+done
+rm -f "$QUEUE" "$LOCK" "$QUEUE.tmp"
+if [[ $rc -ne 0 ]]; then
+  echo "matrix failed; see $LOG_ROOT/FAILED" >&2
+  exit $rc
+fi
+"$PYTHON" ../tools/aggregate_integrated_results.py --stage wave --manifest "$MANIFEST" || true
+used_gpus=$(tail -n +2 "$USAGE_CSV" | cut -d, -f1 | sort -n | uniq | tr '\n' ' ')
+echo "used_gpus: $used_gpus"
+echo "logs: $LOG_ROOT"

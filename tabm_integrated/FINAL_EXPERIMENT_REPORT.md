@@ -1,56 +1,81 @@
-# Final Integrated TabM Experiment Report
+# Integrated TabM final experiment report
 
-Mean ± std over available seeds. Safe claims require all 3 seeds.
+Official TabM PLR/PiecewiseLinearEmbeddings baseline configs are preserved exactly; variants add only module flags for RLA, ESAM, MFB, and CF-FISD.
 
-| dataset | variant | metric | direction | inference | precision | mean ± std | delta | percent delta | n | status | config path | result path |
-|---|---|---|---|---|---|---:|---:|---:|---:|---|---|---|
-| sberbank-housing | baseline_plr | rmse | lower | mean | bfloat16 | 11.5057 ± 0.0432 | 0 | 0.000% | 3 | baseline | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/baseline_plr-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/baseline_plr-evaluation |
-| sberbank-housing | rla_only | rmse | lower | mean | bfloat16 | 11.5041 ± 0.00471 | 0.00157171 | 0.014% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/rla_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/rla_only-evaluation |
-| sberbank-housing | esam_only | rmse | lower | mean | bfloat16 | 11.5065 ± 0.0432 | -0.000818784 | -0.007% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/esam_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/esam_only-evaluation |
-| sberbank-housing | mfb_only | rmse | lower | mean | bfloat16 | 11.5257 ± 0.0111 | -0.0199767 | -0.174% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/mfb_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/mfb_only-evaluation |
-| sberbank-housing | cf_fisd_only | rmse | lower | mean | bfloat16 | 11.5355 ± 0.0054 | -0.0297966 | -0.259% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/cf_fisd_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/cf_fisd_only-evaluation |
-| sberbank-housing | all_four_combined | rmse | lower | mean | bfloat16 | 11.5358 ± 0.00515 | -0.030061 | -0.261% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/all_four_combined-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/all_four_combined-evaluation |
-| sberbank-housing | all_minus_rla | rmse | lower | mean | bfloat16 | 11.5352 ± 0.00412 | -0.0294744 | -0.256% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/all_minus_rla-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/all_minus_rla-evaluation |
-| sberbank-housing | all_minus_esam | rmse | lower | mean | bfloat16 | 11.5344 ± 0.00432 | -0.028726 | -0.250% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/all_minus_esam-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/all_minus_esam-evaluation |
-| sberbank-housing | all_minus_mfb | rmse | lower | mean | bfloat16 | 11.5315 ± 0.00449 | -0.0257712 | -0.224% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/all_minus_mfb-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/all_minus_mfb-evaluation |
-| sberbank-housing | all_minus_cf_fisd | rmse | lower | mean | bfloat16 | 11.5117 ± 0.0154 | -0.00600246 | -0.052% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/all_minus_cf_fisd-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/all_minus_cf_fisd-evaluation |
-| ecom-offers | baseline_plr | roc-auc | higher | mean | bfloat16 | 0.576461 ± 0.000301 | 0 | 0.000% | 3 | baseline | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/baseline_plr-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/baseline_plr-evaluation |
-| ecom-offers | rla_only | roc-auc | higher | mean | bfloat16 | 0.576807 ± 0.000199 | 0.000345614 | 0.060% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/rla_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/rla_only-evaluation |
-| ecom-offers | esam_only | roc-auc | higher | mean | bfloat16 | 0.5766 ± 0.00017 | 0.000138612 | 0.024% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/esam_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/esam_only-evaluation |
-| ecom-offers | mfb_only | roc-auc | higher | mean | bfloat16 | 0.577706 ± 0.0034 | 0.00124474 | 0.216% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/mfb_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/mfb_only-evaluation |
-| ecom-offers | cf_fisd_only | roc-auc | higher | mean | bfloat16 | 0.573314 ± 0.000392 | -0.00314765 | -0.546% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/cf_fisd_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/cf_fisd_only-evaluation |
-| ecom-offers | all_four_combined | roc-auc | higher | mean | bfloat16 | 0.575357 ± 0.00178 | -0.00110457 | -0.192% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/all_four_combined-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/all_four_combined-evaluation |
-| ecom-offers | all_minus_rla | roc-auc | higher | mean | bfloat16 | 0.572037 ± 0.00203 | -0.0044245 | -0.768% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/all_minus_rla-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/all_minus_rla-evaluation |
-| ecom-offers | all_minus_esam | roc-auc | higher | mean | bfloat16 | 0.572005 ± 0.00109 | -0.00445646 | -0.773% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/all_minus_esam-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/all_minus_esam-evaluation |
-| ecom-offers | all_minus_mfb | roc-auc | higher | mean | bfloat16 | 0.574369 ± 0.00047 | -0.00209235 | -0.363% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/all_minus_mfb-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/all_minus_mfb-evaluation |
-| ecom-offers | all_minus_cf_fisd | roc-auc | higher | mean | bfloat16 | 0.576756 ± 0.00348 | 0.000294538 | 0.051% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/all_minus_cf_fisd-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/all_minus_cf_fisd-evaluation |
-| homesite-insurance | baseline_plr | roc-auc | higher | mean | bfloat16 | 0.953231 ± 0.0006 | 0 | 0.000% | 3 | baseline | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/baseline_plr-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/baseline_plr-evaluation |
-| homesite-insurance | rla_only | roc-auc | higher | mean | bfloat16 | 0.951962 ± 0.000732 | -0.00126848 | -0.133% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/rla_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/rla_only-evaluation |
-| homesite-insurance | esam_only | roc-auc | higher | mean | bfloat16 | 0.953275 ± 0.00054 | 4.45755e-05 | 0.005% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/esam_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/esam_only-evaluation |
-| homesite-insurance | mfb_only | roc-auc | higher | mean | bfloat16 | 0.950035 ± 0.000335 | -0.00319556 | -0.335% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/mfb_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/mfb_only-evaluation |
-| homesite-insurance | cf_fisd_only | roc-auc | higher | mean | bfloat16 | 0.954365 ± 0.000453 | 0.001134 | 0.119% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/cf_fisd_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/cf_fisd_only-evaluation |
-| homesite-insurance | all_four_combined | roc-auc | higher | mean | bfloat16 | 0.949588 ± 0.000717 | -0.00364296 | -0.382% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/all_four_combined-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/all_four_combined-evaluation |
-| homesite-insurance | all_minus_rla | roc-auc | higher | mean | bfloat16 | 0.95047 ± 0.000475 | -0.00276044 | -0.290% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/all_minus_rla-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/all_minus_rla-evaluation |
-| homesite-insurance | all_minus_esam | roc-auc | higher | mean | bfloat16 | 0.949443 ± 0.00153 | -0.0037874 | -0.397% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/all_minus_esam-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/all_minus_esam-evaluation |
-| homesite-insurance | all_minus_mfb | roc-auc | higher | mean | bfloat16 | 0.95332 ± 0.000513 | 8.89334e-05 | 0.009% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/all_minus_mfb-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/all_minus_mfb-evaluation |
-| homesite-insurance | all_minus_cf_fisd | roc-auc | higher | mean | bfloat16 | 0.94591 ± 0.00176 | -0.00732119 | -0.768% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/all_minus_cf_fisd-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/all_minus_cf_fisd-evaluation |
-| cooking-time | baseline_plr | rmse | lower | mean | bfloat16 | 2.56457 ± 0.0029 | 0 | 0.000% | 3 | baseline | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/baseline_plr-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/baseline_plr-evaluation |
-| cooking-time | rla_only | rmse | lower | mean | bfloat16 | 2.56088 ± 0.0138 | 0.00368773 | 0.144% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/rla_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/rla_only-evaluation |
-| cooking-time | esam_only | rmse | lower | mean | bfloat16 | 2.56386 ± 0.00279 | 0.000706405 | 0.028% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/esam_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/esam_only-evaluation |
-| cooking-time | mfb_only | rmse | lower | mean | bfloat16 | 2.5445 ± 0.00955 | 0.0200701 | 0.783% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/mfb_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/mfb_only-evaluation |
-| cooking-time | cf_fisd_only | rmse | lower | mean | bfloat16 | 2.56324 ± 0.00279 | 0.00133126 | 0.052% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/cf_fisd_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/cf_fisd_only-evaluation |
-| cooking-time | all_four_combined | rmse | lower | mean | bfloat16 | 2.54421 ± 0.00684 | 0.0203545 | 0.794% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_four_combined-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_four_combined-evaluation |
-| cooking-time | all_minus_rla | rmse | lower | mean | bfloat16 | 2.54693 ± 0.00325 | 0.0176392 | 0.688% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_minus_rla-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_minus_rla-evaluation |
-| cooking-time | all_minus_esam | rmse | lower | mean | bfloat16 | 2.54322 ± 0.00473 | 0.0213521 | 0.833% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_minus_esam-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_minus_esam-evaluation |
-| cooking-time | all_minus_mfb | rmse | lower | mean | bfloat16 | 2.55993 ± 0.0125 | 0.00464007 | 0.181% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_minus_mfb-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_minus_mfb-evaluation |
-| cooking-time | all_minus_cf_fisd | rmse | lower | mean | bfloat16 | 2.54518 ± 0.0029 | 0.0193905 | 0.756% | 3 | win | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_minus_cf_fisd-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_minus_cf_fisd-evaluation |
-| delivery-eta | baseline_plr | rmse | lower | mean | bfloat16 | 1.85423 ± 0.0129 | 0 | 0.000% | 3 | baseline | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/baseline_plr-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/baseline_plr-evaluation |
-| delivery-eta | rla_only | rmse | lower | mean | bfloat16 | 1.87913 ± 0.00475 | -0.0249039 | -1.343% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/rla_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/rla_only-evaluation |
-| delivery-eta | esam_only | rmse | lower | mean | bfloat16 | 1.85645 ± 0.0134 | -0.00222041 | -0.120% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/esam_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/esam_only-evaluation |
-| delivery-eta | mfb_only | rmse | lower | mean | bfloat16 | 1.88817 ± 0.0102 | -0.0339417 | -1.831% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/mfb_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/mfb_only-evaluation |
-| delivery-eta | cf_fisd_only | rmse | lower | mean | bfloat16 | 1.85934 ± 0.0133 | -0.00511517 | -0.276% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/cf_fisd_only-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/cf_fisd_only-evaluation |
-| delivery-eta | all_four_combined | rmse | lower | mean | bfloat16 | 1.8809 ± 0.0154 | -0.0266763 | -1.439% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/all_four_combined-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/all_four_combined-evaluation |
-| delivery-eta | all_minus_rla | rmse | lower | mean | bfloat16 | 1.87905 ± 0.0243 | -0.0248174 | -1.338% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/all_minus_rla-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/all_minus_rla-evaluation |
-| delivery-eta | all_minus_esam | rmse | lower | mean | bfloat16 | 1.87891 ± 0.0186 | -0.0246832 | -1.331% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/all_minus_esam-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/all_minus_esam-evaluation |
-| delivery-eta | all_minus_mfb | rmse | lower | mean | bfloat16 | 1.86875 ± 0.00678 | -0.0145174 | -0.783% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/all_minus_mfb-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/all_minus_mfb-evaluation |
-| delivery-eta | all_minus_cf_fisd | rmse | lower | mean | bfloat16 | 1.87292 ± 0.0162 | -0.0186869 | -1.008% | 3 | loss | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/all_minus_cf_fisd-evaluation/0.toml | /workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/all_minus_cf_fisd-evaluation |
+## Final 3-seed results
+
+| dataset | variant | source config | metric | inference | mean ± std | delta | status |
+|---|---|---|---|---|---:|---:|---|
+| sberbank-housing | baseline_plr | baseline_plr | RMSE | mean | 0.234418 ± 0.00354822 | 0 | baseline |
+| sberbank-housing | best_rla_only | rla_rank2_noise0.001 | RMSE | greedy-heads | 0.232368 ± 0.00228551 | 0.0020499 | weak_win |
+| sberbank-housing | best_esam_only | esam_rho0.0025 | RMSE | greedy-heads | 0.234406 ± 0.00401172 | 1.17846e-05 | weak_win |
+| sberbank-housing | best_mfb_only | mfb_keep0.8 | RMSE | greedy-heads | 0.2351 ± 0.00395661 | -0.000681772 | loss |
+| sberbank-housing | best_cf_fisd_only | cf_fisd_only | RMSE | greedy-heads | 0.233093 ± 0.000585082 | 0.0013248 | weak_win |
+| sberbank-housing | best_combined | mfb_cf_fisd | RMSE | greedy-heads | 0.234979 ± 0.00337063 | -0.000560913 | loss |
+| ecom-offers | baseline_plr | baseline_plr | AUROC | mean | 0.590058 ± 0.000970364 | 0 | baseline |
+| ecom-offers | best_rla_only | rla_rank2_noise0.0001 | AUROC | best-head | 0.598447 ± 0.00279735 | 0.00838888 | clear_win |
+| ecom-offers | best_esam_only | esam_rho0.001 | AUROC | greedy-heads | 0.60042 ± 0.00349335 | 0.0103616 | clear_win |
+| ecom-offers | best_mfb_only | mfb_keep0.7 | AUROC | best-head | 0.609516 ± 0.00208948 | 0.0194584 | clear_win |
+| ecom-offers | best_cf_fisd_only | cf_fisd_lambda0.05 | AUROC | greedy-heads | 0.600205 ± 0.00345825 | 0.0101468 | clear_win |
+| ecom-offers | best_combined | mfb_cf_fisd | AUROC | greedy-heads | 0.605211 ± 0.00322248 | 0.0151529 | clear_win |
+| homesite-insurance | baseline_plr | baseline_plr | AUROC | mean | 0.962494 ± 0.000178079 | 0 | baseline |
+| homesite-insurance | best_rla_only | rla_rank4_noise1e-05 | AUROC | greedy-heads | 0.962564 ± 0.000608529 | 6.98613e-05 | weak_win |
+| homesite-insurance | best_esam_only | esam_only | AUROC | greedy-heads | 0.962732 ± 0.00044923 | 0.000237685 | clear_win |
+| homesite-insurance | best_mfb_only | mfb_keep0.95 | AUROC | greedy-heads | 0.962382 ± 0.00045772 | -0.000111855 | loss |
+| homesite-insurance | best_cf_fisd_only | cf_fisd_only | AUROC | greedy-heads | 0.962908 ± 0.000474027 | 0.000413458 | clear_win |
+| homesite-insurance | best_combined | mfb_cf_fisd | AUROC | greedy-heads | 0.962849 ± 0.000437968 | 0.000354836 | clear_win |
+| cooking-time | baseline_plr | baseline_plr | RMSE | mean | 0.480381 ± 0.000123385 | 0 | baseline |
+| cooking-time | best_rla_only | rla_rank4_noise0.001 | RMSE | greedy-heads | 0.480146 ± 0.00016089 | 0.000234391 | clear_win |
+| cooking-time | best_esam_only | esam_rho0.0025 | RMSE | greedy-heads | 0.480065 ± 8.02121e-05 | 0.000315778 | clear_win |
+| cooking-time | best_mfb_only | mfb_keep0.8 | RMSE | greedy-heads | 0.479973 ± 0.000194552 | 0.000407806 | clear_win |
+| cooking-time | best_cf_fisd_only | cf_fisd_lambda0.05 | RMSE | greedy-heads | 0.480337 ± 4.64953e-05 | 4.32134e-05 | weak_win |
+| cooking-time | best_combined | rla_esam | RMSE | greedy-heads | 0.480026 ± 9.6554e-05 | 0.000354592 | clear_win |
+| delivery-eta | baseline_plr | baseline_plr | RMSE | mean | 0.550226 ± 0.000582292 | 0 | baseline |
+| delivery-eta | best_rla_only | rla_rank2_noise0.001 | RMSE | greedy-heads | 0.551407 ± 0.00109716 | -0.00118071 | loss |
+| delivery-eta | best_esam_only | esam_only | RMSE | greedy-heads | 0.551148 ± 0.000504719 | -0.000922076 | loss |
+| delivery-eta | best_mfb_only | mfb_keep0.7 | RMSE | greedy-heads | 0.551366 ± 0.00171387 | -0.00114032 | loss |
+| delivery-eta | best_cf_fisd_only | cf_fisd_lambda0.05 | RMSE | greedy-heads | 0.552434 ± 0.00139117 | -0.00220824 | loss |
+| delivery-eta | best_combined | rla_esam | RMSE | greedy-heads | 0.552336 ± 0.000198974 | -0.00211043 | loss |
+
+## Validation-selected configs
+
+| dataset | final variant | selected sweep variant | inference | validation metric |
+|---|---|---|---|---:|
+| sberbank-housing | baseline_plr | baseline_plr | mean |  |
+| sberbank-housing | best_rla_only | rla_rank2_noise0.001 | greedy-heads | 0.2328613038082034 |
+| sberbank-housing | best_esam_only | esam_rho0.0025 | greedy-heads | 0.23295802298295287 |
+| sberbank-housing | best_mfb_only | mfb_keep0.8 | greedy-heads | 0.23237596587359466 |
+| sberbank-housing | best_cf_fisd_only | cf_fisd_only | greedy-heads | 0.23327114512588593 |
+| sberbank-housing | best_combined | mfb_cf_fisd | greedy-heads | 0.23320900639668657 |
+| ecom-offers | baseline_plr | baseline_plr | mean |  |
+| ecom-offers | best_rla_only | rla_rank2_noise0.0001 | best-head | 0.6396541901648656 |
+| ecom-offers | best_esam_only | esam_rho0.001 | greedy-heads | 0.641845068859757 |
+| ecom-offers | best_mfb_only | mfb_keep0.7 | best-head | 0.6547032702847417 |
+| ecom-offers | best_cf_fisd_only | cf_fisd_lambda0.05 | greedy-heads | 0.6419149054445072 |
+| ecom-offers | best_combined | mfb_cf_fisd | greedy-heads | 0.6506783465179156 |
+| homesite-insurance | baseline_plr | baseline_plr | mean |  |
+| homesite-insurance | best_rla_only | rla_rank4_noise1e-05 | greedy-heads | 0.9591329763748824 |
+| homesite-insurance | best_esam_only | esam_only | greedy-heads | 0.958991133281215 |
+| homesite-insurance | best_mfb_only | mfb_keep0.95 | greedy-heads | 0.9592957095194116 |
+| homesite-insurance | best_cf_fisd_only | cf_fisd_only | greedy-heads | 0.9594844321379927 |
+| homesite-insurance | best_combined | mfb_cf_fisd | greedy-heads | 0.9597570226838343 |
+| cooking-time | baseline_plr | baseline_plr | mean |  |
+| cooking-time | best_rla_only | rla_rank4_noise0.001 | greedy-heads | 0.4624107384246987 |
+| cooking-time | best_esam_only | esam_rho0.0025 | greedy-heads | 0.46246732196836127 |
+| cooking-time | best_mfb_only | mfb_keep0.8 | greedy-heads | 0.4624822561623469 |
+| cooking-time | best_cf_fisd_only | cf_fisd_lambda0.05 | greedy-heads | 0.4628482268025946 |
+| cooking-time | best_combined | rla_esam | greedy-heads | 0.4624234187671886 |
+| delivery-eta | baseline_plr | baseline_plr | mean |  |
+| delivery-eta | best_rla_only | rla_rank2_noise0.001 | greedy-heads | 0.5552720495549479 |
+| delivery-eta | best_esam_only | esam_only | greedy-heads | 0.5551513290724005 |
+| delivery-eta | best_mfb_only | mfb_keep0.7 | greedy-heads | 0.5551008108444078 |
+| delivery-eta | best_cf_fisd_only | cf_fisd_lambda0.05 | greedy-heads | 0.5556691040453957 |
+| delivery-eta | best_combined | rla_esam | greedy-heads | 0.5552988041877751 |
+
+## Module wins vs baseline
+
+- `best_rla_only`: sberbank-housing, ecom-offers, homesite-insurance, cooking-time
+- `best_esam_only`: sberbank-housing, ecom-offers, homesite-insurance, cooking-time
+- `best_mfb_only`: ecom-offers, cooking-time
+- `best_cf_fisd_only`: sberbank-housing, ecom-offers, homesite-insurance, cooking-time
+- `best_combined`: ecom-offers, homesite-insurance, cooking-time

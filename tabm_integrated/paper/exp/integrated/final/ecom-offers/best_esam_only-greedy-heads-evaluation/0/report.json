@@ -1,0 +1,230 @@
+{
+    "function": "bin.run_integrated.main",
+    "gpus": [
+        "NVIDIA GeForce RTX 4090"
+    ],
+    "config": {
+        "batch_size": 1024,
+        "patience": 16,
+        "n_epochs": -1,
+        "gradient_clipping_norm": 1.0,
+        "amp": true,
+        "seed": 0,
+        "head_selection": true,
+        "use_esam": true,
+        "esam_rho": 0.001,
+        "esam_eps": 1e-12,
+        "esam_adapter_only": true,
+        "esam_memberwise": true,
+        "esam_warmup_epochs": 0,
+        "esam_start_epoch": 0,
+        "esam_end_epoch": -1,
+        "esam_log_diagnostics": false,
+        "esam_diagnostics_every": 100,
+        "data": {
+            "cache": true,
+            "path": "data/ecom-offers",
+            "num_policy": "noisy-quantile"
+        },
+        "optimizer": {
+            "lr": 0.00024262819114537424,
+            "weight_decay": 0.0001501852317298042
+        },
+        "model": {
+            "arch_type": "tabm",
+            "k": 32,
+            "share_training_batches": false,
+            "backbone": {
+                "n_blocks": 1,
+                "d_block": 960,
+                "dropout": 0.0
+            },
+            "num_embeddings": {
+                "type": "PiecewiseLinearEmbeddings",
+                "d_embedding": 16
+            }
+        },
+        "bins": {
+            "n_bins": 47
+        }
+    },
+    "n_parameters": 1867072,
+    "prediction_type": "probs",
+    "mfb": {
+        "enabled": false,
+        "config": {},
+        "mask_stats": {
+            "keep_rate_actual": 1.0
+        }
+    },
+    "cf_fisd": {
+        "lambda": 0.0
+    },
+    "epoch_size": 107,
+    "ncl": {
+        "use_ncl": false,
+        "lambda_ncl": 0.0,
+        "ncl_warmup_epochs": 0,
+        "ncl_space": "logits"
+    },
+    "esam": {
+        "use_esam": true,
+        "esam_rho": 0.001,
+        "esam_eps": 1e-12,
+        "esam_adapter_only": true,
+        "esam_memberwise": true,
+        "esam_warmup_epochs": 0,
+        "esam_start_epoch": 0,
+        "esam_end_epoch": -1,
+        "esam_log_diagnostics": false,
+        "esam_diagnostics_every": 100,
+        "adapter_parameter_names": [
+            {
+                "name": "backbone.blocks.0.0.r",
+                "shape": [
+                    32,
+                    1676
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.s",
+                "shape": [
+                    32,
+                    960
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.bias",
+                "shape": [
+                    32,
+                    960
+                ]
+            }
+        ],
+        "diagnostics_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sweeps/ecom-offers/esam_rho0.001-evaluation/_esam_diagnostics/esam_rho0.001-evaluation__0.jsonl",
+        "n_diagnostics_records": 0
+    },
+    "rla_training": {
+        "adapter_lr_multiplier": 1.0,
+        "extra_paths_freeze_fraction": 0.0,
+        "extra_paths_freeze_until_epoch": 0
+    },
+    "best_step": 321,
+    "metrics": {
+        "train": {
+            "0": {
+                "precision": 0.782973008757495,
+                "recall": 0.9834994476056974,
+                "f1-score": 0.871854546986315,
+                "support": 84179.0
+            },
+            "1": {
+                "precision": 0.6144879267277269,
+                "recall": 0.08798982592798664,
+                "f1-score": 0.1539370763080132,
+                "support": 25162.0
+            },
+            "accuracy": 0.7774210954719638,
+            "macro avg": {
+                "precision": 0.6987304677426109,
+                "recall": 0.535744636766842,
+                "f1-score": 0.5128958116471641,
+                "support": 109341.0
+            },
+            "weighted avg": {
+                "precision": 0.7442005296871277,
+                "recall": 0.7774210954719638,
+                "f1-score": 0.7066444300383502,
+                "support": 109341.0
+            },
+            "cross-entropy": 0.4979289521091686,
+            "roc-auc": 0.6847935169951291,
+            "score": 0.6847935169951291
+        },
+        "val": {
+            "0": {
+                "precision": 0.6776083871263104,
+                "recall": 0.9537955922154917,
+                "f1-score": 0.7923235459436311,
+                "support": 15518.0
+            },
+            "1": {
+                "precision": 0.7034739454094293,
+                "recall": 0.1945556445156125,
+                "f1-score": 0.3048113968282412,
+                "support": 8743.0
+            },
+            "accuracy": 0.6801863072420757,
+            "macro avg": {
+                "precision": 0.6905411662678699,
+                "recall": 0.5741756183655521,
+                "f1-score": 0.5485674713859361,
+                "support": 24261.0
+            },
+            "weighted avg": {
+                "precision": 0.6869296259898902,
+                "recall": 0.6801863072420757,
+                "f1-score": 0.6166375181741305,
+                "support": 24261.0
+            },
+            "cross-entropy": 0.639843807695552,
+            "roc-auc": 0.641845068859757,
+            "score": 0.641845068859757
+        },
+        "test": {
+            "0": {
+                "precision": 0.6588995730758489,
+                "recall": 0.975889374778395,
+                "f1-score": 0.7866619030606169,
+                "support": 16922.0
+            },
+            "1": {
+                "precision": 0.7068965517241379,
+                "recall": 0.10322039232140984,
+                "f1-score": 0.18013729977116705,
+                "support": 9533.0
+            },
+            "accuracy": 0.6614250614250614,
+            "macro avg": {
+                "precision": 0.6828980623999934,
+                "recall": 0.5395548835499024,
+                "f1-score": 0.483399601415892,
+                "support": 26455.0
+            },
+            "weighted avg": {
+                "precision": 0.6761951768352191,
+                "recall": 0.6614250614250614,
+                "f1-score": 0.5681021206694499,
+                "support": 26455.0
+            },
+            "cross-entropy": 0.6818687369091303,
+            "roc-auc": 0.6041622806453656,
+            "score": 0.6041622806453656
+        }
+    },
+    "time": "0:01:33.915789",
+    "diversity": {
+        "train": {
+            "mean_centered_corr": -0.013111491687595844,
+            "mean_pairwise_disagreement": 0.02585577938919114,
+            "member_std": 0.02714134193956852
+        },
+        "val": {
+            "mean_centered_corr": -0.004636597353965044,
+            "mean_pairwise_disagreement": 0.08690653790565238,
+            "member_std": 0.060862503945827484
+        },
+        "test": {
+            "mean_centered_corr": 0.0027443149592727423,
+            "mean_pairwise_disagreement": 0.05465580626870949,
+            "member_std": 0.05927826836705208
+        }
+    },
+    "chunk_size": null,
+    "eval_batch_size": 32768,
+    "heads": [
+        0,
+        25
+    ],
+    "head_selection_time": "0:00:15.827629"
+}

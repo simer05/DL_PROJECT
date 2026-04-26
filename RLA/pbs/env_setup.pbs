@@ -1,0 +1,83 @@
+#!/bin/bash
+#PBS -N tabmpp_env
+#PBS -P personal-abhipray
+#PBS -q normal
+#PBS -l select=1:ncpus=4:mem=16gb
+#PBS -l walltime=01:00:00
+#PBS -o /home/users/ntu/abhipray/tabmpp/logs/env_setup.log
+#PBS -e /home/users/ntu/abhipray/tabmpp/logs/env_setup.err
+
+# Environment setup for TabM++/SLS on NSCC. No GPU needed — this is a CPU
+# install job. Creates a dedicated venv at ~/tabmpp/venv so we never pollute
+# the user's existing ~/venv.
+#
+# Rule reminders:
+#   * NSCC has 1/3 warnings on this account. Zero tolerance: all compute is
+#     routed via qsub (login nodes forbid python/pip/compute). This job is
+#     the compute host for the install step.
+#   * Use `set -eo pipefail` (no -u) to avoid the conda qt activation hook
+#     bug that has burned us before.
+
+set -eo pipefail
+
+echo "== TabM++ env setup (NSCC) =="
+echo "job: $PBS_JOBID  host: $(hostname)  date: $(date -Iseconds)"
+cd "$HOME/tabmpp"
+
+module load python/3.11.5-gcc12 cuda/11.8.0
+echo "python after module load: $(which python)"
+
+VENV_DIR="$HOME/tabmpp/venv"
+if [[ -d "$VENV_DIR" ]]; then
+    echo "venv already exists at $VENV_DIR — reusing."
+else
+    echo "creating venv at $VENV_DIR..."
+    python -m venv --copies "$VENV_DIR"
+fi
+
+# shellcheck disable=SC1090
+source "$VENV_DIR/bin/activate"
+python --version
+which python
+
+python -m pip install --upgrade pip setuptools wheel
+
+# Torch: cu118 + py3.11 is the cluster's supported combo (module cuda/11.8.0 +
+# the system's Python 3.11.5). Torch 2.2.2+cu118 is the last major that
+# publishes cp311 + cu118 wheels; newer 2.7+ also ship cu118 + py3.11 per
+# `pip index versions` — we pick 2.2.2 to match the more conservative paper
+# pins.
+python -m pip install \
+    --index-url https://download.pytorch.org/whl/cu118 \
+    torch==2.2.2
+
+# Pin numpy<2 (rtdl_num_embeddings 0.0.11 is not numpy-2 safe).
+python -m pip install \
+    "numpy<2" \
+    "scipy==1.11.3" \
+    "pandas==2.1.1" \
+    "scikit-learn==1.3.1" \
+    "loguru==0.7.2" \
+    "tqdm==4.66.1" \
+    "tomli==2.0.1" \
+    "tomli-w==1.0.0" \
+    "tensorboard==2.15.2" \
+    "delu==0.0.25" \
+    "rtdl_num_embeddings==0.0.11" \
+    "rtdl_revisiting_models==0.0.2" \
+    "pytest==8.3.5"
+
+echo "== pip list =="
+python -m pip list
+
+echo "== import sanity =="
+python - <<'PY'
+import sys
+print("python:", sys.version)
+import torch
+print("torch:", torch.__version__, "cuda avail:", torch.cuda.is_available())
+import delu, rtdl_num_embeddings, rtdl_revisiting_models, loguru, numpy, scipy, pandas, sklearn
+print("deps OK")
+PY
+
+echo "== done =="

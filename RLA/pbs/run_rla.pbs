@@ -1,0 +1,49 @@
+#!/bin/bash
+#PBS -N rla_run
+#PBS -P personal-abhipray
+#PBS -q normal
+#PBS -l select=1:ncpus=4:ngpus=1:mem=32gb
+#PBS -l walltime=11:00:00
+#PBS -o /home/users/ntu/abhipray/tabmpp/logs/rla_run.log
+#PBS -e /home/users/ntu/abhipray/tabmpp/logs/rla_run.err
+
+# Run one (DATASET, VARIANT) over N_SEEDS for the RLA sweep.
+#
+# Submit with:
+#   qsub -v DATASET=homesite-insurance,VARIANT=rla_first_r4,N_SEEDS=3 \
+#        -o /home/users/ntu/abhipray/tabmpp/logs/rla_<DATASET>_<VARIANT>.log \
+#        -e /home/users/ntu/abhipray/tabmpp/logs/rla_<DATASET>_<VARIANT>.err \
+#        pbs/run_rla.pbs
+
+set -eo pipefail
+
+: "${DATASET:?DATASET env var required}"
+: "${VARIANT:?VARIANT env var required}"
+: "${N_SEEDS:=3}"
+
+echo "== RLA run (NSCC) =="
+echo "job: $PBS_JOBID  host: $(hostname)  date: $(date -Iseconds)"
+echo "dataset=$DATASET  variant=$VARIANT  n_seeds=$N_SEEDS"
+nvidia-smi || true
+
+cd "$HOME/tabmpp/tabm"
+module load python/3.11.5-gcc12 cuda/11.8.0
+# shellcheck disable=SC1090
+source "$HOME/tabmpp/venv/bin/activate"
+python --version
+
+cd paper
+export PYTHONPATH="$PWD:$PYTHONPATH"
+
+EVAL_DIR="exp/rla/${DATASET}/${VARIANT}-evaluation"
+if [[ ! -f "$EVAL_DIR/0.toml" ]]; then
+    echo "ERROR: missing template config $EVAL_DIR/0.toml"
+    exit 2
+fi
+
+python bin/evaluate.py "$EVAL_DIR" \
+    --function "bin.model.main" \
+    --n_seeds "$N_SEEDS" \
+    --force
+
+echo "== run done =="

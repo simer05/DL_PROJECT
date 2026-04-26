@@ -1,0 +1,45 @@
+#!/bin/bash
+#PBS -N cf_fisd_data
+#PBS -P personal-simerjit
+#PBS -q normal
+#PBS -l select=1:ncpus=4:mem=64gb
+#PBS -l walltime=01:00:00
+#PBS -j oe
+#PBS -o /home/users/ntu/simerjit/scratch/tabm_proj/logs/cf_fisd/
+
+set -euo pipefail
+SCRATCH=/home/users/ntu/simerjit/scratch/tabm_proj
+PAPER_DIR="$SCRATCH/tabm_fork/paper"
+VENV="$SCRATCH/cf_fisd_venv"
+TABRED_LEGACY="$SCRATCH/data/tabred"
+TABRED_PAPER_LAYOUT="$SCRATCH/data/tabred_paper"
+
+mkdir -p "$SCRATCH/logs/cf_fisd"
+
+module purge
+module load python/3.10.9
+source "$VENV/bin/activate"
+
+cd "$PAPER_DIR"
+mkdir -p "$TABRED_PAPER_LAYOUT"
+python tools/prepare_tabred.py "$TABRED_LEGACY" "$TABRED_PAPER_LAYOUT" --force
+
+if [ -L "$PAPER_DIR/data" ]; then
+    echo "data symlink already exists -> $(readlink $PAPER_DIR/data)"
+elif [ -d "$PAPER_DIR/data" ]; then
+    echo "WARNING: $PAPER_DIR/data exists as a directory (not symlink). Skipping link."
+else
+    ln -s "$TABRED_PAPER_LAYOUT" "$PAPER_DIR/data"
+    echo "linked $PAPER_DIR/data -> $TABRED_PAPER_LAYOUT"
+fi
+
+ls -la "$PAPER_DIR/data" | head -10
+for ds in sberbank-housing ecom-offers homesite-insurance cooking-time delivery-eta; do
+    echo "--- $ds ---"
+    ls "$PAPER_DIR/data/$ds" 2>&1 | head -20 || echo "MISSING"
+done
+
+echo "=== Rule 87-89: data integrity manifest + canonical row counts ==="
+cd "$PAPER_DIR"
+python "$SCRATCH/tabm_fork/scripts/cf_fisd/verify_data_integrity.py" \
+    --data-root data --write

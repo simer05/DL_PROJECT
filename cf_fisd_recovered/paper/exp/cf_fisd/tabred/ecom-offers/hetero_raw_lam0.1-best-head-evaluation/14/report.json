@@ -1,0 +1,337 @@
+{
+    "function": "bin.model.main",
+    "gpus": [
+        "NVIDIA A100-SXM4-40GB"
+    ],
+    "config": {
+        "seed": 14,
+        "batch_size": 1024,
+        "patience": 16,
+        "n_epochs": -1,
+        "gradient_clipping_norm": 1.0,
+        "amp": true,
+        "data": {
+            "cache": true,
+            "path": "data/ecom-offers",
+            "num_policy": "noisy-quantile"
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 0.00024262819114537424,
+            "weight_decay": 0.0001501852317298042
+        },
+        "model": {
+            "arch_type": "tabm",
+            "k": 32,
+            "share_training_batches": false,
+            "backbone": {
+                "type": "MLP",
+                "n_blocks": 1,
+                "d_block": 960,
+                "dropout": 0.0
+            },
+            "num_embeddings": {
+                "type": "PiecewiseLinearEmbeddings",
+                "d_embedding": 16
+            }
+        },
+        "bins": {
+            "n_bins": 47
+        },
+        "cf_fisd": {
+            "lambda": 0.1,
+            "variant": "raw",
+            "teacher_dir": "exp/cf_fisd/_teachers/tabred/ecom-offers",
+            "dataset_name": "ecom-offers",
+            "teacher_names": [
+                "xgb",
+                "lgbm",
+                "cat"
+            ]
+        }
+    },
+    "cf_fisd_state": {
+        "module": "cf_fisd",
+        "upstream_commit": "24adbfcc4ad4dc5d5ea239f42d4ea5a89cc9c4ca",
+        "branch": "cf-fisd-distill",
+        "dirty": true,
+        "timestamp_utc": "2026-04-25T18:31:38.414283Z",
+        "module_file_shas": {
+            "paper/lib/cf_fisd.py": "d739f6017a2bca2049607e5f3a3c9c75bb18406d1ec5841b00ad11c3d65f6128",
+            "paper/bin/cf_fisd_teachers.py": "01e3bf46901b8e26926aa69aacfd5a57939cc3bc78e8d179a614bec124ca8e4f",
+            "paper/bin/model.py": "602bbfcd8824f0780ba835f682d9e773d71e12980055177264126f4395581326",
+            "paper/test_cf_fisd.py": "b6b92bb996a62792122491764f06452d78ec296fb730bcc6445c104593aa7c7f",
+            "paper/tools/generate_cf_fisd_configs.py": "640489c38637de011d5791fbc8733787e696cd066e3267058cbd0c190008190f"
+        }
+    },
+    "n_parameters": 1867072,
+    "prediction_type": "probs",
+    "cf_fisd": {
+        "lambda": 0.1,
+        "variant": "raw",
+        "teacher_names": [
+            "xgb",
+            "lgbm",
+            "cat"
+        ],
+        "member_groups": {
+            "xgb": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+            ],
+            "lgbm": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21
+            ],
+            "cat": [
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31
+            ]
+        },
+        "d_features": [
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            16,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+        ],
+        "n_features": 110
+    },
+    "epoch_size": 107,
+    "amp_enabled": true,
+    "amp_dtype": "bfloat16",
+    "gpu_names": [
+        "NVIDIA A100-SXM4-40GB"
+    ],
+    "best_step": 535,
+    "metrics": {
+        "train": {
+            "0": {
+                "precision": 0.7952249046262433,
+                "recall": 0.9583150191853075,
+                "f1-score": 0.869185764618418,
+                "support": 84179.0
+            },
+            "1": {
+                "precision": 0.5557103064066853,
+                "recall": 0.17442969557268898,
+                "f1-score": 0.2655172413793104,
+                "support": 25162.0
+            },
+            "accuracy": 0.777924108980163,
+            "macro avg": {
+                "precision": 0.6754676055164643,
+                "recall": 0.5663723573789983,
+                "f1-score": 0.5673515029988642,
+                "support": 109341.0
+            },
+            "weighted avg": {
+                "precision": 0.7401068215613315,
+                "recall": 0.777924108980163,
+                "f1-score": 0.7302670846928417,
+                "support": 109341.0
+            },
+            "cross-entropy": 0.4948979275823222,
+            "roc-auc": 0.6936687804456694,
+            "score": 0.6936687804456694
+        },
+        "val": {
+            "0": {
+                "precision": 0.6769869135014364,
+                "recall": 0.9567598917386261,
+                "f1-score": 0.7929183689818153,
+                "support": 15518.0
+            },
+            "1": {
+                "precision": 0.7120171673819743,
+                "recall": 0.18975180144115292,
+                "f1-score": 0.29964779192630725,
+                "support": 8743.0
+            },
+            "accuracy": 0.6803511809076296,
+            "macro avg": {
+                "precision": 0.6945020404417053,
+                "recall": 0.5732558465898895,
+                "f1-score": 0.5462830804540613,
+                "support": 24261.0
+            },
+            "weighted avg": {
+                "precision": 0.6896108576784094,
+                "recall": 0.6803511809076296,
+                "f1-score": 0.6151571614802157,
+                "support": 24261.0
+            },
+            "cross-entropy": 0.6346674410127432,
+            "roc-auc": 0.6444266196747651,
+            "score": 0.6444266196747651
+        },
+        "test": {
+            "0": {
+                "precision": 0.6597247157390784,
+                "recall": 0.9771894575109326,
+                "f1-score": 0.7876723747826709,
+                "support": 16922.0
+            },
+            "1": {
+                "precision": 0.7223021582733813,
+                "recall": 0.10531836777509704,
+                "f1-score": 0.18383228050901765,
+                "support": 9533.0
+            },
+            "accuracy": 0.663012663012663,
+            "macro avg": {
+                "precision": 0.6910134370062299,
+                "recall": 0.5412539126430148,
+                "f1-score": 0.4857523276458443,
+                "support": 26455.0
+            },
+            "weighted avg": {
+                "precision": 0.6822743570046051,
+                "recall": 0.663012663012663,
+                "f1-score": 0.5700799492029796,
+                "support": 26455.0
+            },
+            "cross-entropy": 0.6769917333633931,
+            "roc-auc": 0.6028654306695919,
+            "score": 0.6028654306695919
+        }
+    },
+    "time": "0:01:01.422881",
+    "chunk_size": null,
+    "eval_batch_size": 32768,
+    "heads": [
+        31
+    ],
+    "head_selection_time": "0:00:01.196386"
+}

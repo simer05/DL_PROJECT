@@ -1,0 +1,27 @@
+#!/bin/bash
+#PBS -N cf_fisd_tseed
+#PBS -P personal-simerjit
+#PBS -q normal
+#PBS -l select=1:ncpus=4:ngpus=1:mem=64gb
+#PBS -l walltime=02:00:00
+#PBS -j oe
+#PBS -o /home/users/ntu/simerjit/scratch/tabm_proj/logs/cf_fisd/
+
+set -euo pipefail
+
+: "${DATASET:?DATASET must be set}"
+: "${SEED:?SEED must be set}"
+: "${OUT_ROOT:?OUT_ROOT must be set}"
+: "${PAPER_DIR:=/home/users/ntu/simerjit/scratch/tabm_proj/tabm_fork/paper}"
+: "${TABRED_REPO_ROOT:=/home/users/ntu/simerjit/scratch/tabm_proj/tabred_fork}"
+: "${VENV:=/home/users/ntu/simerjit/scratch/tabm_proj/cf_fisd_venv}"
+
+mkdir -p /home/users/ntu/simerjit/scratch/tabm_proj/logs/cf_fisd
+
+module purge
+module load python/3.10.9
+source "$VENV/bin/activate"
+
+export TABRED_REPO_ROOT
+cd "$PAPER_DIR"
+python -m bin.cf_fisd_teachers --dataset "$DATASET" --seed "$SEED" --out-root "$OUT_ROOT"

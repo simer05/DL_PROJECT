@@ -1,0 +1,217 @@
+{
+  "headline_means_stds": {
+    "sberbank-housing/baseline_plr": {
+      "mean": -0.23288199000085857,
+      "std": 0.0021959063339241887,
+      "n": 15
+    },
+    "sberbank-housing/hetero_raw_lam0.05": {
+      "mean": -0.23305632017929603,
+      "std": 0.0026048714180366426,
+      "n": 15
+    },
+    "sberbank-housing/hetero_raw_lam0.1": {
+      "mean": -0.23309461415701038,
+      "std": 0.0023940429792123625,
+      "n": 15
+    },
+    "sberbank-housing/hetero_raw_lam0.2": {
+      "mean": -0.23313653792618821,
+      "std": 0.002451686797316969,
+      "n": 15
+    },
+    "sberbank-housing/consensus_raw_lam0.05": {
+      "mean": -0.23306388431504924,
+      "std": 0.001552330800080434,
+      "n": 5
+    },
+    "sberbank-housing/consensus_raw_lam0.1": {
+      "mean": -0.23409725726432068,
+      "std": 0.0025887979231470214,
+      "n": 5
+    },
+    "sberbank-housing/consensus_raw_lam0.2": {
+      "mean": -0.2324472121050272,
+      "std": 0.000668083819954335,
+      "n": 5
+    },
+    "ecom-offers/baseline_plr": {
+      "mean": 0.590171758009578,
+      "std": 0.0015075635224457205,
+      "n": 15
+    },
+    "ecom-offers/hetero_raw_lam0.05": {
+      "mean": 0.5900729253308732,
+      "std": 0.001487011508633512,
+      "n": 15
+    },
+    "ecom-offers/hetero_raw_lam0.1": {
+      "mean": 0.5900892664048996,
+      "std": 0.0014812972976753238,
+      "n": 15
+    },
+    "ecom-offers/hetero_raw_lam0.2": {
+      "mean": 0.590046062971523,
+      "std": 0.001483868444053264,
+      "n": 15
+    },
+    "ecom-offers/consensus_raw_lam0.05": {
+      "mean": 0.5898810020685552,
+      "std": 0.0009917858317220894,
+      "n": 5
+    },
+    "ecom-offers/consensus_raw_lam0.1": {
+      "mean": 0.5898248382663879,
+      "std": 0.0010729735579959657,
+      "n": 5
+    },
+    "ecom-offers/consensus_raw_lam0.2": {
+      "mean": 0.5896958602600069,
+      "std": 0.001060400876349943,
+      "n": 5
+    },
+    "homesite-insurance/baseline_plr": {
+      "mean": 0.962372290465739,
+      "std": 0.00029794765545767475,
+      "n": 15
+    },
+    "homesite-insurance/hetero_raw_lam0.05": {
+      "mean": 0.9627351054042506,
+      "std": 0.00027377013586712555,
+      "n": 15
+    },
+    "homesite-insurance/hetero_raw_lam0.1": {
+      "mean": 0.9626719660431146,
+      "std": 0.0002799290512890236,
+      "n": 15
+    },
+    "homesite-insurance/hetero_raw_lam0.2": {
+      "mean": 0.962648356235829,
+      "std": 0.00026531657146635273,
+      "n": 15
+    },
+    "homesite-insurance/consensus_raw_lam0.05": {
+      "mean": 0.9628049030950868,
+      "std": 0.00033259826130305176,
+      "n": 5
+    },
+    "homesite-insurance/consensus_raw_lam0.1": {
+      "mean": 0.9627897315749996,
+      "std": 0.00028416174792359345,
+      "n": 5
+    },
+    "homesite-insurance/consensus_raw_lam0.2": {
+      "mean": 0.9627420182437106,
+      "std": 0.000300474726081875,
+      "n": 5
+    },
+    "cooking-time/baseline_plr": {
+      "mean": -0.48237525824236804,
+      "std": 0.00013064634775628243,
+      "n": 15
+    },
+    "cooking-time/hetero_raw_lam0.05": {
+      "mean": -0.4824306404376247,
+      "std": 0.00010595817910568665,
+      "n": 15
+    },
+    "cooking-time/hetero_raw_lam0.1": {
+      "mean": -0.48251164056478346,
+      "std": 0.00011610705107268158,
+      "n": 15
+    },
+    "cooking-time/hetero_raw_lam0.2": {
+      "mean": -0.4824694801795065,
+      "std": 0.00011061926373064781,
+      "n": 15
+    },
+    "cooking-time/consensus_raw_lam0.05": {
+      "mean": -0.4828907244061288,
+      "std": 0.00016443517616649068,
+      "n": 5
+    },
+    "cooking-time/consensus_raw_lam0.1": {
+      "mean": -0.4829030929816859,
+      "std": 0.00016166381695798237,
+      "n": 5
+    },
+    "cooking-time/consensus_raw_lam0.2": {
+      "mean": -0.4828692362112429,
+      "std": 0.00015705125627361684,
+      "n": 5
+    },
+    "delivery-eta/baseline_plr": {
+      "mean": -0.5515633631585383,
+      "std": 0.002072914670665828,
+      "n": 15
+    },
+    "delivery-eta/hetero_raw_lam0.05": {
+      "mean": -0.5535382010970046,
+      "std": 0.002289514208964348,
+      "n": 15
+    },
+    "delivery-eta/hetero_raw_lam0.1": {
+      "mean": -0.5533780125582598,
+      "std": 0.0030209600011785113,
+      "n": 15
+    },
+    "delivery-eta/hetero_raw_lam0.2": {
+      "mean": -0.553595892120955,
+      "std": 0.002553390122013542,
+      "n": 15
+    },
+    "delivery-eta/consensus_raw_lam0.05": {
+      "mean": -0.5509718188134758,
+      "std": 0.0027125921777068746,
+      "n": 5
+    },
+    "delivery-eta/consensus_raw_lam0.1": {
+      "mean": -0.5537528190930258,
+      "std": 0.0028775128701634557,
+      "n": 5
+    },
+    "delivery-eta/consensus_raw_lam0.2": {
+      "mean": -0.5512026952316772,
+      "std": 0.002839633476107753,
+      "n": 5
+    }
+  },
+  "homesite_dose_response": {
+    "lambdas": [
+      0.0,
+      0.05,
+      0.1,
+      0.2
+    ],
+    "means": [
+      0.962372290465739,
+      0.9627351054042506,
+      0.9626719660431146,
+      0.962648356235829
+    ],
+    "stds": [
+      0.00029794765545767475,
+      0.00027377013586712555,
+      0.0002799290512890236,
+      0.00026531657146635273
+    ]
+  },
+  "bonferroni_N": 30,
+  "homesite_p_values": {
+    "hetero_raw_lam0.05": {
+      "t": 5.02595236375745,
+      "p_raw": 0.0001853834970029447,
+      "p_bonferroni": 0.005561504910088341
+    },
+    "hetero_raw_lam0.1": {
+      "t": 3.3513383179460745,
+      "p_raw": 0.004751297075984109,
+      "p_bonferroni": 0.14253891227952326
+    },
+    "hetero_raw_lam0.2": {
+      "t": 5.400495311451113,
+      "p_raw": 9.352834981612298e-05,
+      "p_bonferroni": 0.0028058504944836896
+    }
+  }
+}

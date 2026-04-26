@@ -1,0 +1,128 @@
+#!/bin/bash
+#PBS -N tabmpp_tabred
+#PBS -P personal-abhipray
+#PBS -q normal
+#PBS -l select=1:ncpus=2:mem=16gb
+#PBS -l walltime=02:00:00
+#PBS -o /home/users/ntu/abhipray/tabmpp/logs/fetch_tabred.log
+#PBS -e /home/users/ntu/abhipray/tabmpp/logs/fetch_tabred.err
+
+# Downloads the TabReD benchmark from Kaggle inside a compute job (login nodes
+# forbid large downloads and Kaggle API calls that install/run anything).
+# Uses credentials saved at ~/.kaggle/kaggle.json (0600).
+
+set -eo pipefail
+
+echo "== TabReD fetch (NSCC) =="
+echo "job: $PBS_JOBID  host: $(hostname)  date: $(date -Iseconds)"
+
+cd "$HOME/tabmpp/tabm/paper"
+mkdir -p local data
+
+module load python/3.11.5-gcc12 cuda/11.8.0
+# shellcheck disable=SC1090
+source "$HOME/tabmpp/venv/bin/activate"
+python --version
+
+# Install the Kaggle CLI/python lib into this venv (idempotent).
+python -m pip install --quiet 'kaggle>=1.6'
+which kaggle
+
+# kaggle reads ~/.kaggle/kaggle.json by default; sanity check.
+ls -la ~/.kaggle/
+echo "=== kaggle auth test ==="
+kaggle --version || true
+kaggle datasets list --max-size 1 -p 1 | head -3 || {
+    echo "FATAL: kaggle auth test failed."
+    echo "If you see 401/403 here, the KGAT_ token likely isn't compatible"
+    echo "with the classic kaggle.json auth path. Reply to the assistant with"
+    echo "a classic-format API key (the Kaggle 'Create New Token' button that"
+    echo "downloads a kaggle.json file directly) and re-submit."
+    exit 2
+}
+
+# Clone the TabReD benchmark repo (has the dataset-download scripts).
+# Reproducibility requirement: do not use a moving "latest" checkout. Submit as:
+#   qsub -v TABRED_COMMIT=<known-good-commit> pbs/fetch_tabred.pbs
+TABRED_COMMIT="${TABRED_COMMIT:-}"
+if [[ -z "$TABRED_COMMIT" ]]; then
+    echo "FATAL: TABRED_COMMIT is required for reproducible preprocessing."
+    echo "Use one pinned TabReD commit for the whole team, or use"
+    echo "pbs/convert_tabred.pbs with one shared tabred_preprocessed source."
+    exit 5
+fi
+
+cd "$HOME/tabmpp"
+if [[ ! -d tabred ]]; then
+    echo "=== cloning yandex-research/tabred ==="
+    git clone https://github.com/yandex-research/tabred.git
+else
+    echo "tabred repo already present; fetching pinned commit only"
+fi
+cd tabred
+git fetch --depth 1 origin "$TABRED_COMMIT"
+git checkout --detach FETCH_HEAD
+echo "TabReD commit: $(git rev-parse HEAD)"
+echo "=== TabReD repo layout ==="
+ls -la
+[[ -f README.md ]] && head -60 README.md | sed -n '1,60p'
+
+# The repo provides `src/download.py` or similar — let it do the kaggle calls.
+# This script prints URLs for each dataset's Kaggle page on access errors.
+echo ""
+echo "=== launching TabReD download ==="
+if [[ -f src/download.py ]]; then
+    python src/download.py
+elif [[ -f scripts/download.py ]]; then
+    python scripts/download.py
+elif [[ -f tools/download.py ]]; then
+    python tools/download.py
+else
+    echo "No known download.py location — listing repo to locate:"
+    find . -maxdepth 3 -name '*.py' | head -40
+    exit 3
+fi
+
+# Now convert to the paper's on-disk layout.
+echo ""
+echo "=== running prepare_tabred.py ==="
+cd "$HOME/tabmpp/tabm/paper"
+# TabReD downloader usually writes to the current dir; find wherever it landed.
+if [[ -d "$HOME/tabmpp/tabred/data" ]]; then
+    TABRED_SRC="$HOME/tabmpp/tabred/data"
+elif [[ -d "$HOME/tabmpp/tabred/datasets" ]]; then
+    TABRED_SRC="$HOME/tabmpp/tabred/datasets"
+else
+    echo "Cannot locate TabReD raw-data dir; listing candidates:"
+    find "$HOME/tabmpp/tabred" -maxdepth 3 -type d | head -40
+        exit 4
+fi
+python tools/prepare_tabred.py "$TABRED_SRC" data --force
+
+echo ""
+echo "=== clearing stale build_dataset cache ==="
+rm -f "$HOME/tabmpp/tabm/paper/cache"/build_dataset__*.pickle 2>/dev/null || true
+
+# Smoke check: the 5 target datasets now populated?
+echo ""
+echo "=== post-fetch data/ inventory ==="
+for d in sberbank-housing ecom-offers homesite-insurance cooking-time delivery-eta; do
+    if [[ -d "data/$d" ]]; then
+        echo "OK  data/$d ($(du -sh "data/$d" | cut -f1))"
+        if [[ -f "data/$d/manifest.json" ]]; then
+            python - <<PY
+import json
+from pathlib import Path
+m = json.loads(Path("data/$d/manifest.json").read_text())
+print("manifest rows:", m["row_counts"])
+print("manifest sha256:", __import__("hashlib").sha256(Path("data/$d/manifest.json").read_bytes()).hexdigest())
+PY
+        else
+            echo "MISSING manifest.json"
+            exit 6
+        fi
+    else
+        echo "MISSING  data/$d"
+    fi
+done
+echo "== done =="

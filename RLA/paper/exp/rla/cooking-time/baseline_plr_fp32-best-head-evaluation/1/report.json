@@ -1,0 +1,80 @@
+{
+    "function": "bin.model.main",
+    "gpus": [
+        "NVIDIA GeForce RTX 4090"
+    ],
+    "config": {
+        "seed": 1,
+        "batch_size": 1024,
+        "patience": 16,
+        "n_epochs": -1,
+        "gradient_clipping_norm": 1.0,
+        "amp": false,
+        "data": {
+            "cache": true,
+            "path": "data/cooking-time",
+            "cat_policy": "ordinal"
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 0.00012065020494450812,
+            "weight_decay": 0.07000081679295954
+        },
+        "model": {
+            "arch_type": "tabm",
+            "k": 32,
+            "share_training_batches": false,
+            "rla_rank": 1,
+            "rla_first_only": false,
+            "backbone": {
+                "type": "MLP",
+                "n_blocks": 1,
+                "d_block": 416,
+                "dropout": 0.0
+            },
+            "num_embeddings": {
+                "type": "PiecewiseLinearEmbeddings",
+                "d_embedding": 16
+            }
+        },
+        "bins": {
+            "n_bins": 8
+        }
+    },
+    "n_parameters": 1411040,
+    "prediction_type": "labels",
+    "epoch_size": 222,
+    "amp_enabled": false,
+    "amp_dtype": "fp32",
+    "seed": 1,
+    "git_commit": "unknown",
+    "gpu_name": "NVIDIA GeForce RTX 4090",
+    "best_step": 19092,
+    "metrics": {
+        "train": {
+            "rmse": 0.44858253871576403,
+            "mae": 0.349395751953125,
+            "r2": 0.5377835631370544,
+            "score": -0.44858253871576403
+        },
+        "val": {
+            "rmse": 0.4645380730100621,
+            "mae": 0.3613852560520172,
+            "r2": 0.5051103830337524,
+            "score": -0.4645380730100621
+        },
+        "test": {
+            "rmse": 0.4821536596541273,
+            "mae": 0.3764480650424957,
+            "r2": 0.4816877245903015,
+            "score": -0.4821536596541273
+        }
+    },
+    "time": "0:09:48.470844",
+    "chunk_size": null,
+    "eval_batch_size": 32768,
+    "heads": [
+        5
+    ],
+    "head_selection_time": "0:00:00.025834"
+}

@@ -1,0 +1,77 @@
+{
+    "function": "bin.model.main",
+    "gpus": [
+        "NVIDIA GeForce RTX 4090"
+    ],
+    "config": {
+        "seed": 0,
+        "batch_size": 1024,
+        "patience": 16,
+        "n_epochs": -1,
+        "gradient_clipping_norm": 1.0,
+        "amp": false,
+        "data": {
+            "cache": true,
+            "path": "data/cooking-time",
+            "cat_policy": "ordinal"
+        },
+        "optimizer": {
+            "type": "AdamW",
+            "lr": 0.00012065020494450812,
+            "weight_decay": 0.07000081679295954
+        },
+        "model": {
+            "arch_type": "tabm",
+            "k": 32,
+            "share_training_batches": false,
+            "rla_rank": 8,
+            "rla_first_only": false,
+            "rla_init": "base_preserving",
+            "backbone": {
+                "type": "MLP",
+                "n_blocks": 1,
+                "d_block": 416,
+                "dropout": 0.0
+            },
+            "num_embeddings": {
+                "type": "PiecewiseLinearEmbeddings",
+                "d_embedding": 16
+            }
+        },
+        "bins": {
+            "n_bins": 8
+        }
+    },
+    "n_parameters": 2174880,
+    "prediction_type": "labels",
+    "epoch_size": 222,
+    "amp_enabled": false,
+    "amp_dtype": "fp32",
+    "seed": 0,
+    "git_commit": "unknown",
+    "gpu_name": "NVIDIA GeForce RTX 4090",
+    "best_step": 23088,
+    "metrics": {
+        "train": {
+            "rmse": 0.44325996326301453,
+            "mae": 0.344939649105072,
+            "r2": 0.5486871600151062,
+            "score": -0.44325996326301453
+        },
+        "val": {
+            "rmse": 0.4627427456440176,
+            "mae": 0.3595558702945709,
+            "r2": 0.5089282393455505,
+            "score": -0.4627427456440176
+        },
+        "test": {
+            "rmse": 0.4803378229160848,
+            "mae": 0.3747517466545105,
+            "r2": 0.4855843782424927,
+            "score": -0.4803378229160848
+        }
+    },
+    "time": "0:53:24.867611",
+    "chunk_size": null,
+    "eval_batch_size": 16384
+}

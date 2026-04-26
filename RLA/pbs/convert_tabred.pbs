@@ -1,0 +1,61 @@
+#!/bin/bash
+#PBS -N tabmpp_cvt
+#PBS -P personal-abhipray
+#PBS -q normal
+#PBS -l select=1:ncpus=2:mem=16gb
+#PBS -l walltime=00:30:00
+#PBS -o /home/users/ntu/abhipray/tabmpp/logs/convert_tabred.log
+#PBS -e /home/users/ntu/abhipray/tabmpp/logs/convert_tabred.err
+
+# Runs paper/tools/prepare_tabred.py to convert TabReD raw-preprocessed layout
+# (from yandex-research/tabred's preprocessing scripts) into the TabM-paper's
+# expected on-disk layout (X_num_train.npy etc.). Pure numpy/json; no network.
+
+set -eo pipefail
+
+echo "== TabReD → TabM format conversion =="
+echo "job: $PBS_JOBID  host: $(hostname)  date: $(date -Iseconds)"
+
+cd "$HOME/tabmpp/tabm/paper"
+module load python/3.11.5-gcc12 cuda/11.8.0
+# shellcheck disable=SC1090
+source "$HOME/tabmpp/venv/bin/activate"
+
+SRC="$HOME/tabmpp/tabred_preprocessed"
+DST="$HOME/tabmpp/tabm/paper/data"
+
+if [[ ! -d "$SRC" ]]; then
+    echo "ERROR: source $SRC not found — rsync first"
+    exit 2
+fi
+
+python tools/prepare_tabred.py "$SRC" "$DST" --force
+
+echo ""
+echo "=== clearing stale build_dataset cache ==="
+rm -f "$HOME/tabmpp/tabm/paper/cache"/build_dataset__*.pickle 2>/dev/null || true
+
+echo ""
+echo "=== data/ after conversion ==="
+for d in sberbank-housing ecom-offers homesite-insurance cooking-time delivery-eta; do
+    if [[ -d "data/$d" ]]; then
+        echo "OK  data/$d ($(du -sh "data/$d" | cut -f1))"
+        ls "data/$d" | head -5
+        if [[ -f "data/$d/manifest.json" ]]; then
+            python - <<PY
+import json
+from pathlib import Path
+m = json.loads(Path("data/$d/manifest.json").read_text())
+print("manifest rows:", m["row_counts"])
+print("manifest sha256:", __import__("hashlib").sha256(Path("data/$d/manifest.json").read_bytes()).hexdigest())
+PY
+        else
+            echo "MISSING manifest.json"
+            exit 3
+        fi
+        echo ""
+    else
+        echo "MISSING  data/$d"
+    fi
+done
+echo "== done =="

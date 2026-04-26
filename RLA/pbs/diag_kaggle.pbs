@@ -1,0 +1,52 @@
+#!/bin/bash
+#PBS -N tabmpp_kdiag
+#PBS -P personal-abhipray
+#PBS -q normal
+#PBS -l select=1:ncpus=2:mem=4gb
+#PBS -l walltime=00:15:00
+#PBS -o /home/users/ntu/abhipray/tabmpp/logs/diag_kaggle.log
+#PBS -e /home/users/ntu/abhipray/tabmpp/logs/diag_kaggle.err
+
+set -eo pipefail
+
+echo "== Kaggle diagnostic =="
+echo "host: $(hostname)"
+
+echo ""
+echo "--- 1. Generic internet reachability ---"
+curl -sSI --max-time 10 https://pypi.org 2>&1 | head -3 || echo "pypi.org unreachable"
+curl -sSI --max-time 10 https://www.google.com 2>&1 | head -3 || echo "google.com unreachable"
+
+echo ""
+echo "--- 2. Kaggle reachability (unauth) ---"
+curl -sSI --max-time 10 https://www.kaggle.com 2>&1 | head -3 || echo "kaggle.com unreachable"
+curl -sS --max-time 10 https://www.kaggle.com/api/v1/competitions/list 2>&1 | head -20 || true
+
+echo ""
+echo "--- 3. Proxy env hints ---"
+env | grep -iE "proxy|http_" || echo "(no proxy env vars set)"
+
+echo ""
+echo "--- 4. Kaggle CLI with env-var auth (KAGGLE_API_TOKEN) ---"
+module load python/3.11.5-gcc12 cuda/11.8.0
+# shellcheck disable=SC1090
+source "$HOME/tabmpp/venv/bin/activate"
+# Park kaggle.json out of the way so env-var path is unambiguous.
+if [[ -f ~/.kaggle/kaggle.json ]]; then
+    mv ~/.kaggle/kaggle.json ~/.kaggle/kaggle.json.bak
+fi
+# shellcheck disable=SC1090
+source ~/.kaggle/token.env
+export KAGGLE_API_TOKEN
+echo "KAGGLE_API_TOKEN length: ${#KAGGLE_API_TOKEN}"
+kaggle --version
+kaggle datasets list --max-size 1 -p 1 2>&1 | head -5 || true
+
+echo ""
+echo "--- 5. Kaggle CLI with classic kaggle.json (KGAT_ as key) ---"
+mv ~/.kaggle/kaggle.json.bak ~/.kaggle/kaggle.json 2>/dev/null || true
+unset KAGGLE_API_TOKEN
+kaggle datasets list --max-size 1 -p 1 2>&1 | head -5 || true
+
+echo ""
+echo "== done =="

@@ -1,0 +1,54 @@
+#!/bin/bash
+#PBS -N tabmpp_run
+#PBS -P personal-abhipray
+#PBS -q normal
+#PBS -l select=1:ncpus=4:ngpus=1:mem=32gb
+#PBS -l walltime=11:00:00
+#PBS -o /home/users/ntu/abhipray/tabmpp/logs/run.log
+#PBS -e /home/users/ntu/abhipray/tabmpp/logs/run.err
+
+# Runs one (DATASET, VARIANT) × N_SEEDS over SLS. Args come in via qsub -v:
+#
+#   qsub -v DATASET=sberbank-housing,VARIANT=sls_default,N_SEEDS=3 \
+#       pbs/run_variant.pbs
+#
+# NSCC has stronger GPUs than TC2, so we give each job up to 11h walltime
+# (well under the typical 24h max) to comfortably fit 3 seeds on the largest
+# datasets (delivery-eta ~350K rows).
+
+set -eo pipefail
+
+: "${DATASET:?DATASET env var required}"
+: "${VARIANT:?VARIANT env var required}"
+: "${N_SEEDS:=3}"
+
+echo "== tabmpp run (NSCC) =="
+echo "job: $PBS_JOBID  host: $(hostname)  date: $(date -Iseconds)"
+echo "dataset=$DATASET  variant=$VARIANT  n_seeds=$N_SEEDS"
+nvidia-smi || true
+# Per-job log rename is handled by the submitter (qsub -o /path/run_<tag>.log)
+# — trap-based rename doesn't work here because PBS only writes the -o file
+# at job end, AFTER the trap has run.
+
+cd "$HOME/tabmpp/tabm"
+
+module load python/3.11.5-gcc12 cuda/11.8.0
+# shellcheck disable=SC1090
+source "$HOME/tabmpp/venv/bin/activate"
+python --version
+
+cd paper
+export PYTHONPATH="$PWD:$PYTHONPATH"
+
+EVAL_DIR="exp/sls/${DATASET}/${VARIANT}-evaluation"
+if [[ ! -f "$EVAL_DIR/0.toml" ]]; then
+    echo "ERROR: missing template config $EVAL_DIR/0.toml"
+    exit 2
+fi
+
+python bin/evaluate.py "$EVAL_DIR" \
+    --function "bin.model.main" \
+    --n_seeds "$N_SEEDS" \
+    --force
+
+echo "== run done =="

@@ -1,0 +1,38 @@
+#!/bin/bash
+#PBS -N tabmpp_data
+#PBS -P personal-abhipray
+#PBS -q normal
+#PBS -l select=1:ncpus=2:mem=8gb
+#PBS -l walltime=01:00:00
+#PBS -o /home/users/ntu/abhipray/tabmpp/logs/fetch_data.log
+#PBS -e /home/users/ntu/abhipray/tabmpp/logs/fetch_data.err
+
+# Downloads the non-TabReD HuggingFace tarball inside a compute job (login
+# nodes forbid >10MB wget/curl).
+
+set -eo pipefail
+
+echo "== tabm-data fetch (NSCC) =="
+echo "job: $PBS_JOBID  host: $(hostname)  date: $(date -Iseconds)"
+
+cd "$HOME/tabmpp/tabm/paper"
+mkdir -p local data
+
+URL="https://huggingface.co/datasets/rototoHF/tabm-data/resolve/main/data.tar"
+TAR="local/tabm-data.tar"
+
+if [[ -s "$TAR" ]]; then
+    echo "archive already present at $TAR — skipping download"
+else
+    echo "downloading $URL ..."
+    curl -L -f -o "$TAR" "$URL"
+fi
+
+echo "archive size: $(du -sh "$TAR")"
+echo "extracting into data/ ..."
+tar -xf "$TAR" -C data -k || true
+
+echo "--- data/ summary ---"
+ls data | head -40
+echo "total size: $(du -sh data)"
+echo "== done =="

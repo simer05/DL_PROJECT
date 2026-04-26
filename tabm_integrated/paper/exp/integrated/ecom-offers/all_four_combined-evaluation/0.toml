@@ -1,0 +1,35 @@
+dataset = "ecom-offers"
+variant = "all_four_combined"
+seed = 0
+batch_size = 2048
+patience = 6
+n_epochs = 20
+gradient_clipping_norm = 1.0
+amp = true
+
+[data]
+path = "data/ecom-offers"
+num_policy = "standard"
+cache = false
+
+[optimizer]
+type = "AdamW"
+lr = 0.0003
+weight_decay = 1e-05
+
+[model]
+arch_type = "tabm"
+k = 16
+n_blocks = 2
+d_block = 384
+dropout = 0.1
+d_embedding = 16
+n_bins = 48
+rla_enabled = true
+rla_rank = 4
+rla_scale = 0.05
+esam_enabled = true
+esam_rho = 0.0025
+mfb_enabled = true
+mfb_keep = 0.8
+cf_fisd_enabled = true

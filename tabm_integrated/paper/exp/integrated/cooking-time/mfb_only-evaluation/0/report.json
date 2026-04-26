@@ -1,0 +1,130 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 5,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/cooking-time"
+    },
+    "dataset": "cooking-time",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "mfb_enabled": true,
+      "mfb_keep": 0.8,
+      "n_bins": 48,
+      "n_blocks": 2
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 0,
+    "variant": "mfb_only"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/mfb_only-evaluation/0.toml",
+  "dataset": "cooking-time",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -2.5661236333044846,
+      "train_loss": 0.5758807992076015,
+      "val_score": -2.6119257172541515
+    },
+    {
+      "epoch": 1,
+      "test_score": -2.5743387799216704,
+      "train_loss": 0.5163963157851417,
+      "val_score": -2.618051870148412
+    },
+    {
+      "epoch": 2,
+      "test_score": -2.5601411522753925,
+      "train_loss": 0.5085933527967952,
+      "val_score": -2.6044778154775474
+    },
+    {
+      "epoch": 3,
+      "test_score": -2.576163730796452,
+      "train_loss": 0.5093893889371339,
+      "val_score": -2.619102301377666
+    },
+    {
+      "epoch": 4,
+      "test_score": -2.57161255397797,
+      "train_loss": 0.505496577905105,
+      "val_score": -2.6141280326221903
+    },
+    {
+      "epoch": 5,
+      "test_score": -2.5555160998555837,
+      "train_loss": 0.5060446619450509,
+      "val_score": -2.5961102696644223
+    },
+    {
+      "epoch": 6,
+      "test_score": -2.5676436554743733,
+      "train_loss": 0.5035226178598834,
+      "val_score": -2.6076490896143696
+    },
+    {
+      "epoch": 7,
+      "test_score": -2.5625663376571928,
+      "train_loss": 0.5044513223944483,
+      "val_score": -2.6047008017490376
+    },
+    {
+      "epoch": 8,
+      "test_score": -2.583804446506284,
+      "train_loss": 0.50434070288598,
+      "val_score": -2.6261775690664138
+    },
+    {
+      "epoch": 9,
+      "test_score": -2.585765452582473,
+      "train_loss": 0.5042245648465715,
+      "val_score": -2.627743604203495
+    },
+    {
+      "epoch": 10,
+      "test_score": -2.5881280293524083,
+      "train_loss": 0.5026848740405865,
+      "val_score": -2.6263449720071628
+    },
+    {
+      "epoch": 11,
+      "test_score": -2.567627870074032,
+      "train_loss": 0.501694805718757,
+      "val_score": -2.6076158087112957
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 2.5555160998555837,
+      "score": -2.5555160998555837
+    },
+    "val": {
+      "rmse": 2.5961102696644223,
+      "score": -2.5961102696644223
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/mfb_only-evaluation/0",
+  "seed": 0,
+  "task_type": "regression",
+  "time_seconds": 30.617911338806152,
+  "variant": "mfb_only"
+}

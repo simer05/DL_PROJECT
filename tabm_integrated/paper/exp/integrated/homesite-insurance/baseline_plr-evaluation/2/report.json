@@ -1,0 +1,176 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 19,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/homesite-insurance"
+    },
+    "dataset": "homesite-insurance",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "n_bins": 48,
+      "n_blocks": 2
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 2,
+    "variant": "baseline_plr"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/baseline_plr-evaluation/2.toml",
+  "dataset": "homesite-insurance",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": 0.918776262628557,
+      "train_loss": 0.4011460320516066,
+      "val_score": 0.914550108576391
+    },
+    {
+      "epoch": 1,
+      "test_score": 0.9399168057530289,
+      "train_loss": 0.22690394493666563,
+      "val_score": 0.9361857126928352
+    },
+    {
+      "epoch": 2,
+      "test_score": 0.9448195456536869,
+      "train_loss": 0.2040758810260079,
+      "val_score": 0.9417620638329265
+    },
+    {
+      "epoch": 3,
+      "test_score": 0.9486874255136111,
+      "train_loss": 0.195921021158045,
+      "val_score": 0.9447484706873813
+    },
+    {
+      "epoch": 4,
+      "test_score": 0.9473506452160686,
+      "train_loss": 0.19198633405295285,
+      "val_score": 0.9453271760904858
+    },
+    {
+      "epoch": 5,
+      "test_score": 0.9478740252074842,
+      "train_loss": 0.18984181637113745,
+      "val_score": 0.9463248342770988
+    },
+    {
+      "epoch": 6,
+      "test_score": 0.950552043750421,
+      "train_loss": 0.18705180775035513,
+      "val_score": 0.9478500541690625
+    },
+    {
+      "epoch": 7,
+      "test_score": 0.949526160011188,
+      "train_loss": 0.1852110438726165,
+      "val_score": 0.9479885210928937
+    },
+    {
+      "epoch": 8,
+      "test_score": 0.9500179477705382,
+      "train_loss": 0.1838859125971794,
+      "val_score": 0.9489083691153118
+    },
+    {
+      "epoch": 9,
+      "test_score": 0.951933753880106,
+      "train_loss": 0.182511460239237,
+      "val_score": 0.949106499290468
+    },
+    {
+      "epoch": 10,
+      "test_score": 0.9505244141386678,
+      "train_loss": 0.18200897046110848,
+      "val_score": 0.9494714861092504
+    },
+    {
+      "epoch": 11,
+      "test_score": 0.951459894561439,
+      "train_loss": 0.18012812530452554,
+      "val_score": 0.9500796011167878
+    },
+    {
+      "epoch": 12,
+      "test_score": 0.9524452822540621,
+      "train_loss": 0.1792988423596729,
+      "val_score": 0.9499561423229318
+    },
+    {
+      "epoch": 13,
+      "test_score": 0.9514597375063656,
+      "train_loss": 0.1785095995122736,
+      "val_score": 0.9502315639278549
+    },
+    {
+      "epoch": 14,
+      "test_score": 0.9517478489978773,
+      "train_loss": 0.17744325155561622,
+      "val_score": 0.950572829636694
+    },
+    {
+      "epoch": 15,
+      "test_score": 0.9520442844082779,
+      "train_loss": 0.1771064200184562,
+      "val_score": 0.9507174422446804
+    },
+    {
+      "epoch": 16,
+      "test_score": 0.9534308632452372,
+      "train_loss": 0.17622807310386138,
+      "val_score": 0.9508445145953139
+    },
+    {
+      "epoch": 17,
+      "test_score": 0.9525583498257268,
+      "train_loss": 0.17589684643528677,
+      "val_score": 0.950965230251178
+    },
+    {
+      "epoch": 18,
+      "test_score": 0.9526653768176468,
+      "train_loss": 0.17428164116360925,
+      "val_score": 0.9513501136125109
+    },
+    {
+      "epoch": 19,
+      "test_score": 0.9538975705174861,
+      "train_loss": 0.17425130158662797,
+      "val_score": 0.9515441114964615
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "higher",
+  "metrics": {
+    "test": {
+      "roc-auc": 0.9538975705174861,
+      "score": 0.9538975705174861
+    },
+    "val": {
+      "roc-auc": 0.9515441114964615,
+      "score": 0.9515441114964615
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/homesite-insurance/baseline_plr-evaluation/2",
+  "seed": 2,
+  "task_type": "binclass",
+  "time_seconds": 52.342146158218384,
+  "variant": "baseline_plr"
+}

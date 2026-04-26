@@ -1,0 +1,110 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 1,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/ecom-offers"
+    },
+    "dataset": "ecom-offers",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "cf_fisd_enabled": true,
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "mfb_enabled": true,
+      "mfb_keep": 0.8,
+      "n_bins": 48,
+      "n_blocks": 2,
+      "rla_enabled": true,
+      "rla_rank": 4,
+      "rla_scale": 0.05
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 2,
+    "variant": "all_minus_esam"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/all_minus_esam-evaluation/2.toml",
+  "dataset": "ecom-offers",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": 0.5665558350776065,
+      "train_loss": 0.5528011929105829,
+      "val_score": 0.5871859787832107
+    },
+    {
+      "epoch": 1,
+      "test_score": 0.5712034110933558,
+      "train_loss": 0.5117590449474476,
+      "val_score": 0.5952215125809704
+    },
+    {
+      "epoch": 2,
+      "test_score": 0.5690808288746189,
+      "train_loss": 0.5099736430026867,
+      "val_score": 0.5909409390049554
+    },
+    {
+      "epoch": 3,
+      "test_score": 0.5692677243684758,
+      "train_loss": 0.5080657518572278,
+      "val_score": 0.590635250085068
+    },
+    {
+      "epoch": 4,
+      "test_score": 0.570682118991906,
+      "train_loss": 0.5076316021106861,
+      "val_score": 0.5936173017363682
+    },
+    {
+      "epoch": 5,
+      "test_score": 0.5677198320781538,
+      "train_loss": 0.5045595886530699,
+      "val_score": 0.5892704073593417
+    },
+    {
+      "epoch": 6,
+      "test_score": 0.5699361952378288,
+      "train_loss": 0.5028332068964287,
+      "val_score": 0.5939281943110137
+    },
+    {
+      "epoch": 7,
+      "test_score": 0.5693752638974043,
+      "train_loss": 0.5033974564737744,
+      "val_score": 0.5922146514368714
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "higher",
+  "metrics": {
+    "test": {
+      "roc-auc": 0.5712034110933558,
+      "score": 0.5712034110933558
+    },
+    "val": {
+      "roc-auc": 0.5952215125809704,
+      "score": 0.5952215125809704
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/all_minus_esam-evaluation/2",
+  "seed": 2,
+  "task_type": "binclass",
+  "time_seconds": 12.06042766571045,
+  "variant": "all_minus_esam"
+}

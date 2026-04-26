@@ -1,0 +1,104 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 1,
+  "config": {
+    "amp": true,
+    "batch_size": 1024,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/sberbank-housing"
+    },
+    "dataset": "sberbank-housing",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "n_bins": 48,
+      "n_blocks": 2
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 1,
+    "variant": "baseline_plr"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/baseline_plr-evaluation/1.toml",
+  "dataset": "sberbank-housing",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -11.5648421930942,
+      "train_loss": 0.689470742878161,
+      "val_score": -11.693471433664252
+    },
+    {
+      "epoch": 1,
+      "test_score": -11.510137982108967,
+      "train_loss": 0.5526794289287768,
+      "val_score": -11.654311113459125
+    },
+    {
+      "epoch": 2,
+      "test_score": -11.529714259819535,
+      "train_loss": 0.5296151810570767,
+      "val_score": -11.669904059871339
+    },
+    {
+      "epoch": 3,
+      "test_score": -11.544838443119694,
+      "train_loss": 0.5117689402479875,
+      "val_score": -11.687559403049239
+    },
+    {
+      "epoch": 4,
+      "test_score": -11.559208251872455,
+      "train_loss": 0.5005878413978376,
+      "val_score": -11.688715417668204
+    },
+    {
+      "epoch": 5,
+      "test_score": -11.55868681844079,
+      "train_loss": 0.48899377960907786,
+      "val_score": -11.673540397418268
+    },
+    {
+      "epoch": 6,
+      "test_score": -11.59862849579201,
+      "train_loss": 0.47632234974911336,
+      "val_score": -11.72544405163437
+    },
+    {
+      "epoch": 7,
+      "test_score": -11.569045075332628,
+      "train_loss": 0.47122232223811905,
+      "val_score": -11.684690739624394
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 11.510137982108967,
+      "score": -11.510137982108967
+    },
+    "val": {
+      "rmse": 11.654311113459125,
+      "score": -11.654311113459125
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/baseline_plr-evaluation/1",
+  "seed": 1,
+  "task_type": "regression",
+  "time_seconds": 5.4021241664886475,
+  "variant": "baseline_plr"
+}

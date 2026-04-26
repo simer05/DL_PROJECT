@@ -1,0 +1,105 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 1,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/delivery-eta"
+    },
+    "dataset": "delivery-eta",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "cf_fisd_enabled": true,
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "n_bins": 48,
+      "n_blocks": 2
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 1,
+    "variant": "cf_fisd_only"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/cf_fisd_only-evaluation/1.toml",
+  "dataset": "delivery-eta",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -1.8773772110895843,
+      "train_loss": 0.592602454180265,
+      "val_score": -1.7619405467279132
+    },
+    {
+      "epoch": 1,
+      "test_score": -1.8568220804711988,
+      "train_loss": 0.5443947880807585,
+      "val_score": -1.7414478733432992
+    },
+    {
+      "epoch": 2,
+      "test_score": -1.9585844717578214,
+      "train_loss": 0.5396959011572121,
+      "val_score": -1.8442746078795882
+    },
+    {
+      "epoch": 3,
+      "test_score": -1.9227801416713162,
+      "train_loss": 0.5361053360639697,
+      "val_score": -1.8145431315556086
+    },
+    {
+      "epoch": 4,
+      "test_score": -1.8821978693611068,
+      "train_loss": 0.5335870689719263,
+      "val_score": -1.77016809721336
+    },
+    {
+      "epoch": 5,
+      "test_score": -1.9337962034952991,
+      "train_loss": 0.5318883611773052,
+      "val_score": -1.8237204677813132
+    },
+    {
+      "epoch": 6,
+      "test_score": -1.9025955816813702,
+      "train_loss": 0.530138851082238,
+      "val_score": -1.7919569963123252
+    },
+    {
+      "epoch": 7,
+      "test_score": -1.9315667519170043,
+      "train_loss": 0.5293886254738717,
+      "val_score": -1.8192720509490548
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 1.8568220804711988,
+      "score": -1.8568220804711988
+    },
+    "val": {
+      "rmse": 1.7414478733432992,
+      "score": -1.7414478733432992
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/cf_fisd_only-evaluation/1",
+  "seed": 1,
+  "task_type": "regression",
+  "time_seconds": 27.340318202972412,
+  "variant": "cf_fisd_only"
+}

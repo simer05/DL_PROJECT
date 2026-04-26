@@ -1,0 +1,116 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 3,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/cooking-time"
+    },
+    "dataset": "cooking-time",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "n_bins": 48,
+      "n_blocks": 2
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 0,
+    "variant": "baseline_plr"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/baseline_plr-evaluation/0.toml",
+  "dataset": "cooking-time",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -2.5598227308409616,
+      "train_loss": 0.562614095640612,
+      "val_score": -2.600956935110999
+    },
+    {
+      "epoch": 1,
+      "test_score": -2.56268421534399,
+      "train_loss": 0.49585827218519674,
+      "val_score": -2.6005418396268225
+    },
+    {
+      "epoch": 2,
+      "test_score": -2.5828534777852807,
+      "train_loss": 0.4898477091982558,
+      "val_score": -2.6206401767923544
+    },
+    {
+      "epoch": 3,
+      "test_score": -2.5612615058011223,
+      "train_loss": 0.48662275988776404,
+      "val_score": -2.5972627499478844
+    },
+    {
+      "epoch": 4,
+      "test_score": -2.6042154434722344,
+      "train_loss": 0.48567526619713586,
+      "val_score": -2.641161350652755
+    },
+    {
+      "epoch": 5,
+      "test_score": -2.5837059880214395,
+      "train_loss": 0.4844431109256572,
+      "val_score": -2.617444381633043
+    },
+    {
+      "epoch": 6,
+      "test_score": -2.5854192946362007,
+      "train_loss": 0.4830809208723876,
+      "val_score": -2.61894372118841
+    },
+    {
+      "epoch": 7,
+      "test_score": -2.5704376283004158,
+      "train_loss": 0.4821285430912499,
+      "val_score": -2.604933287632126
+    },
+    {
+      "epoch": 8,
+      "test_score": -2.597135425642725,
+      "train_loss": 0.4808750023712983,
+      "val_score": -2.6334981959278654
+    },
+    {
+      "epoch": 9,
+      "test_score": -2.578672223825131,
+      "train_loss": 0.4806423933656366,
+      "val_score": -2.612789181852867
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 2.5612615058011223,
+      "score": -2.5612615058011223
+    },
+    "val": {
+      "rmse": 2.5972627499478844,
+      "score": -2.5972627499478844
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/baseline_plr-evaluation/0",
+  "seed": 0,
+  "task_type": "regression",
+  "time_seconds": 25.95792293548584,
+  "variant": "baseline_plr"
+}

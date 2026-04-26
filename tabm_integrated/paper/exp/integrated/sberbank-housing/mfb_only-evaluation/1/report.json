@@ -1,0 +1,106 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 1,
+  "config": {
+    "amp": true,
+    "batch_size": 1024,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/sberbank-housing"
+    },
+    "dataset": "sberbank-housing",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "mfb_enabled": true,
+      "mfb_keep": 0.8,
+      "n_bins": 48,
+      "n_blocks": 2
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 1,
+    "variant": "mfb_only"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/mfb_only-evaluation/1.toml",
+  "dataset": "sberbank-housing",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -11.582838820918091,
+      "train_loss": 0.7015442032563058,
+      "val_score": -11.693712184891757
+    },
+    {
+      "epoch": 1,
+      "test_score": -11.535810359671178,
+      "train_loss": 0.5580546150082036,
+      "val_score": -11.652520531679441
+    },
+    {
+      "epoch": 2,
+      "test_score": -11.555896419812255,
+      "train_loss": 0.5397704180918241,
+      "val_score": -11.676539866413899
+    },
+    {
+      "epoch": 3,
+      "test_score": -11.589493538271325,
+      "train_loss": 0.5239935846705186,
+      "val_score": -11.7085437325865
+    },
+    {
+      "epoch": 4,
+      "test_score": -11.605585108597094,
+      "train_loss": 0.5143824502041465,
+      "val_score": -11.710058625919041
+    },
+    {
+      "epoch": 5,
+      "test_score": -11.556786357508125,
+      "train_loss": 0.5057109406119898,
+      "val_score": -11.657854803233795
+    },
+    {
+      "epoch": 6,
+      "test_score": -11.586644054020574,
+      "train_loss": 0.4948484772130063,
+      "val_score": -11.70785235483841
+    },
+    {
+      "epoch": 7,
+      "test_score": -11.586848834690507,
+      "train_loss": 0.497083875693773,
+      "val_score": -11.705622204159992
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 11.535810359671178,
+      "score": -11.535810359671178
+    },
+    "val": {
+      "rmse": 11.652520531679441,
+      "score": -11.652520531679441
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/mfb_only-evaluation/1",
+  "seed": 1,
+  "task_type": "regression",
+  "time_seconds": 5.5788445472717285,
+  "variant": "mfb_only"
+}

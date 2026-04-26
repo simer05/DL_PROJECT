@@ -1,0 +1,178 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 18,
+  "config": {
+    "amp": true,
+    "batch_size": 1024,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/sberbank-housing"
+    },
+    "dataset": "sberbank-housing",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "esam_enabled": true,
+      "esam_rho": 0.0025,
+      "k": 16,
+      "n_bins": 48,
+      "n_blocks": 2
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 2,
+    "variant": "esam_only"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/esam_only-evaluation/2.toml",
+  "dataset": "sberbank-housing",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -11.55613541574649,
+      "train_loss": 0.695133199817256,
+      "val_score": -11.682207347323509
+    },
+    {
+      "epoch": 1,
+      "test_score": -11.55939767819315,
+      "train_loss": 0.5532737437047457,
+      "val_score": -11.693448597924595
+    },
+    {
+      "epoch": 2,
+      "test_score": -11.555845583022986,
+      "train_loss": 0.5430088105954622,
+      "val_score": -11.695129189236418
+    },
+    {
+      "epoch": 3,
+      "test_score": -11.546128348237966,
+      "train_loss": 0.5180052236506814,
+      "val_score": -11.670440136243055
+    },
+    {
+      "epoch": 4,
+      "test_score": -11.540655833207525,
+      "train_loss": 0.5016618543549588,
+      "val_score": -11.668992019701589
+    },
+    {
+      "epoch": 5,
+      "test_score": -11.548262454700978,
+      "train_loss": 0.4916326858495411,
+      "val_score": -11.66722003895958
+    },
+    {
+      "epoch": 6,
+      "test_score": -11.580033818065433,
+      "train_loss": 0.47983503184820475,
+      "val_score": -11.701952805531674
+    },
+    {
+      "epoch": 7,
+      "test_score": -11.56019363082758,
+      "train_loss": 0.4752620725255263,
+      "val_score": -11.688177568511135
+    },
+    {
+      "epoch": 8,
+      "test_score": -11.54976600310857,
+      "train_loss": 0.46754956245422363,
+      "val_score": -11.678680192766727
+    },
+    {
+      "epoch": 9,
+      "test_score": -11.554276795016612,
+      "train_loss": 0.4644645609353718,
+      "val_score": -11.687640347377585
+    },
+    {
+      "epoch": 10,
+      "test_score": -11.528830173564812,
+      "train_loss": 0.45745536214426946,
+      "val_score": -11.665889241791978
+    },
+    {
+      "epoch": 11,
+      "test_score": -11.519614037300007,
+      "train_loss": 0.451346019380971,
+      "val_score": -11.658393396891343
+    },
+    {
+      "epoch": 12,
+      "test_score": -11.500646821780762,
+      "train_loss": 0.45580658002903585,
+      "val_score": -11.637033448665152
+    },
+    {
+      "epoch": 13,
+      "test_score": -11.525748576514388,
+      "train_loss": 0.45295710469547074,
+      "val_score": -11.663883276838083
+    },
+    {
+      "epoch": 14,
+      "test_score": -11.52637409616257,
+      "train_loss": 0.4448630213737488,
+      "val_score": -11.680014758166044
+    },
+    {
+      "epoch": 15,
+      "test_score": -11.498340652831377,
+      "train_loss": 0.443443437940196,
+      "val_score": -11.637611029696586
+    },
+    {
+      "epoch": 16,
+      "test_score": -11.527711071960198,
+      "train_loss": 0.43620154889006363,
+      "val_score": -11.678399280964193
+    },
+    {
+      "epoch": 17,
+      "test_score": -11.477502461081881,
+      "train_loss": 0.43538482251920196,
+      "val_score": -11.642487529267129
+    },
+    {
+      "epoch": 18,
+      "test_score": -11.461513970249932,
+      "train_loss": 0.4357229392779501,
+      "val_score": -11.629880475441134
+    },
+    {
+      "epoch": 19,
+      "test_score": -11.502000054295923,
+      "train_loss": 0.42684777473148544,
+      "val_score": -11.671822053720273
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 11.461513970249932,
+      "score": -11.461513970249932
+    },
+    "val": {
+      "rmse": 11.629880475441134,
+      "score": -11.629880475441134
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/esam_only-evaluation/2",
+  "seed": 2,
+  "task_type": "regression",
+  "time_seconds": 16.751631021499634,
+  "variant": "esam_only"
+}

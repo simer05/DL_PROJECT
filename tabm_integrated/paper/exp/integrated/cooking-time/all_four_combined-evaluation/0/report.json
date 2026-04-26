@@ -1,0 +1,136 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 5,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/cooking-time"
+    },
+    "dataset": "cooking-time",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "cf_fisd_enabled": true,
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "esam_enabled": true,
+      "esam_rho": 0.0025,
+      "k": 16,
+      "mfb_enabled": true,
+      "mfb_keep": 0.8,
+      "n_bins": 48,
+      "n_blocks": 2,
+      "rla_enabled": true,
+      "rla_rank": 4,
+      "rla_scale": 0.05
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 0,
+    "variant": "all_four_combined"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_four_combined-evaluation/0.toml",
+  "dataset": "cooking-time",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -2.597904784280686,
+      "train_loss": 0.5734070920729423,
+      "val_score": -2.6454041701159015
+    },
+    {
+      "epoch": 1,
+      "test_score": -2.5479064912091176,
+      "train_loss": 0.519261709741644,
+      "val_score": -2.5936452086088506
+    },
+    {
+      "epoch": 2,
+      "test_score": -2.568095726724589,
+      "train_loss": 0.5110039501576811,
+      "val_score": -2.6121638579153807
+    },
+    {
+      "epoch": 3,
+      "test_score": -2.5576997782221387,
+      "train_loss": 0.5093689668285954,
+      "val_score": -2.6009487768495023
+    },
+    {
+      "epoch": 4,
+      "test_score": -2.5850651586352034,
+      "train_loss": 0.5089051253623791,
+      "val_score": -2.6281073207918295
+    },
+    {
+      "epoch": 5,
+      "test_score": -2.5511833212856643,
+      "train_loss": 0.5059712389567951,
+      "val_score": -2.593261672781138
+    },
+    {
+      "epoch": 6,
+      "test_score": -2.551401433865984,
+      "train_loss": 0.5055853670781797,
+      "val_score": -2.5934982177598815
+    },
+    {
+      "epoch": 7,
+      "test_score": -2.5609792523241888,
+      "train_loss": 0.5017106358532433,
+      "val_score": -2.5997025539743244
+    },
+    {
+      "epoch": 8,
+      "test_score": -2.566694687611926,
+      "train_loss": 0.5020474761992961,
+      "val_score": -2.6070956936954204
+    },
+    {
+      "epoch": 9,
+      "test_score": -2.5532860134344815,
+      "train_loss": 0.5024598673120275,
+      "val_score": -2.5942565239541864
+    },
+    {
+      "epoch": 10,
+      "test_score": -2.579700982412669,
+      "train_loss": 0.499374769829415,
+      "val_score": -2.619462575902537
+    },
+    {
+      "epoch": 11,
+      "test_score": -2.557298172102745,
+      "train_loss": 0.4954140352773237,
+      "val_score": -2.597185364686641
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 2.5511833212856643,
+      "score": -2.5511833212856643
+    },
+    "val": {
+      "rmse": 2.593261672781138,
+      "score": -2.593261672781138
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_four_combined-evaluation/0",
+  "seed": 0,
+  "task_type": "regression",
+  "time_seconds": 50.65602159500122,
+  "variant": "all_four_combined"
+}

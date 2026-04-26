@@ -1,0 +1,107 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 1,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/cooking-time"
+    },
+    "dataset": "cooking-time",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "n_bins": 48,
+      "n_blocks": 2,
+      "rla_enabled": true,
+      "rla_rank": 4,
+      "rla_scale": 0.05
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 2,
+    "variant": "rla_only"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/rla_only-evaluation/2.toml",
+  "dataset": "cooking-time",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -2.6212606590101575,
+      "train_loss": 0.5664722629495569,
+      "val_score": -2.6634027553513446
+    },
+    {
+      "epoch": 1,
+      "test_score": -2.5677737420490234,
+      "train_loss": 0.49630044951095237,
+      "val_score": -2.6059867195323827
+    },
+    {
+      "epoch": 2,
+      "test_score": -2.5929284690585463,
+      "train_loss": 0.48952298738934974,
+      "val_score": -2.6290505356892178
+    },
+    {
+      "epoch": 3,
+      "test_score": -2.5822994768076653,
+      "train_loss": 0.48763485615317886,
+      "val_score": -2.6185297470515487
+    },
+    {
+      "epoch": 4,
+      "test_score": -2.5928140813080858,
+      "train_loss": 0.4848814955702773,
+      "val_score": -2.628734384618246
+    },
+    {
+      "epoch": 5,
+      "test_score": -2.5781435879123955,
+      "train_loss": 0.48458673368703137,
+      "val_score": -2.6120996013245725
+    },
+    {
+      "epoch": 6,
+      "test_score": -2.582673655134024,
+      "train_loss": 0.48272706715910285,
+      "val_score": -2.6179256480057504
+    },
+    {
+      "epoch": 7,
+      "test_score": -2.579921674352669,
+      "train_loss": 0.4819437984947686,
+      "val_score": -2.6134262158794432
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 2.5677737420490234,
+      "score": -2.5677737420490234
+    },
+    "val": {
+      "rmse": 2.6059867195323827,
+      "score": -2.6059867195323827
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/rla_only-evaluation/2",
+  "seed": 2,
+  "task_type": "regression",
+  "time_seconds": 25.377673625946045,
+  "variant": "rla_only"
+}

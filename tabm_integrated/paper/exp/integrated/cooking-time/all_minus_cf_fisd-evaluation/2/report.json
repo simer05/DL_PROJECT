@@ -1,0 +1,111 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 1,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/cooking-time"
+    },
+    "dataset": "cooking-time",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "esam_enabled": true,
+      "esam_rho": 0.0025,
+      "k": 16,
+      "mfb_enabled": true,
+      "mfb_keep": 0.8,
+      "n_bins": 48,
+      "n_blocks": 2,
+      "rla_enabled": true,
+      "rla_rank": 4,
+      "rla_scale": 0.05
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 2,
+    "variant": "all_minus_cf_fisd"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_minus_cf_fisd-evaluation/2.toml",
+  "dataset": "cooking-time",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -2.5508004110414038,
+      "train_loss": 0.5819202207767211,
+      "val_score": -2.5966282696347784
+    },
+    {
+      "epoch": 1,
+      "test_score": -2.547009985219361,
+      "train_loss": 0.5161475149897842,
+      "val_score": -2.5906049665497832
+    },
+    {
+      "epoch": 2,
+      "test_score": -2.5508009718502036,
+      "train_loss": 0.5122214724888673,
+      "val_score": -2.5949883319981977
+    },
+    {
+      "epoch": 3,
+      "test_score": -2.564394366948711,
+      "train_loss": 0.5101304043520678,
+      "val_score": -2.607212929801097
+    },
+    {
+      "epoch": 4,
+      "test_score": -2.5620153015239624,
+      "train_loss": 0.505169359950332,
+      "val_score": -2.6036783498061484
+    },
+    {
+      "epoch": 5,
+      "test_score": -2.583565906597254,
+      "train_loss": 0.5044403819887487,
+      "val_score": -2.622261708127521
+    },
+    {
+      "epoch": 6,
+      "test_score": -2.5759304069394546,
+      "train_loss": 0.5026040581969528,
+      "val_score": -2.617307381232943
+    },
+    {
+      "epoch": 7,
+      "test_score": -2.568862738072886,
+      "train_loss": 0.5019908485648868,
+      "val_score": -2.607877838614469
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 2.547009985219361,
+      "score": -2.547009985219361
+    },
+    "val": {
+      "rmse": 2.5906049665497832,
+      "score": -2.5906049665497832
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_minus_cf_fisd-evaluation/2",
+  "seed": 2,
+  "task_type": "regression",
+  "time_seconds": 34.84113788604736,
+  "variant": "all_minus_cf_fisd"
+}

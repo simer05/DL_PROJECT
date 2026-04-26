@@ -1,0 +1,11 @@
+_logs/
+_queue_*.txt
+_queue_*.txt.lock
+_queue_*.txt.tmp
+*.out
+FAILED
+*.pt
+*.pth
+checkpoint*
+cache/
+__pycache__/

@@ -1,0 +1,146 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 7,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/cooking-time"
+    },
+    "dataset": "cooking-time",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "cf_fisd_enabled": true,
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "mfb_enabled": true,
+      "mfb_keep": 0.8,
+      "n_bins": 48,
+      "n_blocks": 2,
+      "rla_enabled": true,
+      "rla_rank": 4,
+      "rla_scale": 0.05
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 2,
+    "variant": "all_minus_esam"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_minus_esam-evaluation/2.toml",
+  "dataset": "cooking-time",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -2.5613993630298912,
+      "train_loss": 0.5778566953298208,
+      "val_score": -2.6107928598405943
+    },
+    {
+      "epoch": 1,
+      "test_score": -2.550575797203022,
+      "train_loss": 0.5199141429888235,
+      "val_score": -2.5975772243324835
+    },
+    {
+      "epoch": 2,
+      "test_score": -2.5513964812165146,
+      "train_loss": 0.511967933661229,
+      "val_score": -2.5944791021852587
+    },
+    {
+      "epoch": 3,
+      "test_score": -2.5550999672998134,
+      "train_loss": 0.5085972109893421,
+      "val_score": -2.598609416731633
+    },
+    {
+      "epoch": 4,
+      "test_score": -2.5458052559244453,
+      "train_loss": 0.5063928671785303,
+      "val_score": -2.5876654530576864
+    },
+    {
+      "epoch": 5,
+      "test_score": -2.587354749942648,
+      "train_loss": 0.5060564223173503,
+      "val_score": -2.629049084709761
+    },
+    {
+      "epoch": 6,
+      "test_score": -2.566285756155162,
+      "train_loss": 0.5039662869126947,
+      "val_score": -2.607049236744262
+    },
+    {
+      "epoch": 7,
+      "test_score": -2.5476520499692263,
+      "train_loss": 0.5022442496574677,
+      "val_score": -2.586853602657961
+    },
+    {
+      "epoch": 8,
+      "test_score": -2.5592359828805464,
+      "train_loss": 0.5007378045503084,
+      "val_score": -2.599643675522678
+    },
+    {
+      "epoch": 9,
+      "test_score": -2.5641869365431083,
+      "train_loss": 0.49786975281732576,
+      "val_score": -2.6038341055557614
+    },
+    {
+      "epoch": 10,
+      "test_score": -2.580490599126014,
+      "train_loss": 0.4966755004616471,
+      "val_score": -2.6210794690079933
+    },
+    {
+      "epoch": 11,
+      "test_score": -2.571333291165615,
+      "train_loss": 0.49655182189769576,
+      "val_score": -2.6103619747617812
+    },
+    {
+      "epoch": 12,
+      "test_score": -2.5867859523181176,
+      "train_loss": 0.4945516618522438,
+      "val_score": -2.6269796263765466
+    },
+    {
+      "epoch": 13,
+      "test_score": -2.5806335267258453,
+      "train_loss": 0.49264940216734604,
+      "val_score": -2.620915641361488
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 2.5476520499692263,
+      "score": -2.5476520499692263
+    },
+    "val": {
+      "rmse": 2.586853602657961,
+      "score": -2.586853602657961
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/all_minus_esam-evaluation/2",
+  "seed": 2,
+  "task_type": "regression",
+  "time_seconds": 43.24603581428528,
+  "variant": "all_minus_esam"
+}

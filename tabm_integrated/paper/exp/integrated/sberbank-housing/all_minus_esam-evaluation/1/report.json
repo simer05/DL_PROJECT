@@ -1,0 +1,104 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 0,
+  "config": {
+    "amp": true,
+    "batch_size": 1024,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/sberbank-housing"
+    },
+    "dataset": "sberbank-housing",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "cf_fisd_enabled": true,
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "mfb_enabled": true,
+      "mfb_keep": 0.8,
+      "n_bins": 48,
+      "n_blocks": 2,
+      "rla_enabled": true,
+      "rla_rank": 4,
+      "rla_scale": 0.05
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 1,
+    "variant": "all_minus_esam"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/all_minus_esam-evaluation/1.toml",
+  "dataset": "sberbank-housing",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -11.535907580086148,
+      "train_loss": 0.6764907836914062,
+      "val_score": -11.636771200368536
+    },
+    {
+      "epoch": 1,
+      "test_score": -11.55272892672103,
+      "train_loss": 0.5704263276175449,
+      "val_score": -11.669556904596222
+    },
+    {
+      "epoch": 2,
+      "test_score": -11.540304789889854,
+      "train_loss": 0.5479874469731983,
+      "val_score": -11.660911957294818
+    },
+    {
+      "epoch": 3,
+      "test_score": -11.566767714294487,
+      "train_loss": 0.5281973810572373,
+      "val_score": -11.694827144237479
+    },
+    {
+      "epoch": 4,
+      "test_score": -11.54475385414234,
+      "train_loss": 0.5193592780514767,
+      "val_score": -11.669544482653006
+    },
+    {
+      "epoch": 5,
+      "test_score": -11.54118006445933,
+      "train_loss": 0.5155376776268608,
+      "val_score": -11.653920940654078
+    },
+    {
+      "epoch": 6,
+      "test_score": -11.589382284586234,
+      "train_loss": 0.5071287123780501,
+      "val_score": -11.688474563520696
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 11.535907580086148,
+      "score": -11.535907580086148
+    },
+    "val": {
+      "rmse": 11.636771200368536,
+      "score": -11.636771200368536
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/all_minus_esam-evaluation/1",
+  "seed": 1,
+  "task_type": "regression",
+  "time_seconds": 5.403448104858398,
+  "variant": "all_minus_esam"
+}

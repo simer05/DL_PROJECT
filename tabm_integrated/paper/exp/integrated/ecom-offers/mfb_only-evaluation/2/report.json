@@ -1,0 +1,178 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 17,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/ecom-offers"
+    },
+    "dataset": "ecom-offers",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "mfb_enabled": true,
+      "mfb_keep": 0.8,
+      "n_bins": 48,
+      "n_blocks": 2
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 2,
+    "variant": "mfb_only"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/mfb_only-evaluation/2.toml",
+  "dataset": "ecom-offers",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": 0.5655640513381363,
+      "train_loss": 0.5601579028147238,
+      "val_score": 0.5890461121497865
+    },
+    {
+      "epoch": 1,
+      "test_score": 0.566298851061509,
+      "train_loss": 0.5232984291182624,
+      "val_score": 0.5876600125680793
+    },
+    {
+      "epoch": 2,
+      "test_score": 0.565342370389669,
+      "train_loss": 0.5126102323885318,
+      "val_score": 0.5864489282586565
+    },
+    {
+      "epoch": 3,
+      "test_score": 0.56817462485423,
+      "train_loss": 0.5099104096492132,
+      "val_score": 0.5899897942031197
+    },
+    {
+      "epoch": 4,
+      "test_score": 0.5717861255733153,
+      "train_loss": 0.5082687989429191,
+      "val_score": 0.5945968860592866
+    },
+    {
+      "epoch": 5,
+      "test_score": 0.5718616877757521,
+      "train_loss": 0.5065136921626551,
+      "val_score": 0.5957169395782125
+    },
+    {
+      "epoch": 6,
+      "test_score": 0.5747729355661799,
+      "train_loss": 0.5042106216704404,
+      "val_score": 0.6006416017869438
+    },
+    {
+      "epoch": 7,
+      "test_score": 0.5739895267111441,
+      "train_loss": 0.5042047484053506,
+      "val_score": 0.5990293459151907
+    },
+    {
+      "epoch": 8,
+      "test_score": 0.5723069682502868,
+      "train_loss": 0.5039668894476361,
+      "val_score": 0.5963988800083944
+    },
+    {
+      "epoch": 9,
+      "test_score": 0.5764932115889327,
+      "train_loss": 0.503834640538251,
+      "val_score": 0.6029036769452016
+    },
+    {
+      "epoch": 10,
+      "test_score": 0.5764806679967731,
+      "train_loss": 0.499090200221097,
+      "val_score": 0.6023098264298107
+    },
+    {
+      "epoch": 11,
+      "test_score": 0.5769842279779496,
+      "train_loss": 0.4986710399389267,
+      "val_score": 0.6036243315348981
+    },
+    {
+      "epoch": 12,
+      "test_score": 0.5764756344426175,
+      "train_loss": 0.5011906392044492,
+      "val_score": 0.6016404639554996
+    },
+    {
+      "epoch": 13,
+      "test_score": 0.5759788406244468,
+      "train_loss": 0.5009944047088977,
+      "val_score": 0.6021128946314307
+    },
+    {
+      "epoch": 14,
+      "test_score": 0.5777112418096728,
+      "train_loss": 0.49901655702679243,
+      "val_score": 0.6042899349951487
+    },
+    {
+      "epoch": 15,
+      "test_score": 0.5778695632051555,
+      "train_loss": 0.4992442086890892,
+      "val_score": 0.6056838105765301
+    },
+    {
+      "epoch": 16,
+      "test_score": 0.5785535717635366,
+      "train_loss": 0.5002761604609313,
+      "val_score": 0.6056769964422184
+    },
+    {
+      "epoch": 17,
+      "test_score": 0.5816249076525681,
+      "train_loss": 0.4998697401196868,
+      "val_score": 0.6106538647226952
+    },
+    {
+      "epoch": 18,
+      "test_score": 0.580032497543074,
+      "train_loss": 0.498333211850237,
+      "val_score": 0.6061102338686076
+    },
+    {
+      "epoch": 19,
+      "test_score": 0.5802514540493597,
+      "train_loss": 0.498783348887055,
+      "val_score": 0.6063259275695186
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "higher",
+  "metrics": {
+    "test": {
+      "roc-auc": 0.5816249076525681,
+      "score": 0.5816249076525681
+    },
+    "val": {
+      "roc-auc": 0.6106538647226952,
+      "score": 0.6106538647226952
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/mfb_only-evaluation/2",
+  "seed": 2,
+  "task_type": "binclass",
+  "time_seconds": 28.520503282546997,
+  "variant": "mfb_only"
+}

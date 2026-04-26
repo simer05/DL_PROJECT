@@ -1,0 +1,99 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 0,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/cooking-time"
+    },
+    "dataset": "cooking-time",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "cf_fisd_enabled": true,
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "n_bins": 48,
+      "n_blocks": 2
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 0,
+    "variant": "cf_fisd_only"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/cf_fisd_only-evaluation/0.toml",
+  "dataset": "cooking-time",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -2.563118185514718,
+      "train_loss": 0.5551990426338471,
+      "val_score": -2.6028544565868588
+    },
+    {
+      "epoch": 1,
+      "test_score": -2.572042144127544,
+      "train_loss": 0.4948291037533734,
+      "val_score": -2.6100162471981716
+    },
+    {
+      "epoch": 2,
+      "test_score": -2.5773333634568774,
+      "train_loss": 0.489956555065808,
+      "val_score": -2.6151421141072886
+    },
+    {
+      "epoch": 3,
+      "test_score": -2.566805130662705,
+      "train_loss": 0.48730920859285304,
+      "val_score": -2.6032010437115134
+    },
+    {
+      "epoch": 4,
+      "test_score": -2.610084665613344,
+      "train_loss": 0.48609176707697344,
+      "val_score": -2.6468524522057435
+    },
+    {
+      "epoch": 5,
+      "test_score": -2.5852612305505973,
+      "train_loss": 0.48481034373377896,
+      "val_score": -2.619681374343505
+    },
+    {
+      "epoch": 6,
+      "test_score": -2.586320554822736,
+      "train_loss": 0.4835801567580249,
+      "val_score": -2.620107177988242
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 2.563118185514718,
+      "score": -2.563118185514718
+    },
+    "val": {
+      "rmse": 2.6028544565868588,
+      "score": -2.6028544565868588
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/cf_fisd_only-evaluation/0",
+  "seed": 0,
+  "task_type": "regression",
+  "time_seconds": 18.744648456573486,
+  "variant": "cf_fisd_only"
+}

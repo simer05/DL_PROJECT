@@ -1,0 +1,105 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 0,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/ecom-offers"
+    },
+    "dataset": "ecom-offers",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "esam_enabled": true,
+      "esam_rho": 0.0025,
+      "k": 16,
+      "mfb_enabled": true,
+      "mfb_keep": 0.8,
+      "n_bins": 48,
+      "n_blocks": 2,
+      "rla_enabled": true,
+      "rla_rank": 4,
+      "rla_scale": 0.05
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 0,
+    "variant": "all_minus_cf_fisd"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/all_minus_cf_fisd-evaluation/0.toml",
+  "dataset": "ecom-offers",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": 0.574504443183962,
+      "train_loss": 0.5605815064024042,
+      "val_score": 0.6001605290639818
+    },
+    {
+      "epoch": 1,
+      "test_score": 0.5624732538194603,
+      "train_loss": 0.5235076811578538,
+      "val_score": 0.5808439434699122
+    },
+    {
+      "epoch": 2,
+      "test_score": 0.5659337572123175,
+      "train_loss": 0.5128068581775382,
+      "val_score": 0.5866805240631663
+    },
+    {
+      "epoch": 3,
+      "test_score": 0.5697632009080036,
+      "train_loss": 0.5094030946493149,
+      "val_score": 0.5926678706027072
+    },
+    {
+      "epoch": 4,
+      "test_score": 0.5736462779910708,
+      "train_loss": 0.5063647743728426,
+      "val_score": 0.5980532736907034
+    },
+    {
+      "epoch": 5,
+      "test_score": 0.5719072191246096,
+      "train_loss": 0.5063130502347593,
+      "val_score": 0.5954887711100517
+    },
+    {
+      "epoch": 6,
+      "test_score": 0.5747901686703085,
+      "train_loss": 0.5049416814689283,
+      "val_score": 0.5994671346968392
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "higher",
+  "metrics": {
+    "test": {
+      "roc-auc": 0.574504443183962,
+      "score": 0.574504443183962
+    },
+    "val": {
+      "roc-auc": 0.6001605290639818,
+      "score": 0.6001605290639818
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/all_minus_cf_fisd-evaluation/0",
+  "seed": 0,
+  "task_type": "binclass",
+  "time_seconds": 12.681254625320435,
+  "variant": "all_minus_cf_fisd"
+}

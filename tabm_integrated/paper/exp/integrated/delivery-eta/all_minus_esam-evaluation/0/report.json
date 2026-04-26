@@ -1,0 +1,104 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 0,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/delivery-eta"
+    },
+    "dataset": "delivery-eta",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "cf_fisd_enabled": true,
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "mfb_enabled": true,
+      "mfb_keep": 0.8,
+      "n_bins": 48,
+      "n_blocks": 2,
+      "rla_enabled": true,
+      "rla_rank": 4,
+      "rla_scale": 0.05
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 0,
+    "variant": "all_minus_esam"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/all_minus_esam-evaluation/0.toml",
+  "dataset": "delivery-eta",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -1.8574282929864145,
+      "train_loss": 0.6346418135357599,
+      "val_score": -1.734733819358604
+    },
+    {
+      "epoch": 1,
+      "test_score": -1.9188538663007366,
+      "train_loss": 0.5895762147694609,
+      "val_score": -1.8017549674986006
+    },
+    {
+      "epoch": 2,
+      "test_score": -1.921810118037487,
+      "train_loss": 0.5745818023263973,
+      "val_score": -1.8123889099803876
+    },
+    {
+      "epoch": 3,
+      "test_score": -1.8605371257519345,
+      "train_loss": 0.576130695586657,
+      "val_score": -1.7577453600459139
+    },
+    {
+      "epoch": 4,
+      "test_score": -1.944784069676435,
+      "train_loss": 0.5613377011605423,
+      "val_score": -1.8333236592933424
+    },
+    {
+      "epoch": 5,
+      "test_score": -1.9003918168474871,
+      "train_loss": 0.5654894726989913,
+      "val_score": -1.7906525055535318
+    },
+    {
+      "epoch": 6,
+      "test_score": -1.9127423151629934,
+      "train_loss": 0.5558785330640138,
+      "val_score": -1.8136087512193444
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 1.8574282929864145,
+      "score": -1.8574282929864145
+    },
+    "val": {
+      "rmse": 1.734733819358604,
+      "score": -1.734733819358604
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/all_minus_esam-evaluation/0",
+  "seed": 0,
+  "task_type": "regression",
+  "time_seconds": 25.650846242904663,
+  "variant": "all_minus_esam"
+}

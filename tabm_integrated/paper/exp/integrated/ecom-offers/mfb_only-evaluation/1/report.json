@@ -1,0 +1,100 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 0,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/ecom-offers"
+    },
+    "dataset": "ecom-offers",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "mfb_enabled": true,
+      "mfb_keep": 0.8,
+      "n_bins": 48,
+      "n_blocks": 2
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 1,
+    "variant": "mfb_only"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/mfb_only-evaluation/1.toml",
+  "dataset": "ecom-offers",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": 0.5758805406428937,
+      "train_loss": 0.5612830320994059,
+      "val_score": 0.6019166519856285
+    },
+    {
+      "epoch": 1,
+      "test_score": 0.5639916173718269,
+      "train_loss": 0.5240427851676941,
+      "val_score": 0.5835630336611454
+    },
+    {
+      "epoch": 2,
+      "test_score": 0.5662793181438439,
+      "train_loss": 0.5127950227922864,
+      "val_score": 0.5855571279699732
+    },
+    {
+      "epoch": 3,
+      "test_score": 0.5687952242679598,
+      "train_loss": 0.5094026978369113,
+      "val_score": 0.5900073252128114
+    },
+    {
+      "epoch": 4,
+      "test_score": 0.5723007940878004,
+      "train_loss": 0.5075066724309215,
+      "val_score": 0.5948114889090584
+    },
+    {
+      "epoch": 5,
+      "test_score": 0.5723376406960523,
+      "train_loss": 0.5056416751058014,
+      "val_score": 0.5956702614683207
+    },
+    {
+      "epoch": 6,
+      "test_score": 0.5747176408579691,
+      "train_loss": 0.5049899849626753,
+      "val_score": 0.5981938313341004
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "higher",
+  "metrics": {
+    "test": {
+      "roc-auc": 0.5758805406428937,
+      "score": 0.5758805406428937
+    },
+    "val": {
+      "roc-auc": 0.6019166519856285,
+      "score": 0.6019166519856285
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/ecom-offers/mfb_only-evaluation/1",
+  "seed": 1,
+  "task_type": "binclass",
+  "time_seconds": 9.183435678482056,
+  "variant": "mfb_only"
+}

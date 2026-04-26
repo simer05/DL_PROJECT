@@ -1,0 +1,159 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 10,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/cooking-time"
+    },
+    "dataset": "cooking-time",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "cf_fisd_enabled": true,
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "n_bins": 48,
+      "n_blocks": 2
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 2,
+    "variant": "cf_fisd_only"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/cf_fisd_only-evaluation/2.toml",
+  "dataset": "cooking-time",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -2.5875577431837735,
+      "train_loss": 0.5611629059185853,
+      "val_score": -2.6295552465826466
+    },
+    {
+      "epoch": 1,
+      "test_score": -2.5747327276980787,
+      "train_loss": 0.4955460289577106,
+      "val_score": -2.6127804217806334
+    },
+    {
+      "epoch": 2,
+      "test_score": -2.598434996933457,
+      "train_loss": 0.489554179681314,
+      "val_score": -2.6344989389970186
+    },
+    {
+      "epoch": 3,
+      "test_score": -2.593255788760048,
+      "train_loss": 0.48722675120508346,
+      "val_score": -2.630046806789206
+    },
+    {
+      "epoch": 4,
+      "test_score": -2.591796323061829,
+      "train_loss": 0.485682710065498,
+      "val_score": -2.6285540726041305
+    },
+    {
+      "epoch": 5,
+      "test_score": -2.57461521644028,
+      "train_loss": 0.4841639764674075,
+      "val_score": -2.6101172756287023
+    },
+    {
+      "epoch": 6,
+      "test_score": -2.5907818460322876,
+      "train_loss": 0.4832287656294333,
+      "val_score": -2.6265027422350546
+    },
+    {
+      "epoch": 7,
+      "test_score": -2.5792667519455312,
+      "train_loss": 0.4822454852563841,
+      "val_score": -2.613920079539629
+    },
+    {
+      "epoch": 8,
+      "test_score": -2.567953401107109,
+      "train_loss": 0.4813956851894791,
+      "val_score": -2.6037318260814915
+    },
+    {
+      "epoch": 9,
+      "test_score": -2.5921374904230277,
+      "train_loss": 0.4810924151459256,
+      "val_score": -2.6279573584396494
+    },
+    {
+      "epoch": 10,
+      "test_score": -2.566079036110905,
+      "train_loss": 0.48065090662724264,
+      "val_score": -2.600480321386129
+    },
+    {
+      "epoch": 11,
+      "test_score": -2.5830334725214104,
+      "train_loss": 0.4798199037710826,
+      "val_score": -2.6167372586716477
+    },
+    {
+      "epoch": 12,
+      "test_score": -2.594220681743779,
+      "train_loss": 0.4794894346782753,
+      "val_score": -2.6278059358636168
+    },
+    {
+      "epoch": 13,
+      "test_score": -2.5928668621350965,
+      "train_loss": 0.4797732456847354,
+      "val_score": -2.628311702161112
+    },
+    {
+      "epoch": 14,
+      "test_score": -2.59032379350422,
+      "train_loss": 0.47852054238319397,
+      "val_score": -2.6244594380693966
+    },
+    {
+      "epoch": 15,
+      "test_score": -2.585993740242376,
+      "train_loss": 0.4782114834398837,
+      "val_score": -2.620114912614322
+    },
+    {
+      "epoch": 16,
+      "test_score": -2.595159492368922,
+      "train_loss": 0.4778157437706853,
+      "val_score": -2.629266541322618
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 2.566079036110905,
+      "score": -2.566079036110905
+    },
+    "val": {
+      "rmse": 2.600480321386129,
+      "score": -2.600480321386129
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/cooking-time/cf_fisd_only-evaluation/2",
+  "seed": 2,
+  "task_type": "regression",
+  "time_seconds": 46.023908615112305,
+  "variant": "cf_fisd_only"
+}

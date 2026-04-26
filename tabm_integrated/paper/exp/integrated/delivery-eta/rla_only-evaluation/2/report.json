@@ -1,0 +1,101 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 0,
+  "config": {
+    "amp": true,
+    "batch_size": 2048,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/delivery-eta"
+    },
+    "dataset": "delivery-eta",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "n_bins": 48,
+      "n_blocks": 2,
+      "rla_enabled": true,
+      "rla_rank": 4,
+      "rla_scale": 0.05
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 2,
+    "variant": "rla_only"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/rla_only-evaluation/2.toml",
+  "dataset": "delivery-eta",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -1.88058796129553,
+      "train_loss": 0.6275782894044026,
+      "val_score": -1.7734446252352045
+    },
+    {
+      "epoch": 1,
+      "test_score": -1.9163067797704876,
+      "train_loss": 0.5442314702663978,
+      "val_score": -1.8092503849001196
+    },
+    {
+      "epoch": 2,
+      "test_score": -1.9333606926308549,
+      "train_loss": 0.5406341039351303,
+      "val_score": -1.8277433600207929
+    },
+    {
+      "epoch": 3,
+      "test_score": -1.892036415576302,
+      "train_loss": 0.5362807738519934,
+      "val_score": -1.7886593960062
+    },
+    {
+      "epoch": 4,
+      "test_score": -1.931961140978318,
+      "train_loss": 0.5344498851438508,
+      "val_score": -1.8238907382305147
+    },
+    {
+      "epoch": 5,
+      "test_score": -1.8943497718331832,
+      "train_loss": 0.5325871710359615,
+      "val_score": -1.7891810348755857
+    },
+    {
+      "epoch": 6,
+      "test_score": -1.9185911206002868,
+      "train_loss": 0.5309783061490442,
+      "val_score": -1.8074469009556464
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 1.88058796129553,
+      "score": -1.88058796129553
+    },
+    "val": {
+      "rmse": 1.7734446252352045,
+      "score": -1.7734446252352045
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/delivery-eta/rla_only-evaluation/2",
+  "seed": 2,
+  "task_type": "regression",
+  "time_seconds": 26.989912509918213,
+  "variant": "rla_only"
+}

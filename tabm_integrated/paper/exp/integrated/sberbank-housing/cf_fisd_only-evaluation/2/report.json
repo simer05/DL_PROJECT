@@ -1,0 +1,99 @@
+{
+  "amp_dtype": "bfloat16",
+  "amp_enabled": true,
+  "best_epoch": 0,
+  "config": {
+    "amp": true,
+    "batch_size": 1024,
+    "data": {
+      "cache": false,
+      "num_policy": "standard",
+      "path": "data/sberbank-housing"
+    },
+    "dataset": "sberbank-housing",
+    "gradient_clipping_norm": 1.0,
+    "model": {
+      "arch_type": "tabm",
+      "cf_fisd_enabled": true,
+      "d_block": 384,
+      "d_embedding": 16,
+      "dropout": 0.1,
+      "k": 16,
+      "n_bins": 48,
+      "n_blocks": 2
+    },
+    "n_epochs": 20,
+    "optimizer": {
+      "lr": 0.0003,
+      "type": "AdamW",
+      "weight_decay": 1e-05
+    },
+    "patience": 6,
+    "seed": 2,
+    "variant": "cf_fisd_only"
+  },
+  "config_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/cf_fisd_only-evaluation/2.toml",
+  "dataset": "sberbank-housing",
+  "gpu_name": "NVIDIA GeForce RTX 4090",
+  "history": [
+    {
+      "epoch": 0,
+      "test_score": -11.533345184614086,
+      "train_loss": 0.6680415868759155,
+      "val_score": -11.634575294575916
+    },
+    {
+      "epoch": 1,
+      "test_score": -11.570453609453505,
+      "train_loss": 0.5608573979453036,
+      "val_score": -11.68285126464747
+    },
+    {
+      "epoch": 2,
+      "test_score": -11.558421472398113,
+      "train_loss": 0.5553898183923018,
+      "val_score": -11.674624608149546
+    },
+    {
+      "epoch": 3,
+      "test_score": -11.556772494019064,
+      "train_loss": 0.5318876630381534,
+      "val_score": -11.678057604710867
+    },
+    {
+      "epoch": 4,
+      "test_score": -11.528811644085643,
+      "train_loss": 0.512807066503324,
+      "val_score": -11.649647824444898
+    },
+    {
+      "epoch": 5,
+      "test_score": -11.562042062299835,
+      "train_loss": 0.5008556623207895,
+      "val_score": -11.673831229347504
+    },
+    {
+      "epoch": 6,
+      "test_score": -11.598899499715143,
+      "train_loss": 0.48822733289317083,
+      "val_score": -11.710128990394585
+    }
+  ],
+  "inference_mode": "mean",
+  "metric_direction": "lower",
+  "metrics": {
+    "test": {
+      "rmse": 11.533345184614086,
+      "score": -11.533345184614086
+    },
+    "val": {
+      "rmse": 11.634575294575916,
+      "score": -11.634575294575916
+    }
+  },
+  "result_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sberbank-housing/cf_fisd_only-evaluation/2",
+  "seed": 2,
+  "task_type": "regression",
+  "time_seconds": 5.544011116027832,
+  "variant": "cf_fisd_only"
+}

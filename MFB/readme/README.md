@@ -16,12 +16,6 @@ This folder contains the current single-notebook implementation for the MFB trac
   - Canonical notebook currently running on TC2
 - `../code/requirements.txt`
   - Python dependencies for the notebook bundle
-- `../code/run_setup.slurm`
-  - Creates the TC2 virtual environment and installs dependencies
-- `../code/run_full.slurm`
-  - Launches the main notebook execution on TC2
-- `../code/run_resume.slurm`
-  - Launches the single resume pass if the main job fails or times out
 - `../results`
   - Placeholder for final result tables and reports after the TC2 run completes
 

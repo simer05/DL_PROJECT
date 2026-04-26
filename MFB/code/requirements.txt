@@ -1,0 +1,17 @@
+numpy==1.26.4
+pandas==2.2.3
+scikit-learn==1.5.2
+scipy==1.14.1
+matplotlib==3.9.2
+tqdm==4.66.5
+torch==2.6.0
+tabm==0.0.3
+rtdl_num_embeddings==0.0.12
+rtdl_revisiting_models==0.0.2
+delu==0.0.25
+loguru==0.7.2
+tomli==2.0.1
+tomli-w==1.0.0
+jupyter==1.1.1
+nbconvert==7.16.4
+ipykernel==6.29.5

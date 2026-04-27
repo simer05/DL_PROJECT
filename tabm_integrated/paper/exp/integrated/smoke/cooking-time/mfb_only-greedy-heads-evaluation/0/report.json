@@ -1,0 +1,193 @@
+{
+    "function": "bin.run_integrated.main",
+    "gpus": [
+        "NVIDIA GeForce RTX 4090"
+    ],
+    "config": {
+        "batch_size": 1024,
+        "patience": 16,
+        "n_epochs": -1,
+        "gradient_clipping_norm": 1.0,
+        "amp": true,
+        "seed": 0,
+        "head_selection": true,
+        "data": {
+            "cache": true,
+            "path": "data/cooking-time",
+            "cat_policy": "ordinal"
+        },
+        "optimizer": {
+            "lr": 0.00012065020494450812,
+            "weight_decay": 0.07000081679295954
+        },
+        "model": {
+            "arch_type": "tabm",
+            "k": 32,
+            "share_training_batches": false,
+            "backbone": {
+                "n_blocks": 1,
+                "d_block": 416,
+                "dropout": 0.0
+            },
+            "num_embeddings": {
+                "type": "PiecewiseLinearEmbeddings",
+                "d_embedding": 16
+            },
+            "mfb": {
+                "enabled": true,
+                "mask_mode": "member_fixed",
+                "mask_granularity": "feature_group",
+                "keep_rate": 0.9,
+                "training_only": false,
+                "inverted_scaling": true,
+                "use_soft_mask": false,
+                "mask_strength": 1.0,
+                "anchor_fraction": 0.0,
+                "warmup_epochs": 0,
+                "mask_seed": 0
+            }
+        },
+        "bins": {
+            "n_bins": 8
+        }
+    },
+    "n_parameters": 1411040,
+    "prediction_type": "labels",
+    "mfb": {
+        "enabled": true,
+        "config": {
+            "enabled": true,
+            "mask_mode": "member_fixed",
+            "mask_granularity": "feature_group",
+            "keep_rate": 0.9,
+            "training_only": false,
+            "inverted_scaling": true,
+            "use_soft_mask": false,
+            "mask_strength": 1.0,
+            "anchor_fraction": 0.0,
+            "warmup_epochs": 0,
+            "mask_seed": 0
+        },
+        "mask_stats": {
+            "keep_rate_actual": 0.9000651240348816,
+            "min_features_per_member": 164.0,
+            "mean_features_per_member": 172.8125,
+            "max_features_per_member": 181.0,
+            "min_members_per_feature": 24.0,
+            "mean_members_per_feature": 28.80208396911621,
+            "max_members_per_feature": 32.0,
+            "mean_pairwise_jaccard": 0.8173701129083908,
+            "anchor_fraction_configured": 0.0,
+            "n_anchor_members": 0.0,
+            "core_fraction_configured": 0.0,
+            "n_core_features": 0.0
+        }
+    },
+    "cf_fisd": {
+        "lambda": 0.0
+    },
+    "epoch_size": 222,
+    "ncl": {
+        "use_ncl": false,
+        "lambda_ncl": 0.0,
+        "ncl_warmup_epochs": 0,
+        "ncl_space": "logits"
+    },
+    "esam": {
+        "use_esam": false,
+        "esam_rho": 0.01,
+        "esam_eps": 1e-12,
+        "esam_adapter_only": true,
+        "esam_memberwise": true,
+        "esam_warmup_epochs": 0,
+        "esam_start_epoch": 0,
+        "esam_end_epoch": -1,
+        "esam_log_diagnostics": true,
+        "esam_diagnostics_every": 100,
+        "adapter_parameter_names": [
+            {
+                "name": "backbone.blocks.0.0.r",
+                "shape": [
+                    32,
+                    2994
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.s",
+                "shape": [
+                    32,
+                    416
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.bias",
+                "shape": [
+                    32,
+                    416
+                ]
+            }
+        ],
+        "diagnostics_path": null,
+        "n_diagnostics_records": 0
+    },
+    "rla_training": {
+        "adapter_lr_multiplier": 1.0,
+        "extra_paths_freeze_fraction": 0.0,
+        "extra_paths_freeze_until_epoch": 0
+    },
+    "best_step": 23088,
+    "metrics": {
+        "train": {
+            "rmse": 0.4439127657129147,
+            "mae": 0.3454906642436981,
+            "r2": 0.5473568439483643,
+            "score": -0.4439127657129147
+        },
+        "val": {
+            "rmse": 0.4625593198933149,
+            "mae": 0.35958266258239746,
+            "r2": 0.5093174576759338,
+            "score": -0.4625593198933149
+        },
+        "test": {
+            "rmse": 0.479899744054174,
+            "mae": 0.37457266449928284,
+            "r2": 0.4865223169326782,
+            "score": -0.479899744054174
+        }
+    },
+    "time": "0:12:03.727238",
+    "diversity": {
+        "train": {
+            "mean_centered_corr": -0.020108899101614952,
+            "mean_pairwise_disagreement": NaN,
+            "member_std": 0.05420300364494324
+        },
+        "val": {
+            "mean_centered_corr": -0.01979835145175457,
+            "mean_pairwise_disagreement": NaN,
+            "member_std": 0.05661233514547348
+        },
+        "test": {
+            "mean_centered_corr": -0.01982581429183483,
+            "mean_pairwise_disagreement": NaN,
+            "member_std": 0.05757860466837883
+        }
+    },
+    "chunk_size": null,
+    "eval_batch_size": 16384,
+    "heads": [
+        17,
+        14,
+        11,
+        24,
+        25,
+        5,
+        4,
+        27,
+        20,
+        1,
+        9
+    ],
+    "head_selection_time": "0:00:00.396117"
+}

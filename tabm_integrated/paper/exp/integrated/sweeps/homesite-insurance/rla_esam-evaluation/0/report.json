@@ -1,0 +1,281 @@
+{
+    "function": "bin.run_integrated.main",
+    "gpus": [
+        "NVIDIA GeForce RTX 4090"
+    ],
+    "config": {
+        "batch_size": 1024,
+        "patience": 16,
+        "n_epochs": -1,
+        "gradient_clipping_norm": 1.0,
+        "amp": true,
+        "seed": 0,
+        "head_selection": true,
+        "rla_adapter_lr_multiplier": 1.0,
+        "rla_extra_paths_freeze_fraction": 0.0,
+        "use_esam": true,
+        "esam_rho": 0.005,
+        "esam_eps": 1e-12,
+        "esam_adapter_only": true,
+        "esam_memberwise": true,
+        "esam_warmup_epochs": 0,
+        "esam_start_epoch": 0,
+        "esam_end_epoch": -1,
+        "esam_log_diagnostics": false,
+        "esam_diagnostics_every": 100,
+        "data": {
+            "cache": true,
+            "path": "data/homesite-insurance",
+            "num_policy": "noisy-quantile",
+            "cat_policy": "ordinal"
+        },
+        "optimizer": {
+            "lr": 0.0018580623030886075,
+            "weight_decay": 0.0001614529849348179
+        },
+        "model": {
+            "arch_type": "tabm",
+            "k": 32,
+            "share_training_batches": false,
+            "rla_rank": 4,
+            "rla_first_only": false,
+            "rla_additive": false,
+            "rla_init": "base_preserving",
+            "rla_base_preserve_noise": 0.0001,
+            "backbone": {
+                "n_blocks": 3,
+                "d_block": 704,
+                "dropout": 0.0
+            },
+            "num_embeddings": {
+                "type": "PiecewiseLinearEmbeddings",
+                "d_embedding": 8
+            }
+        },
+        "bins": {
+            "n_bins": 15
+        }
+    },
+    "n_parameters": 3424160,
+    "prediction_type": "probs",
+    "mfb": {
+        "enabled": false,
+        "config": {},
+        "mask_stats": {
+            "keep_rate_actual": 1.0
+        }
+    },
+    "cf_fisd": {
+        "lambda": 0.0
+    },
+    "epoch_size": 220,
+    "ncl": {
+        "use_ncl": false,
+        "lambda_ncl": 0.0,
+        "ncl_warmup_epochs": 0,
+        "ncl_space": "logits"
+    },
+    "esam": {
+        "use_esam": true,
+        "esam_rho": 0.005,
+        "esam_eps": 1e-12,
+        "esam_adapter_only": true,
+        "esam_memberwise": true,
+        "esam_warmup_epochs": 0,
+        "esam_start_epoch": 0,
+        "esam_end_epoch": -1,
+        "esam_log_diagnostics": false,
+        "esam_diagnostics_every": 100,
+        "adapter_parameter_names": [
+            {
+                "name": "backbone.blocks.0.0.R",
+                "shape": [
+                    32,
+                    2206,
+                    4
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.S",
+                "shape": [
+                    32,
+                    704,
+                    4
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.bias",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.R",
+                "shape": [
+                    32,
+                    704,
+                    4
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.S",
+                "shape": [
+                    32,
+                    704,
+                    4
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.bias",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.2.0.R",
+                "shape": [
+                    32,
+                    704,
+                    4
+                ]
+            },
+            {
+                "name": "backbone.blocks.2.0.S",
+                "shape": [
+                    32,
+                    704,
+                    4
+                ]
+            },
+            {
+                "name": "backbone.blocks.2.0.bias",
+                "shape": [
+                    32,
+                    704
+                ]
+            }
+        ],
+        "diagnostics_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sweeps/homesite-insurance/rla_esam-evaluation/_esam_diagnostics/rla_esam-evaluation__0.jsonl",
+        "n_diagnostics_records": 0
+    },
+    "rla_training": {
+        "adapter_lr_multiplier": 1.0,
+        "extra_paths_freeze_fraction": 0.0,
+        "extra_paths_freeze_until_epoch": 0
+    },
+    "best_step": 1760,
+    "metrics": {
+        "train": {
+            "0": {
+                "precision": 0.9463842112495904,
+                "recall": 0.9839699732374939,
+                "f1-score": 0.9648111776576169,
+                "support": 181971.0
+            },
+            "1": {
+                "precision": 0.9169466431296623,
+                "recall": 0.7604665989751824,
+                "f1-score": 0.8314078816589433,
+                "support": 42349.0
+            },
+            "accuracy": 0.9417751426533524,
+            "macro avg": {
+                "precision": 0.9316654271896263,
+                "recall": 0.8722182861063381,
+                "f1-score": 0.8981095296582802,
+                "support": 224320.0
+            },
+            "weighted avg": {
+                "precision": 0.9408267416868638,
+                "recall": 0.9417751426533524,
+                "f1-score": 0.9396261911105064,
+                "support": 224320.0
+            },
+            "cross-entropy": 0.1368376901407188,
+            "roc-auc": 0.9794268475505917,
+            "score": 0.9794268475505917
+        },
+        "val": {
+            "0": {
+                "precision": 0.9354489516864175,
+                "recall": 0.980765784600681,
+                "f1-score": 0.9575715160528387,
+                "support": 16741.0
+            },
+            "1": {
+                "precision": 0.8754833720030936,
+                "recall": 0.6664704150721225,
+                "f1-score": 0.7568109643991309,
+                "support": 3397.0
+            },
+            "accuracy": 0.9277485351077565,
+            "macro avg": {
+                "precision": 0.9054661618447555,
+                "recall": 0.8236180998364018,
+                "f1-score": 0.8571912402259848,
+                "support": 20138.0
+            },
+            "weighted avg": {
+                "precision": 0.9253335939456164,
+                "recall": 0.9277485351077565,
+                "f1-score": 0.9237060083575539,
+                "support": 20138.0
+            },
+            "cross-entropy": 0.17396784432743392,
+            "roc-auc": 0.9581143402163179,
+            "score": 0.9581143402163179
+        },
+        "test": {
+            "0": {
+                "precision": 0.931127077436679,
+                "recall": 0.9758880352932228,
+                "f1-score": 0.9529822476416846,
+                "support": 13147.0
+            },
+            "1": {
+                "precision": 0.874006359300477,
+                "recall": 0.6985387547649301,
+                "f1-score": 0.7764830508474576,
+                "support": 3148.0
+            },
+            "accuracy": 0.9223074562749309,
+            "macro avg": {
+                "precision": 0.9025667183685779,
+                "recall": 0.8372133950290764,
+                "f1-score": 0.864732649244571,
+                "support": 16295.0
+            },
+            "weighted avg": {
+                "precision": 0.9200920347430452,
+                "recall": 0.9223074562749309,
+                "f1-score": 0.9188847041309005,
+                "support": 16295.0
+            },
+            "cross-entropy": 0.17786783844384593,
+            "roc-auc": 0.962225790298713,
+            "score": 0.962225790298713
+        }
+    },
+    "time": "0:12:26.246333",
+    "diversity": {
+        "train": {
+            "mean_centered_corr": 0.055896881967782974,
+            "mean_pairwise_disagreement": 0.0307871046114997,
+            "member_std": 0.02823685109615326
+        },
+        "val": {
+            "mean_centered_corr": 0.06491804867982864,
+            "mean_pairwise_disagreement": 0.028161331970692545,
+            "member_std": 0.02979666367173195
+        },
+        "test": {
+            "mean_centered_corr": 0.08032963424921036,
+            "mean_pairwise_disagreement": 0.035900211820368406,
+            "member_std": 0.03238997608423233
+        }
+    },
+    "chunk_size": null,
+    "eval_batch_size": 32768
+}

@@ -1,0 +1,17 @@
+_logs/
+_queue_*.txt
+_queue_*.txt.lock
+_queue_*.txt.tmp
+*.out
+FAILED
+*.pt
+*.pth
+checkpoint*
+checkpoint.pt
+checkpoint_best.pt
+predictions*.npz
+summary.json
+events.out.tfevents.*
+cache/
+__pycache__/
+_esam_diagnostics/

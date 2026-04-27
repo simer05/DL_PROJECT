@@ -1,0 +1,43 @@
+batch_size = 1024
+patience = 16
+n_epochs = -1
+gradient_clipping_norm = 1.0
+amp = true
+seed = 0
+head_selection = true
+use_esam = true
+esam_rho = 0.0025
+esam_eps = 1e-12
+esam_adapter_only = true
+esam_memberwise = true
+esam_warmup_epochs = 0
+esam_start_epoch = 0
+esam_end_epoch = -1
+esam_log_diagnostics = false
+esam_diagnostics_every = 100
+
+[data]
+cache = true
+path = "data/delivery-eta"
+cat_policy = "ordinal"
+
+[optimizer]
+lr = 0.0025639267063470926
+weight_decay = 0.0507074044872309
+
+[model]
+arch_type = "tabm"
+k = 32
+share_training_batches = false
+
+[model.backbone]
+n_blocks = 2
+d_block = 752
+dropout = 0.18437573041970334
+
+[model.num_embeddings]
+type = "PiecewiseLinearEmbeddings"
+d_embedding = 32
+
+[bins]
+n_bins = 81

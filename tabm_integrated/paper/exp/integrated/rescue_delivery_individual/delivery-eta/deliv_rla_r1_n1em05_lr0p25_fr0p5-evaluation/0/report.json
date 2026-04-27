@@ -1,0 +1,171 @@
+{
+    "function": "bin.run_integrated.main",
+    "gpus": [
+        "NVIDIA GeForce RTX 4090"
+    ],
+    "config": {
+        "batch_size": 1024,
+        "patience": 16,
+        "n_epochs": -1,
+        "gradient_clipping_norm": 1.0,
+        "amp": true,
+        "seed": 0,
+        "head_selection": true,
+        "rla_adapter_lr_multiplier": 0.25,
+        "rla_extra_paths_freeze_fraction": 0.5,
+        "data": {
+            "cache": true,
+            "path": "data/delivery-eta",
+            "cat_policy": "ordinal"
+        },
+        "optimizer": {
+            "lr": 0.0025639267063470926,
+            "weight_decay": 0.0507074044872309
+        },
+        "model": {
+            "arch_type": "tabm",
+            "k": 32,
+            "share_training_batches": false,
+            "rla_rank": 1,
+            "rla_first_only": false,
+            "rla_additive": false,
+            "rla_init": "base_preserving",
+            "rla_base_preserve_noise": 1e-05,
+            "backbone": {
+                "n_blocks": 2,
+                "d_block": 752,
+                "dropout": 0.18437573041970334
+            },
+            "num_embeddings": {
+                "type": "PiecewiseLinearEmbeddings",
+                "d_embedding": 32
+            }
+        },
+        "bins": {
+            "n_bins": 81
+        }
+    },
+    "n_parameters": 6761248,
+    "prediction_type": "labels",
+    "mfb": {
+        "enabled": false,
+        "config": {},
+        "mask_stats": {
+            "keep_rate_actual": 1.0
+        }
+    },
+    "cf_fisd": {
+        "lambda": 0.0
+    },
+    "epoch_size": 273,
+    "ncl": {
+        "use_ncl": false,
+        "lambda_ncl": 0.0,
+        "ncl_warmup_epochs": 0,
+        "ncl_space": "logits"
+    },
+    "esam": {
+        "use_esam": false,
+        "esam_rho": 0.01,
+        "esam_eps": 1e-12,
+        "esam_adapter_only": true,
+        "esam_memberwise": true,
+        "esam_warmup_epochs": 0,
+        "esam_start_epoch": 0,
+        "esam_end_epoch": -1,
+        "esam_log_diagnostics": true,
+        "esam_diagnostics_every": 100,
+        "adapter_parameter_names": [
+            {
+                "name": "backbone.blocks.0.0.r",
+                "shape": [
+                    32,
+                    6980
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.s",
+                "shape": [
+                    32,
+                    752
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.bias",
+                "shape": [
+                    32,
+                    752
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.r",
+                "shape": [
+                    32,
+                    752
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.s",
+                "shape": [
+                    32,
+                    752
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.bias",
+                "shape": [
+                    32,
+                    752
+                ]
+            }
+        ],
+        "diagnostics_path": null,
+        "n_diagnostics_records": 0
+    },
+    "rla_training": {
+        "adapter_lr_multiplier": 0.25,
+        "extra_paths_freeze_fraction": 0.5,
+        "extra_paths_freeze_until_epoch": 16
+    },
+    "best_step": 2184,
+    "metrics": {
+        "train": {
+            "rmse": 0.5040057771555991,
+            "mae": 0.39488768577575684,
+            "r2": 0.5238790512084961,
+            "score": -0.5040057771555991
+        },
+        "val": {
+            "rmse": 0.5558749906446844,
+            "mae": 0.4398687481880188,
+            "r2": 0.4173172116279602,
+            "score": -0.5558749906446844
+        },
+        "test": {
+            "rmse": 0.5496162918403876,
+            "mae": 0.44109272956848145,
+            "r2": 0.4371039867401123,
+            "score": -0.5496162918403876
+        }
+    },
+    "time": "0:07:17.779232",
+    "diversity": {
+        "train": {
+            "mean_centered_corr": -0.020328260958194733,
+            "mean_pairwise_disagreement": NaN,
+            "member_std": 0.06901570409536362
+        },
+        "val": {
+            "mean_centered_corr": -0.020442906767129898,
+            "mean_pairwise_disagreement": NaN,
+            "member_std": 0.07035460323095322
+        },
+        "test": {
+            "mean_centered_corr": -0.020237648859620094,
+            "mean_pairwise_disagreement": NaN,
+            "member_std": 0.06958991289138794
+        }
+    },
+    "chunk_size": null,
+    "eval_batch_size": 16384
+}

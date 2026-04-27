@@ -1,0 +1,631 @@
+{
+    "function": "bin.run_integrated.main",
+    "gpus": [
+        "NVIDIA GeForce RTX 4090"
+    ],
+    "config": {
+        "batch_size": 1024,
+        "patience": 16,
+        "n_epochs": -1,
+        "gradient_clipping_norm": 1.0,
+        "amp": true,
+        "seed": 0,
+        "head_selection": true,
+        "use_esam": true,
+        "esam_rho": 0.005,
+        "esam_eps": 1e-12,
+        "esam_adapter_only": true,
+        "esam_memberwise": true,
+        "esam_warmup_epochs": 0,
+        "esam_start_epoch": 0,
+        "esam_end_epoch": -1,
+        "esam_log_diagnostics": false,
+        "esam_diagnostics_every": 100,
+        "data": {
+            "cache": true,
+            "path": "data/homesite-insurance",
+            "num_policy": "noisy-quantile",
+            "cat_policy": "ordinal"
+        },
+        "optimizer": {
+            "lr": 0.0018580623030886075,
+            "weight_decay": 0.0001614529849348179
+        },
+        "model": {
+            "arch_type": "tabm",
+            "k": 32,
+            "share_training_batches": false,
+            "backbone": {
+                "n_blocks": 3,
+                "d_block": 704,
+                "dropout": 0.0
+            },
+            "num_embeddings": {
+                "type": "PiecewiseLinearEmbeddings",
+                "d_embedding": 8
+            }
+        },
+        "bins": {
+            "n_bins": 15
+        },
+        "cf_fisd": {
+            "lambda": 0.1,
+            "variant": "raw",
+            "dataset_name": "homesite-insurance",
+            "teacher_dir": "../../cf_fisd_recovered/paper/exp/cf_fisd/_teachers/tabred/homesite-insurance",
+            "teacher_names": [
+                "xgb",
+                "lgbm",
+                "cat"
+            ]
+        }
+    },
+    "n_parameters": 2874464,
+    "prediction_type": "probs",
+    "mfb": {
+        "enabled": false,
+        "config": {},
+        "mask_stats": {
+            "keep_rate_actual": 1.0
+        }
+    },
+    "cf_fisd": {
+        "lambda": 0.1,
+        "variant": "raw",
+        "teacher_names": [
+            "xgb",
+            "lgbm",
+            "cat"
+        ],
+        "member_groups": {
+            "xgb": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+            ],
+            "lgbm": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21
+            ],
+            "cat": [
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31
+            ]
+        },
+        "d_features": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            8,
+            4,
+            8,
+            7,
+            2,
+            21,
+            16,
+            12,
+            8,
+            3,
+            3,
+            10,
+            4,
+            4,
+            4,
+            3,
+            4,
+            3,
+            3,
+            3,
+            3,
+            4,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+        ],
+        "n_features": 298,
+        "teacher_dir": "../../cf_fisd_recovered/paper/exp/cf_fisd/_teachers/tabred/homesite-insurance"
+    },
+    "epoch_size": 220,
+    "ncl": {
+        "use_ncl": false,
+        "lambda_ncl": 0.0,
+        "ncl_warmup_epochs": 0,
+        "ncl_space": "logits"
+    },
+    "esam": {
+        "use_esam": true,
+        "esam_rho": 0.005,
+        "esam_eps": 1e-12,
+        "esam_adapter_only": true,
+        "esam_memberwise": true,
+        "esam_warmup_epochs": 0,
+        "esam_start_epoch": 0,
+        "esam_end_epoch": -1,
+        "esam_log_diagnostics": false,
+        "esam_diagnostics_every": 100,
+        "adapter_parameter_names": [
+            {
+                "name": "backbone.blocks.0.0.r",
+                "shape": [
+                    32,
+                    2206
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.s",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.bias",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.r",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.s",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.bias",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.2.0.r",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.2.0.s",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.2.0.bias",
+                "shape": [
+                    32,
+                    704
+                ]
+            }
+        ],
+        "diagnostics_path": "/workspace/DL_PROJECT/tabm_integrated/paper/exp/integrated/sweeps/homesite-insurance/esam_cf_fisd-evaluation/_esam_diagnostics/esam_cf_fisd-evaluation__0.jsonl",
+        "n_diagnostics_records": 0
+    },
+    "rla_training": {
+        "adapter_lr_multiplier": 1.0,
+        "extra_paths_freeze_fraction": 0.0,
+        "extra_paths_freeze_until_epoch": 0
+    },
+    "best_step": 2200,
+    "metrics": {
+        "train": {
+            "0": {
+                "precision": 0.9395059644977903,
+                "recall": 0.9790076440751548,
+                "f1-score": 0.9588501398034946,
+                "support": 181971.0
+            },
+            "1": {
+                "precision": 0.8899071992622053,
+                "recall": 0.7291317386479019,
+                "f1-score": 0.801536724337093,
+                "support": 42349.0
+            },
+            "accuracy": 0.9318339871611983,
+            "macro avg": {
+                "precision": 0.9147065818799978,
+                "recall": 0.8540696913615284,
+                "f1-score": 0.8801934320702938,
+                "support": 224320.0
+            },
+            "weighted avg": {
+                "precision": 0.9301422960377254,
+                "recall": 0.9318339871611983,
+                "f1-score": 0.9291512015385756,
+                "support": 224320.0
+            },
+            "cross-entropy": 0.15542274217664598,
+            "roc-auc": 0.9714271452985398,
+            "score": 0.9714271452985398
+        },
+        "val": {
+            "0": {
+                "precision": 0.9343040782663102,
+                "recall": 0.9811839197180575,
+                "f1-score": 0.9571703280694598,
+                "support": 16741.0
+            },
+            "1": {
+                "precision": 0.8768087602659367,
+                "recall": 0.6599941124521637,
+                "f1-score": 0.7531071548538797,
+                "support": 3397.0
+            },
+            "accuracy": 0.9270036746449498,
+            "macro avg": {
+                "precision": 0.9055564192661234,
+                "recall": 0.8205890160851106,
+                "f1-score": 0.8551387414616698,
+                "support": 20138.0
+            },
+            "weighted avg": {
+                "precision": 0.9246054192511514,
+                "recall": 0.9270036746449498,
+                "f1-score": 0.9227477141349417,
+                "support": 20138.0
+            },
+            "cross-entropy": 0.17629531770563991,
+            "roc-auc": 0.9573917959108148,
+            "score": 0.9573917959108148
+        },
+        "test": {
+            "0": {
+                "precision": 0.9284371837501807,
+                "recall": 0.9769529170152886,
+                "f1-score": 0.9520773877914088,
+                "support": 13147.0
+            },
+            "1": {
+                "precision": 0.8768793173506705,
+                "recall": 0.6855146124523507,
+                "f1-score": 0.7694776252451417,
+                "support": 3148.0
+            },
+            "accuracy": 0.9206505062902731,
+            "macro avg": {
+                "precision": 0.9026582505504256,
+                "recall": 0.8312337647338197,
+                "f1-score": 0.8607775065182752,
+                "support": 16295.0
+            },
+            "weighted avg": {
+                "precision": 0.9184768177835861,
+                "recall": 0.9206505062902731,
+                "f1-score": 0.9168012876075704,
+                "support": 16295.0
+            },
+            "cross-entropy": 0.18263783097893574,
+            "roc-auc": 0.9606087512633268,
+            "score": 0.9606087512633268
+        }
+    },
+    "time": "0:06:46.725623",
+    "diversity": {
+        "train": {
+            "mean_centered_corr": 0.030530203133821487,
+            "mean_pairwise_disagreement": 0.02995129905147025,
+            "member_std": 0.027598347514867783
+        },
+        "val": {
+            "mean_centered_corr": 0.03432288020849228,
+            "mean_pairwise_disagreement": 0.02602145999058112,
+            "member_std": 0.02860495075583458
+        },
+        "test": {
+            "mean_centered_corr": 0.04354812577366829,
+            "mean_pairwise_disagreement": 0.03329724633521068,
+            "member_std": 0.030326420441269875
+        }
+    },
+    "chunk_size": null,
+    "eval_batch_size": 32768,
+    "heads": [
+        7
+    ],
+    "head_selection_time": "0:00:01.228380"
+}

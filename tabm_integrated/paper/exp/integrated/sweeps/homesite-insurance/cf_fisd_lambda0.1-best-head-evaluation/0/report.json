@@ -1,0 +1,621 @@
+{
+    "function": "bin.run_integrated.main",
+    "gpus": [
+        "NVIDIA GeForce RTX 4090"
+    ],
+    "config": {
+        "batch_size": 1024,
+        "patience": 16,
+        "n_epochs": -1,
+        "gradient_clipping_norm": 1.0,
+        "amp": true,
+        "seed": 0,
+        "head_selection": true,
+        "data": {
+            "cache": true,
+            "path": "data/homesite-insurance",
+            "num_policy": "noisy-quantile",
+            "cat_policy": "ordinal"
+        },
+        "optimizer": {
+            "lr": 0.0018580623030886075,
+            "weight_decay": 0.0001614529849348179
+        },
+        "model": {
+            "arch_type": "tabm",
+            "k": 32,
+            "share_training_batches": false,
+            "backbone": {
+                "n_blocks": 3,
+                "d_block": 704,
+                "dropout": 0.0
+            },
+            "num_embeddings": {
+                "type": "PiecewiseLinearEmbeddings",
+                "d_embedding": 8
+            }
+        },
+        "bins": {
+            "n_bins": 15
+        },
+        "cf_fisd": {
+            "lambda": 0.1,
+            "variant": "raw",
+            "dataset_name": "homesite-insurance",
+            "teacher_dir": "../../cf_fisd_recovered/paper/exp/cf_fisd/_teachers/tabred/homesite-insurance",
+            "teacher_names": [
+                "xgb",
+                "lgbm",
+                "cat"
+            ]
+        }
+    },
+    "n_parameters": 2874464,
+    "prediction_type": "probs",
+    "mfb": {
+        "enabled": false,
+        "config": {},
+        "mask_stats": {
+            "keep_rate_actual": 1.0
+        }
+    },
+    "cf_fisd": {
+        "lambda": 0.1,
+        "variant": "raw",
+        "teacher_names": [
+            "xgb",
+            "lgbm",
+            "cat"
+        ],
+        "member_groups": {
+            "xgb": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10
+            ],
+            "lgbm": [
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21
+            ],
+            "cat": [
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31
+            ]
+        },
+        "d_features": [
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            8,
+            7,
+            8,
+            4,
+            8,
+            7,
+            2,
+            21,
+            16,
+            12,
+            8,
+            3,
+            3,
+            10,
+            4,
+            4,
+            4,
+            3,
+            4,
+            3,
+            3,
+            3,
+            3,
+            4,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+        ],
+        "n_features": 298,
+        "teacher_dir": "../../cf_fisd_recovered/paper/exp/cf_fisd/_teachers/tabred/homesite-insurance"
+    },
+    "epoch_size": 220,
+    "ncl": {
+        "use_ncl": false,
+        "lambda_ncl": 0.0,
+        "ncl_warmup_epochs": 0,
+        "ncl_space": "logits"
+    },
+    "esam": {
+        "use_esam": false,
+        "esam_rho": 0.01,
+        "esam_eps": 1e-12,
+        "esam_adapter_only": true,
+        "esam_memberwise": true,
+        "esam_warmup_epochs": 0,
+        "esam_start_epoch": 0,
+        "esam_end_epoch": -1,
+        "esam_log_diagnostics": true,
+        "esam_diagnostics_every": 100,
+        "adapter_parameter_names": [
+            {
+                "name": "backbone.blocks.0.0.r",
+                "shape": [
+                    32,
+                    2206
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.s",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.0.0.bias",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.r",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.s",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.1.0.bias",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.2.0.r",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.2.0.s",
+                "shape": [
+                    32,
+                    704
+                ]
+            },
+            {
+                "name": "backbone.blocks.2.0.bias",
+                "shape": [
+                    32,
+                    704
+                ]
+            }
+        ],
+        "diagnostics_path": null,
+        "n_diagnostics_records": 0
+    },
+    "rla_training": {
+        "adapter_lr_multiplier": 1.0,
+        "extra_paths_freeze_fraction": 0.0,
+        "extra_paths_freeze_until_epoch": 0
+    },
+    "best_step": 2420,
+    "metrics": {
+        "train": {
+            "0": {
+                "precision": 0.9511390416339356,
+                "recall": 0.9648020838485253,
+                "f1-score": 0.9579218455024607,
+                "support": 181971.0
+            },
+            "1": {
+                "precision": 0.8388070970177426,
+                "recall": 0.7870315709934119,
+                "f1-score": 0.8120949271477998,
+                "support": 42349.0
+            },
+            "accuracy": 0.9312410841654779,
+            "macro avg": {
+                "precision": 0.8949730693258391,
+                "recall": 0.8759168274209685,
+                "f1-score": 0.8850083863251303,
+                "support": 224320.0
+            },
+            "weighted avg": {
+                "precision": 0.9299320804956013,
+                "recall": 0.9312410841654779,
+                "f1-score": 0.9303914239377251,
+                "support": 224320.0
+            },
+            "cross-entropy": 0.15615645016500299,
+            "roc-auc": 0.9724991426058968,
+            "score": 0.9724991426058968
+        },
+        "val": {
+            "0": {
+                "precision": 0.9410138248847926,
+                "recall": 0.9758078967803596,
+                "f1-score": 0.958095070525791,
+                "support": 16741.0
+            },
+            "1": {
+                "precision": 0.8542116630669546,
+                "recall": 0.6985575507801001,
+                "f1-score": 0.768582995951417,
+                "support": 3397.0
+            },
+            "accuracy": 0.9290396265766213,
+            "macro avg": {
+                "precision": 0.8976127439758737,
+                "recall": 0.8371827237802298,
+                "f1-score": 0.863339033238604,
+                "support": 20138.0
+            },
+            "weighted avg": {
+                "precision": 0.9263715096749804,
+                "recall": 0.9290396265766213,
+                "f1-score": 0.9261270241791256,
+                "support": 20138.0
+            },
+            "cross-entropy": 0.17528768630111824,
+            "roc-auc": 0.957813544584969,
+            "score": 0.957813544584969
+        },
+        "test": {
+            "0": {
+                "precision": 0.9342733348020856,
+                "recall": 0.9676732334372861,
+                "f1-score": 0.9506800179345389,
+                "support": 13147.0
+            },
+            "1": {
+                "precision": 0.8412994772218073,
+                "recall": 0.71569250317662,
+                "f1-score": 0.7734294541709578,
+                "support": 3148.0
+            },
+            "accuracy": 0.9189935563056152,
+            "macro avg": {
+                "precision": 0.8877864060119465,
+                "recall": 0.841682868306953,
+                "f1-score": 0.8620547360527484,
+                "support": 16295.0
+            },
+            "weighted avg": {
+                "precision": 0.9163118924171383,
+                "recall": 0.9189935563056152,
+                "f1-score": 0.9164373192706695,
+                "support": 16295.0
+            },
+            "cross-entropy": 0.1803789882797406,
+            "roc-auc": 0.961490313471295,
+            "score": 0.961490313471295
+        }
+    },
+    "time": "0:03:47.889216",
+    "diversity": {
+        "train": {
+            "mean_centered_corr": 0.0506281740963459,
+            "mean_pairwise_disagreement": 0.03327413710540242,
+            "member_std": 0.03079444356262684
+        },
+        "val": {
+            "mean_centered_corr": 0.056434109807014465,
+            "mean_pairwise_disagreement": 0.030276074921749604,
+            "member_std": 0.03229342773556709
+        },
+        "test": {
+            "mean_centered_corr": 0.06734751909971237,
+            "mean_pairwise_disagreement": 0.037917825574834946,
+            "member_std": 0.03452758118510246
+        }
+    },
+    "chunk_size": null,
+    "eval_batch_size": 32768,
+    "heads": [
+        25
+    ],
+    "head_selection_time": "0:00:00.859514"
+}

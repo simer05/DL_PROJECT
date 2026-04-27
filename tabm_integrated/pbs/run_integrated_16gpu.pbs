@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$PBS_O_WORKDIR"
+N_GPUS=16 SEEDS="${SEEDS:-0}" ./tabm_integrated/tools/run_integrated_matrix.sh
